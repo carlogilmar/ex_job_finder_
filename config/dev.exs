@@ -52,7 +52,8 @@ config :remote_jobs, RemoteJobsWeb.Endpoint,
       ~r{priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$},
       ~r{priv/gettext/.*(po)$},
       ~r{lib/remote_jobs_web/views/.*(ex)$},
-      ~r{lib/remote_jobs_web/templates/.*(eex)$}
+      ~r{lib/remote_jobs_web/templates/.*(eex)$},
+      ~r{lib/counter_web/live/.*(ex)$}
     ]
   ]
 

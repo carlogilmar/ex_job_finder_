@@ -1,6 +1,7 @@
 defmodule RemoteJobsWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :remote_jobs
 
+  socket "/live", Phoenix.LiveView.Socket
   socket "/socket", RemoteJobsWeb.UserSocket,
     websocket: true,
     longpoll: false

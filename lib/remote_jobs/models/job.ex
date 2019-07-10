@@ -17,6 +17,7 @@ defmodule RemoteJobs.Job do
     field :url, :string
     field :email, :string
     field :logo, :string
+		field :expire_date, :date
     timestamps()
   end
 

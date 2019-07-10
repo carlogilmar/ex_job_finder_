@@ -1,0 +1,71 @@
+<div id="app">
+	<form @submit="create_job">
+
+		<div class="form-group">
+			<label>Posición</label>
+			<input type="text" class="form-control" v-model="position">
+		</div>
+
+		<div class="form-group">
+			<label>Compañia</label>
+			<input type="text" class="form-control" v-model="company_name">
+		</div>
+
+		<div class="form-group">
+			<label>Restricciones Geográficas</label>
+			<input type="text" class="form-control" v-model="location_restricted">
+		</div>
+
+		<div class="form-group">
+			<label>Categoría Principal</label>
+			<input type="text" class="form-control" v-model="primary_tag">
+		</div>
+
+		<div class="form-group">
+			<label>Categorías Extra</label>
+			<input type="text" class="form-control" v-model="extra_tags">
+		</div>
+
+		<div class="form-group">
+			<label>Salario Anual</label>
+			<input type="text" class="form-control" v-model="salary">
+		</div>
+
+		<div class="form-group">
+			<label> Descripción </label>
+			<textarea class="form-control" rows="3" v-model="description">
+			</textarea>
+		</div>
+
+		<div class="form-group">
+			<label>Responsabilidades</label>
+			<textarea class="form-control" rows="3" v-model="responsabilities">
+			</textarea>
+		</div>
+
+		<div class="form-group">
+			<label>Requerimientos</label>
+			<textarea class="form-control" rows="3" v-model="requirements">
+			</textarea>
+		</div>
+
+		<div class="form-group">
+			<label>Apply Description</label>
+			<textarea class="form-control" rows="3" v-model="apply_description">
+			</textarea>
+		</div>
+
+		<div class="form-group">
+			<label>URL para aplicar</label>
+			<input type="url" class="form-control" v-model="url">
+		</div>
+
+		<div class="form-group">
+			<label>Email de Contacto</label>
+			<input type="email" class="form-control" v-model="email">
+		</div>
+
+		<button type="submit" class="btn btn-primary">Submit</button>
+
+	</form>
+</div>

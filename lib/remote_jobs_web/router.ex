@@ -7,6 +7,8 @@ defmodule RemoteJobsWeb.Router do
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug Phoenix.LiveView.Flash
+    plug :put_layout, {RemoteJobsWeb.LayoutView, :app}
   end
 
   pipeline :api do
@@ -16,7 +18,9 @@ defmodule RemoteJobsWeb.Router do
   scope "/", RemoteJobsWeb do
     pipe_through :browser
 
-    get "/", PageController, :index
+    #get "/", PageController, :index
+    live "/", DashboardLive
+    get "/job", JobController, :index
   end
 
   # Other scopes may use custom stacks.

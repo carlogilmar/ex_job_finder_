@@ -15,7 +15,8 @@ config :remote_jobs, RemoteJobsWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "B0k3rREDoyeOy/aeJdEHF9hmEUmhvS+DubNAbHAvsl9ou3MoTCPC8sXTuxIwrD5b",
   render_errors: [view: RemoteJobsWeb.ErrorView, accepts: ~w(html json)],
-  pubsub: [name: RemoteJobs.PubSub, adapter: Phoenix.PubSub.PG2]
+  pubsub: [name: RemoteJobs.PubSub, adapter: Phoenix.PubSub.PG2],
+  live_view: [signing_salt: "v9A3XbdFJ7DGyUpax3MGjEveJAPmVFe1"]
 
 # Configures Elixir's Logger
 config :logger, :console,
