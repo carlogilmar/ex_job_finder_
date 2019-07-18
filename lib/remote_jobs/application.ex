@@ -8,12 +8,9 @@ defmodule RemoteJobs.Application do
   def start(_type, _args) do
     # List all child processes to be supervised
     children = [
-      # Start the Ecto repository
       RemoteJobs.Repo,
-      # Start the endpoint when the application starts
-      RemoteJobsWeb.Endpoint
-      # Starts a worker by calling: RemoteJobs.Worker.start_link(arg)
-      # {RemoteJobs.Worker, arg},
+      RemoteJobsWeb.Endpoint,
+			{RemoteJobs.JobManager, []}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

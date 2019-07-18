@@ -18,6 +18,7 @@ defmodule RemoteJobs.Repo.Migrations.AddJob do
 			add :email, :string
 			add :logo, :string
       add :expire_date, :date
+      add :status, :string
 			timestamps()
 		end
   end

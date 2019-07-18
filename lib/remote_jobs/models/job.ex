@@ -18,6 +18,7 @@ defmodule RemoteJobs.Job do
     field :email, :string
     field :logo, :string
 		field :expire_date, :date
+    field :status, :string, default: "CREATED"
     timestamps()
   end
 
