@@ -1,7 +1,9 @@
 defmodule RemoteJobsWeb.DashboardLive do
-
+  @moduledoc """
+    A module in charge of the interactions on the dashboard view.
+  """
   use Phoenix.LiveView
-	alias RemoteJobs.JobManager
+  alias RemoteJobs.JobManager
   alias RemoteJobsWeb.DashboardView
 
   def render(assigns) do
@@ -10,13 +12,12 @@ defmodule RemoteJobsWeb.DashboardLive do
 
   def mount(_session, socket) do
     RemoteJobsWeb.Endpoint.subscribe("dashboard")
-		jobs = JobManager.get()
-		socket = socket |> assign(:jobs, jobs)
+    jobs = JobManager.get()
+    socket = socket |> assign(:jobs, jobs)
     {:ok, socket}
   end
 
-  def handle_info(%{event: "update_jobs", payload: %{ jobs: jobs}}, socket) do
+  def handle_info(%{event: "update_jobs", payload: %{jobs: jobs}}, socket) do
     {:noreply, assign(socket, :jobs, jobs)}
   end
-
 end

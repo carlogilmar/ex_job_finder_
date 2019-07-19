@@ -10,7 +10,7 @@ defmodule RemoteJobs.Application do
     children = [
       RemoteJobs.Repo,
       RemoteJobsWeb.Endpoint,
-			{RemoteJobs.JobManager, []}
+      {RemoteJobs.JobManager, []}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

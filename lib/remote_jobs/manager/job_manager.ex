@@ -1,4 +1,7 @@
 defmodule RemoteJobs.JobManager do
+  @moduledoc """
+    A module in charge of all the tasks related to the jobs.
+  """
   alias RemoteJobs.JobOperator
   use GenServer
 
@@ -10,9 +13,9 @@ defmodule RemoteJobs.JobManager do
     GenServer.cast(__MODULE__, {:create, job})
   end
 
-	def get() do
-		GenServer.call(__MODULE__, :get)
-	end
+  def get() do
+    GenServer.call(__MODULE__, :get)
+  end
 
   def init(_) do
     {:ok, %{}}
@@ -20,19 +23,18 @@ defmodule RemoteJobs.JobManager do
 
   def handle_cast({:create, job}, state) do
     _ = JobOperator.create(job)
-		send self(), :update_dashboard
-		{:noreply, state}
-	end
+    send(self(), :update_dashboard)
+    {:noreply, state}
+  end
 
-	def handle_info(:update_dashboard, state) do
+  def handle_info(:update_dashboard, state) do
     jobs = JobOperator.find_all()
     RemoteJobsWeb.Endpoint.broadcast("dashboard", "update_jobs", %{jobs: jobs})
-		{:noreply, state}
-	end
+    {:noreply, state}
+  end
 
   def handle_call(:get, _from, state) do
     jobs = JobOperator.find_all()
     {:reply, jobs, state}
   end
-
 end

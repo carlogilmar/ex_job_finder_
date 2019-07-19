@@ -1,8 +1,11 @@
 defmodule RemoteJobs.Job do
+  @moduledoc """
+    Job model definition
+  """
   use Ecto.Schema
   import Ecto.Changeset
 
-	@primary_key {:id, :id, autogenerate: true}
+  @primary_key {:id, :id, autogenerate: true}
   schema "jobs" do
     field :position, :string
     field :company_name, :string
@@ -17,7 +20,7 @@ defmodule RemoteJobs.Job do
     field :url, :string
     field :email, :string
     field :logo, :string
-		field :expire_date, :date
+    field :expire_date, :date
     field :status, :string, default: "CREATED"
     timestamps()
   end

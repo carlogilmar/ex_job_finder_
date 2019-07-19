@@ -7,5 +7,4 @@ defmodule RemoteJobs.JobsUtilTest do
     job_expired_date = JobUtil.get_expired_date(job_date_created)
     assert job_expired_date == ~D[2019-08-09]
   end
-
 end

@@ -1,14 +1,17 @@
 defmodule RemoteJobsWeb.JobsChannel do
-	use Phoenix.Channel
-	alias RemoteJobs.JobManager
+  @moduledoc """
+    A module in charge of the job channel.
+  """
 
-	def join("remote:job", _msg, socket) do
-		{:ok, [], socket}
-	end
+  use Phoenix.Channel
+  alias RemoteJobs.JobManager
 
-	def handle_in("remote:create", %{"data" => job}, socket) do
-		_ = JobManager.create(job)
-		{:noreply, socket}
-	end
+  def join("remote:job", _msg, socket) do
+    {:ok, [], socket}
+  end
 
+  def handle_in("remote:create", %{"data" => job}, socket) do
+    _ = JobManager.create(job)
+    {:noreply, socket}
+  end
 end
