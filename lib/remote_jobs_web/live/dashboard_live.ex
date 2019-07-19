@@ -12,12 +12,21 @@ defmodule RemoteJobsWeb.DashboardLive do
 
   def mount(_session, socket) do
     RemoteJobsWeb.Endpoint.subscribe("dashboard")
-    jobs = JobManager.get()
-    socket = socket |> assign(:jobs, jobs)
+		jobs = JobManager.get()
+    quantity = length(jobs)
+		socket =
+      socket
+        |> assign(:jobs, jobs)
+        |> assign(:quantity, quantity)
     {:ok, socket}
   end
 
-  def handle_info(%{event: "update_jobs", payload: %{jobs: jobs}}, socket) do
-    {:noreply, assign(socket, :jobs, jobs)}
+  def handle_info(%{event: "update_jobs", payload: %{ jobs: jobs}}, socket) do
+    quantity = length(jobs)
+		socket =
+      socket
+        |> assign(:jobs, jobs)
+        |> assign(:quantity, quantity)
+    {:noreply, socket}
   end
 end

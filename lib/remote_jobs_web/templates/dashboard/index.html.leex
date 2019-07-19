@@ -1,8 +1,33 @@
-<div>
-<h3>Remote Jobs</h3>
+<div id="app" class="container" style="padding-top: 50px;">
+  <div class="row">
+    <div class="col-md-12 text-center">
+			<h2>Remote Jobs</h2>
+			<p style="display: inline;"> ¡Ya son
+				<h3 style="display: inline;">
+					<span class="badge badge-success"><%= @quantity %></span>
+				</h3> vacantes!
+			</p>
+		</div>
+	</div>
+</div>
 
-<%= for job <- @jobs do %>
-<div><%= job.position%></div>
-<% end %>
-
+<div class="container" style="padding-top: 50px;">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="list-group">
+        <%= for job <- @jobs do %>
+				  <!-- List item start -->
+          <a class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="d-flex w-100 justify-content-between">
+              <h5 class="mb-1"><%= job.position%></h5>
+              <small>$ <%= job.salary %></small>
+            </div>
+            <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+            <small>Donec id elit non mi porta.</small>
+          </a>
+				  <!-- List item end -->
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>
