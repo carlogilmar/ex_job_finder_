@@ -1,6 +1,4 @@
 <div id="app">
-	<form @submit="create_job">
-
 		<div class="form-group">
 			<label>Posición</label>
 			<input type="text" class="form-control" v-model="position">
@@ -65,7 +63,6 @@
 			<input type="email" class="form-control" v-model="email">
 		</div>
 
-		<button type="submit" class="btn btn-primary">Submit</button>
+		<button v-on:click="create_job" class="btn btn-primary">Agregar sin pagar </button>
 
-	</form>
 </div>

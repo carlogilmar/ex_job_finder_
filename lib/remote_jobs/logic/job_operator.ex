@@ -8,20 +8,20 @@ defmodule RemoteJobs.JobOperator do
   alias RemoteJobs.Job
   @status "CREATED"
 
-  def create(_job) do
+  def create(job) do
     %Job{
-      position: "developer",
-      company_name: "Codigo Ambar",
-      location_restricted: "WorldWide",
-      primary_tag: "Development",
-      extra_tags: "Software and Open Source",
-      salary: "1000",
-      description: "Software Engineer que se rife",
-      responsabilities: "Programar elixir",
-      requirements: "Programar chido",
-      apply_description: "Ser blanco",
-      url: "https://github.com/carlogilmar/remote-jobs/issues?q=is%3Aopen+is%3Aissue",
-      email: "carlogilmar12@gmail.com",
+      position: job["position"],
+      company_name: job["company_name"],
+      location_restricted: job["location_restricted"],
+      primary_tag: job["primary_tag"],
+      extra_tags: job["extra_tags"],
+      salary: job["salary"],
+      description: job["description"],
+      responsabilities: job["responsabilities"],
+      requirements: job["requirements"],
+      apply_description: job["apply_description"],
+      url: job["url"],
+      email: job["email"],
       logo: "http://carlogilmar.xyz/index_files/carlogilmar.png",
       expire_date: JobUtil.get_expired_date()
     }
