@@ -7,7 +7,8 @@ defmodule RemoteJobs.EmailManager do
 
   def send_confirmation(email) do
 		body = BuilderUtil.build_email(@confirmation_template)
-    Email.build(email, @confirmation, body) |> Mailer.deliver_now()
+    pdf_src = BuilderUtil.build_pdf(@confirmation_template)
+    Email.build_with_attach(email, @confirmation, body, pdf_src) |> Mailer.deliver_now()
   end
 
 end

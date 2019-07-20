@@ -11,4 +11,10 @@ defmodule RemoteJobs.BuilderUtil do
     EEx.eval_string( template_content, [company_name: "RemoteJobs"])
   end
 
+  def build_pdf(template_src) do
+    content = get_template(template_src)
+    {:ok, pdf} = PdfGenerator.generate(content, page_size: "Letter", shell_params: [ "-T", "0", "-B", "0", "-L", "0", "-R", "0"])
+    pdf
+  end
+
 end

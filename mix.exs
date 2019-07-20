@@ -47,6 +47,7 @@ defmodule RemoteJobs.MixProject do
       {:credo, "~> 1.0.0", only: [:dev, :test], runtime: false}
       {:bamboo, "~> 1.2"},
       {:poison, "~> 3.1"},
+      {:pdf_generator, ">=0.4.0"},
     ]
   end
 
