@@ -3,6 +3,7 @@ defmodule RemoteJobs.JobManager do
     A module in charge of all the tasks related to the jobs.
   """
   alias RemoteJobs.JobOperator
+  alias RemoteJobs.EmailManager
   use GenServer
 
   def start_link(_opts \\ []) do
@@ -23,9 +24,10 @@ defmodule RemoteJobs.JobManager do
 
   def handle_cast({:create, job}, state) do
     _ = JobOperator.create(job)
-    send(self(), :update_dashboard)
-    {:noreply, state}
-  end
+    _ = EmailManager.send_confirmation(job["email"])
+		send self(), :update_dashboard
+		{:noreply, state}
+	end
 
   def handle_info(:update_dashboard, state) do
     jobs = JobOperator.find_all()

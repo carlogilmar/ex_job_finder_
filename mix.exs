@@ -20,7 +20,7 @@ defmodule RemoteJobs.MixProject do
   def application do
     [
       mod: {RemoteJobs.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools, :bamboo]
     ]
   end
 
@@ -45,6 +45,8 @@ defmodule RemoteJobs.MixProject do
       {:plug_cowboy, "~> 2.0"},
       {:phoenix_live_view, github: "phoenixframework/phoenix_live_view"},
       {:credo, "~> 1.0.0", only: [:dev, :test], runtime: false}
+      {:bamboo, "~> 1.2"},
+      {:poison, "~> 3.1"},
     ]
   end
 
