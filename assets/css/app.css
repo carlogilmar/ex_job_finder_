@@ -3,3 +3,7 @@
 @import "../../deps/phoenix_live_view/assets/css/live_view.css";
 @import '../node_modules/bootstrap/dist/css/bootstrap.css';
 
+.ql-toolbar.ql-snow + .ql-container.ql-snow {
+  height: 10rem;
+}
+

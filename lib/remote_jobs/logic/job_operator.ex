@@ -5,6 +5,7 @@ defmodule RemoteJobs.JobOperator do
   import Ecto.Query, only: [from: 2]
   alias RemoteJobs.Repo
   alias RemoteJobs.DateUtil
+  alias RemoteJobs.ParserUtil
   alias RemoteJobs.Job
   @status "CREATED"
 
@@ -13,8 +14,8 @@ defmodule RemoteJobs.JobOperator do
       position: job["position"],
       company_name: job["company_name"],
       location_restricted: job["location_restricted"],
-      primary_tag: job["primary_tag"],
-      extra_tags: job["extra_tags"],
+      primary_tag: ParserUtil.resume_tags.(job["primary_tag"]),
+      extra_tags: ParserUtil.resume_tags.(job["extra_tags"]),
       salary: job["salary"],
       description: job["description"],
       responsabilities: job["responsabilities"],
