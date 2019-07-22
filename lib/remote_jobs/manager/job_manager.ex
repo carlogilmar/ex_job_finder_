@@ -23,9 +23,13 @@ defmodule RemoteJobs.JobManager do
   end
 
   def handle_cast({:create, job}, state) do
-    _ = JobOperator.create(job)
-    _ = EmailManager.send_confirmation(job["email"])
-		send self(), :update_dashboard
+    with {:ok, job_created} <- JobOperator.create(job) do
+      _ = EmailManager.send_confirmation(job_created.email)
+		  _ = send(self(), :update_dashboard)
+    else
+      _ -> raise "JobManager: Error al intentar crear nuevo job"
+    end
+
 		{:noreply, state}
 	end
 

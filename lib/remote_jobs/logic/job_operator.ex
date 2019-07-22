@@ -4,7 +4,7 @@ defmodule RemoteJobs.JobOperator do
   """
   import Ecto.Query, only: [from: 2]
   alias RemoteJobs.Repo
-  alias RemoteJobs.JobUtil
+  alias RemoteJobs.DateUtil
   alias RemoteJobs.Job
   @status "CREATED"
 
@@ -23,7 +23,7 @@ defmodule RemoteJobs.JobOperator do
       url: job["url"],
       email: job["email"],
       logo: "http://carlogilmar.xyz/index_files/carlogilmar.png",
-      expire_date: JobUtil.get_expired_date()
+      expire_date: DateUtil.get_expired_date()
     }
     |> Repo.insert()
   end
