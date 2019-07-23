@@ -1,5 +1,8 @@
 #!/bin/sh
 
+echo "Git fetch..."
+git fetch
+
 echo "[running] Pre Commit Hook"
 echo "[running] === Favor de revisar que no existan warnings ==="
 echo "[running] mix credo"

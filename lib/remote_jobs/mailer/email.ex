@@ -3,7 +3,7 @@ defmodule RemoteJobs.Email do
     This module is for create email structs
   """
   import Bamboo.Email
-  alias Bamboo.Attachmenta
+  alias Bamboo.Attachment
 
   def build(email, subject, body) do
     new_email()

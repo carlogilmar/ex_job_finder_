@@ -31,6 +31,18 @@ defmodule RemoteJobs.JobOperator do
 
   def find_all do
     query = from(j in Job, where: j.status == @status)
-    Repo.all(query)
+    jobs = Repo.all(query)
+    get_extra_tags.(jobs)
+  end
+
+  defp get_extra_tags do
+    fn
+      [] -> []
+      jobs ->
+        for job <- jobs do
+          extra_tags = ParserUtil.get_tags.(job.extra_tags)
+          %{job | extra_tags: extra_tags}
+        end
+    end
   end
 end

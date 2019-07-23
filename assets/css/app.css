@@ -7,3 +7,17 @@
   height: 10rem;
 }
 
+.primary_tag{
+  color: #3e3838;
+  background-color: #e4e4e4;
+}
+
+.extra_tag{
+  color: #ffffff;
+  background-color: #868686;
+  font-size: 93%;
+}
+
+.job_title{
+	font-size: 2rem;
+}

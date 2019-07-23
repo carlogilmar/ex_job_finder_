@@ -11,23 +11,91 @@
 	</div>
 </div>
 
+
 <div class="container" style="padding-top: 50px;">
   <div class="row">
     <div class="col-md-12">
       <div class="list-group">
         <%= for job <- @jobs do %>
 				  <!-- List item start -->
-          <a class="list-group-item list-group-item-action flex-column align-items-start">
-            <div class="d-flex w-100 justify-content-between">
-              <h5 class="mb-1"><%= job.position%></h5>
-              <small>$ <%= job.salary %></small>
+          <a class="list-group-item list-group-item-action" data-toggle="collapse"
+            href="#collapseJob<%= job.id %>" role="button" aria-expanded="false" aria-controls="collapseExample">
+            <div class="row">
+              <div class="col-md-2 text-center d-flex align-items-center justify-content-center">
+                <img src="<%= job.logo  %>" width="100%"/>
+              </div>
+              <div class="col-md-5">
+								<span class="badge badge-secondary primary_tag"> <%= job.primary_tag %> </span>
+                <h3><%= job.position %></h3>
+								<p><%= job.location_restricted %></p>
+                <small>Haz click para ver más detalles</small>
+              </div>
+              <div class="col-md-4 text-center d-flex align-items-center justify-content-center">
+        				<%= for tag <- job.extra_tags do %>
+                	<span class="badge badge-pill badge-light extra_tag"><%= tag %></span> &nbsp;
+        				<% end %>
+              </div>
+              <div class="col-md-1 text-center d-flex align-items-center justify-content-center">
+                <button class="btn btn-primary btn-sm"
+									role="link" onclick="window.location='<%= job.url %>'">Apply</button>
+              </div>
             </div>
-            <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-            <small>Donec id elit non mi porta.</small>
           </a>
 				  <!-- List item end -->
+				  <!-- Detail -->
+          <div class="collapse" id="collapseJob<%= job.id %>">
+            <div class="row">
+              <div class="col-md-2"></div>
+              <div class="col-md-8">
+								<br><br>
+								<div class="jumbotron">
+                	<div class="col-md-12 text-center">
+								    <h1> <%= job.company_name %></h1>
+								    <p> Salario Anual: <strong>$ <%= job.salary %></strong></p>
+									</div>
+                	<div class="col-md-12">
+										<br>
+  								  <h1 class="display-5 job_title">Descripción</h1>
+                    <hr>
+								    <%= raw(job.description) %>
+									  <br>
+  								  <h1 class="display-5 job_title">Responsabilidades</h1>
+                    <hr>
+								    <%= raw(job.responsabilities) %>
+									  <br>
+  								  <h1 class="display-5 job_title">Requerimientos</h1>
+                    <hr>
+								    <%= raw(job.requirements) %>
+									  <br>
+  								  <h1 class="display-5 job_title">Detalles de la vacante</h1>
+                    <hr>
+								    <%= raw(job.apply_description) %>
+									  <br>
+									</div>
+                	<div class="col-md-12 text-center">
+                    <button class="btn btn-primary"
+								    	role="link" onclick="window.location='<%= job.url %>'">Apply</button>
+									</div>
+								</div>
+              </div>
+              <div class="col-md-2"></div>
+            </div>
+          </div>
+				  <!-- Detail end -->
         <% end %>
       </div>
     </div>
   </div>
 </div>
+<!--
+            <p>
+              <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                Link with href
+              </a>
+            </p>
+            <div class="collapse" id="collapseExample">
+              <h1> Holi </h1>
+            </div>
+-->
+
+
