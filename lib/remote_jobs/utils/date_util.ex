@@ -1,4 +1,4 @@
-defmodule RemoteJobs.JobUtil do
+defmodule RemoteJobs.DateUtil do
   @moduledoc """
     Functions that help job managment.
   """

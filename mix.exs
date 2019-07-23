@@ -44,7 +44,7 @@ defmodule RemoteJobs.MixProject do
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
       {:phoenix_live_view, github: "phoenixframework/phoenix_live_view"},
-      {:credo, "~> 1.0.0", only: [:dev, :test], runtime: false}
+      {:credo, "~> 1.0.0", only: [:dev, :test], runtime: false},
       {:bamboo, "~> 1.2"},
       {:poison, "~> 3.1"},
       {:pdf_generator, ">=0.4.0"},
