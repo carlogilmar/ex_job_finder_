@@ -1,5 +1,9 @@
 defmodule RemoteJobs.Email do
+  @moduledoc """
+    This module is for create email structs
+  """
   import Bamboo.Email
+  alias Bamboo.Attachmenta
 
   def build(email, subject, body) do
     new_email()
@@ -14,7 +18,7 @@ defmodule RemoteJobs.Email do
       |> to(email)
       |> from("confirmation@remotejobs.io")
       |> subject(subject)
-      |> put_attachment(Bamboo.Attachment.new(pdf_path))
+      |> put_attachment(Attachment.new(pdf_path))
       |> html_body(body)
   end
 end

@@ -1,0 +1,45 @@
+#!/bin/sh
+
+echo "[running] Pre Commit Hook"
+echo "[running] === Favor de revisar que no existan warnings ==="
+echo "[running] mix credo"
+
+mix credo
+CREDO_RES=$?
+
+if [ $CREDO_RES -ge 1 ]; then
+  echo "======================================="
+  echo "   Por favor refactoriza tu código "
+  echo " Para continuar con el push arregla "
+  echo " las alertas de CREDO. Gracias...     "
+  echo "======================================="
+  echo "         :: Bonito día 😠  :: "
+  echo ""
+  exit $CREDO_RES
+fi
+if [ $CREDO_RES -le 9 ]; then CREDO_RES=" $CREDO_RES"; fi
+  echo "======================================="
+  echo "    No hay warnings por corregir 😎 "
+  echo "          :: Bonito día :: "
+  echo "======================================="
+
+echo ""
+echo ""
+
+# Enviando mensaje al slack
+
+BRANCH="$( git rev-parse --abbrev-ref HEAD )"
+GIT_USER="$(git config user.name)"
+MSG="*${GIT_USER}* esta actualizando el branch *${BRANCH}*"
+DATA="{\"text\":\"${MSG}\"}"
+
+echo $MSG
+echo "[running] Avisando a todos en el slack que estás subiendo cambios..."
+WEBHOOK="https://hooks.slack.com/services/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"
+curl -X POST -H 'Content-type: application/json' --data "${DATA}" "${WEBHOOK}"
+echo "[Done] Listo."
+echo ""
+echo ""
+
+# Finished
+exit 0

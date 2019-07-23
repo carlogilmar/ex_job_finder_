@@ -1,3 +1,6 @@
 defmodule RemoteJobs.Mailer do
-    use Bamboo.Mailer, otp_app: :remote_jobs
+  @moduledoc """
+    Bamboo implementation
+  """
+  use Bamboo.Mailer, otp_app: :remote_jobs
 end

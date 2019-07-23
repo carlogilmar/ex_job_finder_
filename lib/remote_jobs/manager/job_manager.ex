@@ -2,8 +2,9 @@ defmodule RemoteJobs.JobManager do
   @moduledoc """
     A module in charge of all the tasks related to the jobs.
   """
-  alias RemoteJobs.JobOperator
   alias RemoteJobs.EmailManager
+  alias RemoteJobs.JobOperator
+  alias RemoteJobsWeb.Endpoint
   use GenServer
 
   def start_link(_opts \\ []) do
@@ -14,7 +15,7 @@ defmodule RemoteJobs.JobManager do
     GenServer.cast(__MODULE__, {:create, job})
   end
 
-  def get() do
+  def get do
     GenServer.call(__MODULE__, :get)
   end
 
@@ -25,17 +26,16 @@ defmodule RemoteJobs.JobManager do
   def handle_cast({:create, job}, state) do
     with {:ok, job_created} <- JobOperator.create(job) do
       _ = EmailManager.send_confirmation(job_created.email)
-		  _ = send(self(), :update_dashboard)
+      _ = send(self(), :update_dashboard)
     else
       _ -> raise "JobManager: Error al intentar crear nuevo job"
     end
-
-		{:noreply, state}
-	end
+    {:noreply, state}
+  end
 
   def handle_info(:update_dashboard, state) do
     jobs = JobOperator.find_all()
-    RemoteJobsWeb.Endpoint.broadcast("dashboard", "update_jobs", %{jobs: jobs})
+    _broadcast = Endpoint.broadcast("dashboard", "update_jobs", %{jobs: jobs})
     {:noreply, state}
   end
 

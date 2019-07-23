@@ -10,8 +10,8 @@ defmodule RemoteJobsWeb.JobsChannel do
     {:ok, [], socket}
   end
 
-	def handle_in("remote:create", %{"data" => job}, socket) do
-		res = JobManager.create(job)
+  def handle_in("remote:create", %{"data" => job}, socket) do
+    res = JobManager.create(job)
     {:reply, {res, %{status: "200"}}, socket}
-	end
+  end
 end
