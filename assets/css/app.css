@@ -21,3 +21,21 @@
 .job_title{
 	font-size: 2rem;
 }
+
+.blue_jumbotron{
+ background-color: #eef6ff;
+}
+
+.title{
+  font_size: 32px;
+}
+
+.large_text_jumbotron{
+  background-color: #fafafb;
+  padding: 1rem 1rem;
+}
+
+.rcorners {
+  border-radius: 25px;
+  border: 2px solid #c3c3c2;
+}

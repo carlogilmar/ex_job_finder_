@@ -3,30 +3,40 @@ import socket from "./../socket"
 import VueQuillEditor from 'vue-quill-editor'
 import VueTagsInput from '@johmun/vue-tags-input';
 import 'quill/dist/quill.snow.css'
+import Notifications from 'vue-notification'
+Vue.use(Notifications)
 
 export const app = new Vue({
 	el:"#app",
 	data: {
 		editorOption: {
-      theme: 'snow'
+      theme: 'snow',
+			modules: {
+				toolbar: [
+					[{ 'size': ['small', false, 'large'] }],
+					['bold', 'italic'],
+					[{ 'list': 'ordered'}, { 'list': 'bullet' }],
+				]
+			}
     },
+    job_empty: null,
 		position: null,
 		company_name: null,
-		location_restricted: null,
+		location_restricted: "Ciudad de México",
 		primary_tag: "",
 		extra_tags: "",
 		salary: null,
-		description: null,
-		responsabilities: null,
-		requirements: null,
-		apply_description: null,
+		description: "Agrega tu descripción",
+		responsabilities: "Responsabilidades de la vacante",
+		requirements: "Requerimientos indispensables",
+		apply_description: "¿Alguna otra observación o comentario?",
 		url: null,
 		email: null,
 		tag: '',
 		tags: [],
 		primary_tags: [],
-		placeholderValue: 'Agrega tus tags, máximo 5',
-		placeholderValueMainTag: 'Categoria principal, solo 1'
+		placeholderValue: 'Puedes agregar hasta 5 categorias',
+		placeholderValueMainTag: 'Agrega solo 1 categoria'
 	},
 	created: function() {
 		this.channel = socket.channel("remote:job", {});
@@ -48,6 +58,16 @@ export const app = new Vue({
 		}
 	},
 	methods:{
+		notify: function(type, title, context){
+			this.$notify({
+				group: 'foo',
+				type: type,
+				title: title,
+				text: context,
+				duration: 1000,
+				speed: 1000
+			})
+		},
 		get_tags: function(tags){
 			if(tags.length === 0){
 				return null;
@@ -59,7 +79,35 @@ export const app = new Vue({
 				return current_tags;
 			}
 		},
+    confirm_preview:function(){
+      let job = this.get_job();
+			let job_values = Object.values(job);
+			if(job_values.includes(null) || job_values.includes("")){
+        this.job_empty = "Por favor completa todos los campos de la vacante";
+				this.notify('warn', 'Vacante Incompleta', 'Completa tu vacante para continuar');
+			} else {
+        this.job_empty = null;
+        $("#myModalConfirmation").modal('show');
+			}
+    },
 		create_job: function(){
+      $("#myModalConfirmation").modal('hide');
+      let job = this.get_job()
+			let job_values = Object.values(job);
+			if(job_values.includes(null) || job_values.includes("")){
+				this.notify('error', 'Vacante Incompleta', 'Completa tu vacante para continuar');
+			} else {
+				this.channel.push("remote:create", {data: job})
+					.receive('ok', (res) => {
+						this.notify('success', 'Vacante en proceso de ser publicada', 'Verifica tu correo para confirmar publicación');
+            $("#reloadModal").modal({backdrop: 'static', keyboard: false});
+					});
+			}
+		},
+    reload_page: function(){
+      location.reload();
+    },
+    get_job: function(){
 			let job = {
 				position: this.position,
 				company_name: this.company_name,
@@ -74,17 +122,7 @@ export const app = new Vue({
 				url: this.url,
 				email: this.email
 			}
-
-			let job_values = Object.values(job)
-			if(job_values.includes(null) || job_values.includes("")){
-				alert("Completa los campos");
-			} else {
-				this.channel.push("remote:create", {data: job})
-					.receive('ok', (res) => {
-						alert("Se agrego al dashboard!");
-						location.reload();
-					});
-			}
-		}
+			return job;
+    }
 	}
 });
