@@ -26,6 +26,11 @@ config :remote_jobs, RemoteJobs.Mailer,
   adapter: Bamboo.SendGridAdapter,
   api_key: System.get_env("SENDGRID_API_KEY")
 
+# Conekta
+config :conekta,
+  publickey: "key_Fq9rBzrPqu7QkwCqmykXquQ",
+  privatekey: "key_zktvjcBzBSx4cqYHk2wuWQ"
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env()}.exs"
