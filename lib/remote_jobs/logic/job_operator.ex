@@ -7,9 +7,16 @@ defmodule RemoteJobs.JobOperator do
   alias RemoteJobs.Job
   alias RemoteJobs.ParserUtil
   alias RemoteJobs.Repo
+  alias RemoteJobs.UploadOperator
   @status "CREATED"
 
   def create(job) do
+    job["logo"]
+      |> UploadOperator.up_img_to_cloudinary()
+      |> store_job(job)
+  end
+
+  defp store_job(img_url, job) do
     %Job{
       position: job["position"],
       company_name: job["company_name"],
@@ -23,7 +30,7 @@ defmodule RemoteJobs.JobOperator do
       apply_description: job["apply_description"],
       url: job["url"],
       email: job["email"],
-      logo: "http://carlogilmar.xyz/index_files/carlogilmar.png",
+      logo: img_url,
       expire_date: DateUtil.get_expired_date()
     }
     |> Repo.insert()

@@ -119,6 +119,39 @@
           <input type="email" class="form-control" v-model="email">
         </div>
 
+				<br>
+				<div class="container">
+				<div class="row parent">
+					<div class="col-md-4">
+						&nbsp; <i class="fas fa-image"></i> &nbsp; <b>L O G O</b>
+						<hr>
+					</div>
+					<div class="col-md-8 text-center img-back parent-highlight">
+            <div id="parent">
+              <div class="parent-highlight">
+                <image-uploader
+                  :preview="true"
+                  :className="['fileinput', { 'fileinput--loaded': hasImage }]"
+                  capture="environment"
+                  :debug="1"
+                  doNotResize="gif"
+                  :autoRotate="true"
+                  outputFormat="verbose"
+                  @input="setImage"
+                >
+                  <label for="fileInput" slot="upload-label">
+                    <br><i class="fas fa-upload"></i> &nbsp; <span>{{
+                      hasImage ? "Imagen Precargada" : "Click sobre mi para subir"
+                    }}</span><br><br>
+				        	</label>
+                </image-uploader>
+							</div>
+            </div>
+					</div>
+				</div>
+			</div>
+
+
       </div>
 
       <!-- preview div -->
@@ -131,7 +164,16 @@
               <div class="row">
 
                 <div class="col-md-12 text-center">
-									<i class="fas fa-hammer" style="font-size: 40px;"></i>
+                  <!-- image component -->
+                  <div v-if="image">
+                    <img v-bind:src="image" width="75%"/>
+                  </div>
+                  <div v-else>
+									  <i class="fas fa-image" style="font-size: 40px;"></i>
+                  </div>
+
+                  <br><br>
+
                   <h3 class="display-5">{{position}}</h3>
                   <div v-if="primary_tags.length != 0">
 										<i class="fas fa-user-tag"></i>
@@ -210,6 +252,15 @@
               <div class="row">
 
                 <div class="col-md-12 text-center">
+                  <!-- image component -->
+                  <div v-if="image">
+                    <img v-bind:src="image" width="75%"/>
+                  </div>
+                  <div v-else>
+									  <i class="fas fa-image" style="font-size: 40px;"></i>
+                  </div>
+                  <br>
+
                   <p class="lead"><b>{{company_name}}</b></p>
 									<!-- Position -->
                   <h2 class="display-3">{{position}}</h2>

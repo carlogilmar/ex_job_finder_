@@ -4,7 +4,9 @@ import VueQuillEditor from 'vue-quill-editor'
 import VueTagsInput from '@johmun/vue-tags-input';
 import 'quill/dist/quill.snow.css'
 import Notifications from 'vue-notification'
+import ImageUploader from 'vue-image-upload-resize'
 Vue.use(Notifications)
+Vue.use(ImageUploader)
 
 export const app = new Vue({
 	el:"#app",
@@ -36,7 +38,9 @@ export const app = new Vue({
 		tags: [],
 		primary_tags: [],
 		placeholderValue: 'Puedes agregar hasta 5 categorias',
-		placeholderValueMainTag: 'Agrega solo 1 categoria'
+		placeholderValueMainTag: 'Agrega solo 1 categoria',
+		image: null,
+		hasImage: null
 	},
 	created: function() {
 		this.channel = socket.channel("remote:job", {});
@@ -48,6 +52,7 @@ export const app = new Vue({
 				console.log("Unable to join", resp);
 			});
 	},
+	mounted() { $("#fileInput").hide(); },
 	components: {
 		VueTagsInput,
 		LocalQuillEditor: VueQuillEditor.quillEditor
@@ -58,6 +63,10 @@ export const app = new Vue({
 		}
 	},
 	methods:{
+    setImage: function(output) {
+      this.hasImage = true;
+      this.image = output;
+    },
 		notify: function(type, title, context){
 			this.$notify({
 				group: 'foo',
@@ -120,7 +129,8 @@ export const app = new Vue({
 				requirements: this.requirements,
 				apply_description: this.apply_description,
 				url: this.url,
-				email: this.email
+				email: this.email,
+        logo: this.image
 			}
 			return job;
     }

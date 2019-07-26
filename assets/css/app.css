@@ -39,3 +39,17 @@
   border-radius: 25px;
   border: 2px solid #c3c3c2;
 }
+
+.img-back{
+  background-color: #e8ecef;
+}
+
+.img-preview{
+  width: 75%;
+  padding-top: 15px;
+}
+
+#parent:hover .parent-highlight {
+    background-color: #afb8bf;
+}
+
