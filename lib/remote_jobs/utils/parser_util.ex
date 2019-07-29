@@ -10,6 +10,5 @@ defmodule RemoteJobs.ParserUtil do
     end
   end
 
-  def get_tags, do: fn (tags) -> String.split(tags, ",") end
-
+  def get_tags, do: fn tags -> String.split(tags, ",") end
 end

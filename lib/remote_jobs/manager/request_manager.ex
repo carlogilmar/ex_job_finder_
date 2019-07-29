@@ -11,7 +11,9 @@ defmodule RemoteJobs.RequestManager do
           status when status in 400..499 -> :client_error
           status when status in 500..599 -> :server_error
         end
-      _error -> :unknown_error
+
+      _error ->
+        :unknown_error
     end
   end
 
@@ -21,5 +23,4 @@ defmodule RemoteJobs.RequestManager do
       body
     end
   end
-
 end

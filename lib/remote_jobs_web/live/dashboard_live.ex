@@ -15,19 +15,23 @@ defmodule RemoteJobsWeb.DashboardLive do
     Endpoint.subscribe("dashboard")
     jobs = JobManager.get()
     quantity = length(jobs)
+
     socket =
       socket
-        |> assign(:jobs, jobs)
-        |> assign(:quantity, quantity)
+      |> assign(:jobs, jobs)
+      |> assign(:quantity, quantity)
+
     {:ok, socket}
   end
 
   def handle_info(%{event: "update_jobs", payload: %{jobs: jobs}}, socket) do
     quantity = length(jobs)
+
     socket =
       socket
-        |> assign(:jobs, jobs)
-        |> assign(:quantity, quantity)
+      |> assign(:jobs, jobs)
+      |> assign(:quantity, quantity)
+
     {:noreply, socket}
   end
 end

@@ -5,11 +5,11 @@ defmodule RemoteJobs.PaymentsTest do
   alias Payments.Methods.Adapters.Conekta
 
   test "world" do
-    assert :world == Payments.hello
+    assert :world == Payments.hello()
   end
 
   test "conekta" do
-    assert :conekta == Conekta.conekta
+    assert :conekta == Conekta.conekta()
   end
 
   test "Success register conekta customer" do
@@ -68,7 +68,9 @@ defmodule RemoteJobs.PaymentsTest do
 
   test "Fail register payment source with an empty conekta customer id" do
     credit_card_token = "tok_test_visa_4242"
-    assert {:error, "El parametro \"email\" es requerido."} == Conekta.register_card("", credit_card_token)
+
+    assert {:error, "El parametro \"email\" es requerido."} ==
+             Conekta.register_card("", credit_card_token)
   end
 
   test "Fail register payment source with a nil conekta customer id" do
@@ -77,18 +79,18 @@ defmodule RemoteJobs.PaymentsTest do
   end
 
   test "Fail register payment source with a empty credit card token" do
-
     name = "Name"
     email = "name@test.mx"
     phone = "5584930433"
     credit_card_token = ""
 
     {:ok, conekta_customer} = Conekta.register_conekta_customer(name, email, phone)
-    assert {:error, "El token no existe."} == Conekta.register_card(conekta_customer.id, credit_card_token)
+
+    assert {:error, "El token no existe."} ==
+             Conekta.register_card(conekta_customer.id, credit_card_token)
   end
 
   test "Fail register payment source with a nil credit card token" do
-
     name = "Name"
     email = "name@test.mx"
     phone = "5584930433"
@@ -142,5 +144,4 @@ defmodule RemoteJobs.PaymentsTest do
     assert {:error, "La tarjeta no esta asociada al cliente."} ==
              Conekta.card_payment(conekta_customer, amount, payment_source_id)
   end
-
 end

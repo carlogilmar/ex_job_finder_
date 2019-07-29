@@ -1,5 +1,4 @@
 defmodule Payments.Methods.Adapters.Conekta do
-
   @moduledoc """
   Behaviour for the payments module
   """
@@ -7,7 +6,6 @@ defmodule Payments.Methods.Adapters.Conekta do
   def conekta do
     :conekta
   end
-
 
   def register_conekta_customer(name, email, phone) do
     new_customer = %Conekta.Customer{
@@ -40,9 +38,10 @@ defmodule Payments.Methods.Adapters.Conekta do
   end
 
   def card_payment(conekta_customer, amount, conekta_payment_id) do
-    with {:ok, new_order} <- create_credit_card_order(conekta_customer, amount, conekta_payment_id),
-      {:ok, order} <- create_order(new_order) do
-        {:ok, order}
+    with {:ok, new_order} <-
+           create_credit_card_order(conekta_customer, amount, conekta_payment_id),
+         {:ok, order} <- create_order(new_order) do
+      {:ok, order}
     else
       {:error, e = %ConektaError{}} ->
         {:error, e.message}
@@ -102,6 +101,4 @@ defmodule Payments.Methods.Adapters.Conekta do
         {:error, e}
     end
   end
-  
-
 end

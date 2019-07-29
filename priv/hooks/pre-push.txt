@@ -4,6 +4,8 @@ echo "Git fetch..."
 git fetch
 
 echo "[running] Pre Commit Hook"
+echo "[running] Mix format"0
+mix format
 echo "[running] === Favor de revisar que no existan warnings ==="
 echo "[running] mix credo"
 

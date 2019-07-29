@@ -30,6 +30,7 @@ defmodule RemoteJobs.JobManager do
     else
       _ -> raise "JobManager: Error al intentar crear nuevo job"
     end
+
     {:noreply, state}
   end
 
