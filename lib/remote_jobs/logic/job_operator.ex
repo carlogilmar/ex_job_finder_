@@ -6,14 +6,25 @@ defmodule RemoteJobs.JobOperator do
   alias RemoteJobs.DateUtil
   alias RemoteJobs.Job
   alias RemoteJobs.ParserUtil
+  alias RemoteJobs.PaymentOperator
   alias RemoteJobs.Repo
   alias RemoteJobs.UploadOperator
-  @status "CREATED"
 
   def create(job) do
     job["logo"]
     |> UploadOperator.up_img_to_cloudinary()
     |> store_job(job)
+    |> PaymentOperator.pay_for_publish("card")
+    |> publish_job()
+  end
+
+  defp publish_job(payment), do: validate_payment.(payment)
+
+  defp validate_payment do
+    fn
+      {:ok, job} -> update(job, %{status: "PAID"})
+      {:error_in_payment, job} -> {:error_in_payment, job}
+    end
   end
 
   defp store_job(img_url, job) do
@@ -33,13 +44,21 @@ defmodule RemoteJobs.JobOperator do
       logo: img_url,
       expire_date: DateUtil.get_expired_date()
     }
-    |> Repo.insert()
+    |> Repo.insert!()
   end
 
-  def find_all do
-    query = from(j in Job, where: j.status == @status)
+  def find_all_paid_jobs, do: find_all("PAID")
+
+  def find_all(status) do
+    query = from(j in Job, where: j.status == ^status)
     jobs = Repo.all(query)
     get_extra_tags.(jobs)
+  end
+
+  def update(job, attrs) do
+    job
+    |> Job.changeset(attrs)
+    |> Repo.update()
   end
 
   defp get_extra_tags do

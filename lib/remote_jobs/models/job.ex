@@ -5,6 +5,7 @@ defmodule RemoteJobs.Job do
   use Ecto.Schema
   import Ecto.Changeset
 
+  @states ["CREATED", "PAID", "TO_PAID", "EXPIRED"]
   @primary_key {:id, :id, autogenerate: true}
   schema "jobs" do
     field :position, :string
@@ -28,7 +29,8 @@ defmodule RemoteJobs.Job do
   @doc false
   def changeset(job, attrs) do
     job
-    |> cast(attrs, [])
+    |> cast(attrs, [:status, :expire_date])
+    |> validate_inclusion(:status, @states)
     |> validate_required([])
   end
 end
