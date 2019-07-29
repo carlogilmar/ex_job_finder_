@@ -49,7 +49,9 @@ defmodule RemoteJobs.MixProject do
       {:poison, "~> 3.1"},
       {:pdf_generator, ">=0.4.0"},
       {:httpoison, "~> 1.2.0"},
-      {:conekta, github: "r-icarus/conekta-elixir"}
+      {:conekta, github: "r-icarus/conekta-elixir"},
+      {:quantum, "~> 2.3"},
+      {:timex, "~> 3.0"}
     ]
   end
 

@@ -31,6 +31,12 @@ config :conekta,
   publickey: "key_Fq9rBzrPqu7QkwCqmykXquQ",
   privatekey: "key_zktvjcBzBSx4cqYHk2wuWQ"
 
+# Scheduler
+config :remote_jobs, RemoteJobs.Scheduler,
+  jobs: [
+    {"@daily", {RemoteJobs.ExpireOperator, :check_paid_jobs_expiration, []}}
+  ]
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env()}.exs"

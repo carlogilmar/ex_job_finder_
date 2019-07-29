@@ -8,7 +8,8 @@ defmodule RemoteJobs.Application do
     children = [
       RemoteJobs.Repo,
       RemoteJobsWeb.Endpoint,
-      {RemoteJobs.JobManager, []}
+      {RemoteJobs.JobManager, []},
+      RemoteJobs.Scheduler
     ]
 
     opts = [strategy: :one_for_one, name: RemoteJobs.Supervisor]
