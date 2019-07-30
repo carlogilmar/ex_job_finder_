@@ -10,18 +10,19 @@ defmodule RemoteJobs.FileUtil do
   end
 
   def build_email do
-    fn src ->
+    fn {src, attrs} ->
       template_content = get_template(src)
-      EEx.eval_string(template_content, company_name: "RemoteJobs")
+      EEx.eval_string(template_content, attrs)
     end
   end
 
   def build_pdf do
-    fn src ->
+    fn {src, attrs} ->
       content = get_template(src)
+      template_filled = EEx.eval_string(content, attrs)
 
       {:ok, pdf} =
-        PdfGenerator.generate(content,
+        PdfGenerator.generate(template_filled,
           page_size: "Letter",
           shell_params: ["-T", "0", "-B", "0", "-L", "0", "-R", "0"]
         )

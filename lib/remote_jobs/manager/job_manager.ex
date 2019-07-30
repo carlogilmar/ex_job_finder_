@@ -56,7 +56,7 @@ defmodule RemoteJobs.JobManager do
     fn
       {:ok, job} ->
         Tracker.track_operation({:job_published, job.email})
-        _ = EmailManager.send_confirmation(job.email)
+        _ = EmailManager.send_confirmation(job)
         _ = send(self(), :update_dashboard)
 
       {:error_in_payment, job} ->

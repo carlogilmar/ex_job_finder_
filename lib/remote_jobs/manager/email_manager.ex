@@ -2,17 +2,31 @@ defmodule RemoteJobs.EmailManager do
   @moduledoc """
     This module is for send emails with attached file
   """
+  alias RemoteJobs.DateUtil
   alias RemoteJobs.Email
   alias RemoteJobs.FileUtil
   alias RemoteJobs.Mailer
-  @confirmation "Remote Jobs: ¡Tu vacante ha sido procesada!"
   @confirmation_email_template "templates/confirmation.html"
-  @confirmation_pdf_template "templates/confirmation.html"
+  @confirmation_pdf_template "templates/pdf.html"
 
-  def send_confirmation(email) do
+  def send_confirmation(job_created) do
+    date = DateUtil.convert_to_spanish_date(Date.to_string(job_created.expire_date))
+
+    email_attrs = [
+      company_name: job_created.company_name,
+      position: job_created.position,
+      url: job_created.url,
+      logo_url: job_created.logo,
+      expire_date: date
+    ]
+
+    send_email_and_pdf(job_created.email, job_created.position, email_attrs)
+  end
+
+  def send_email_and_pdf(email, position, attrs) do
     builders = [
-      {FileUtil.build_email(), @confirmation_email_template},
-      {FileUtil.build_pdf(), @confirmation_pdf_template}
+      {FileUtil.build_email(), {@confirmation_email_template, attrs}},
+      {FileUtil.build_pdf(), {@confirmation_pdf_template, attrs}}
     ]
 
     [email_body, email_pdf] =
@@ -22,7 +36,11 @@ defmodule RemoteJobs.EmailManager do
       |> Enum.map(fn task -> Task.await(task, 9000) end)
 
     email
-    |> Email.build_with_attach(@confirmation, email_body, email_pdf)
+    |> Email.build_with_attach(
+      "RemoteJobs: ¡La vacante #{position} ha sido procesada!",
+      email_body,
+      email_pdf
+    )
     |> Mailer.deliver_now()
   end
 

@@ -5,22 +5,22 @@
   <h1> Tracking </h1>
   <p class="lead">Movimientos más recientes</p>
   <div class="row">
-    <table class="table table-sm table-striped">
+    <table class="table table-sm table-striped table-hover">
       <thead>
         <tr>
           <th class="text-center" scope="col">#</th>
           <th class="text-center" scope="col">Autor</th>
-          <th class="text-center" scope="col">Fecha y Hora</th>
           <th class="text-center" scope="col">Descripción</th>
+          <th class="text-center" scope="col">Fecha y Hora</th>
         </tr>
       </thead>
       <tbody>
         <%= for track <- @tracks do %>
           <tr>
-            <th class="text-center"><%= track.id%></th>
+            <th class="text-center"><small><%= track.id%></small></th>
             <td class="text-center"><b><%= track.author%></b></td>
-            <td class="text-center"><small><%= get_date(track.inserted_at) %></small></td>
             <td class="text-center" width="60%"><%= track.description%></td>
+            <td class="text-center"><small><%= get_date(track.inserted_at) %></small></td>
           </tr>
         <% end %>
       </tbody>

@@ -55,7 +55,7 @@ defmodule RemoteJobs.JobOperator do
   def find_all_paid_jobs, do: find_all("PAID")
 
   def find_all(status) do
-    query = from(j in Job, where: j.status == ^status)
+    query = from(j in Job, where: j.status == ^status, order_by: [desc: j.inserted_at])
     jobs = Repo.all(query)
     get_extra_tags.(jobs)
   end
