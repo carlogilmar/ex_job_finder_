@@ -9,6 +9,7 @@ defmodule RemoteJobs.JobOperator do
   alias RemoteJobs.PaymentOperator
   alias RemoteJobs.Repo
   alias RemoteJobs.UploadOperator
+  alias RemoteJobs.Tracker
 
   def create(job) do
     job["logo"]
@@ -22,8 +23,12 @@ defmodule RemoteJobs.JobOperator do
 
   defp validate_payment do
     fn
-      {:ok, job} -> update(job, %{status: "PAID"})
-      {:error_in_payment, job} -> {:error_in_payment, job}
+      {:ok, job} ->
+        Tracker.track_operation({:job_created, job.email})
+        update(job, %{status: "PAID"})
+
+      {:error_in_payment, job} ->
+        {:error_in_payment, job}
     end
   end
 

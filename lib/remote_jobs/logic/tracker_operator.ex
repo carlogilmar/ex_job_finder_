@@ -13,7 +13,7 @@ defmodule RemoteJobs.TrackerOperator do
   end
 
   def get_tracking do
-    query = from(track in Track, order_by: [desc: track.inserted_at])
+    query = from(track in Track, order_by: [desc: track.inserted_at], limit: 20)
     Repo.all(query)
   end
 end

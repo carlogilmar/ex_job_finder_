@@ -2,6 +2,7 @@ defmodule RemoteJobs.TrackerManager do
   @moduledoc """
     Genserver for manage tracker list
   """
+  require Logger
   alias RemoteJobs.TrackerOperator
   alias RemoteJobsWeb.Endpoint
   use GenServer
@@ -32,6 +33,8 @@ defmodule RemoteJobs.TrackerManager do
   end
 
   def handle_cast({:create, author, description}, state) do
+    Logger.info("                      :: Tracker Log ::                    ")
+    Logger.info(":: Tracker Log :: AUTHOR: #{author} :: DESC: #{description}")
     _track = TrackerOperator.create(author, description)
     _ = send(self(), :update_tracking)
     {:noreply, state}

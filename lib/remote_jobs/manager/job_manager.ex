@@ -4,6 +4,7 @@ defmodule RemoteJobs.JobManager do
   """
   alias RemoteJobs.EmailManager
   alias RemoteJobs.JobOperator
+  alias RemoteJobs.Tracker
   alias RemoteJobsWeb.Endpoint
   use GenServer
 
@@ -32,6 +33,7 @@ defmodule RemoteJobs.JobManager do
   end
 
   def handle_cast({:create, job}, state) do
+    Tracker.track_operation({:try_create_job, job["email"]})
     job_status = JobOperator.create(job)
     notify_and_update.(job_status)
     {:noreply, state}
@@ -39,6 +41,7 @@ defmodule RemoteJobs.JobManager do
 
   def handle_cast({:update_visit_counter, job_id}, state) do
     job = JobOperator.find(job_id)
+    Tracker.track_operation("RemoteJobs", "Alguien visitó la vacante #{job.position}")
     _ = JobOperator.update(job, %{visits: job.visits + 1})
     _ = send(self(), :update_dashboard)
     {:noreply, state}
@@ -52,10 +55,12 @@ defmodule RemoteJobs.JobManager do
   defp notify_and_update() do
     fn
       {:ok, job} ->
+        Tracker.track_operation({:job_published, job.email})
         _ = EmailManager.send_confirmation(job.email)
         _ = send(self(), :update_dashboard)
 
-      {:error_in_payment, _job} ->
+      {:error_in_payment, job} ->
+        Tracker.track_operation({:payment_rejected, job.email})
         :send_email_with_errors
 
       _ ->

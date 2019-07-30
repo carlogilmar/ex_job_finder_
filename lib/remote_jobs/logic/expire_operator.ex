@@ -6,8 +6,11 @@ defmodule RemoteJobs.ExpireOperator do
   alias RemoteJobs.DateUtil
   alias RemoteJobs.JobManager
   alias RemoteJobs.JobOperator
+  alias RemoteJobs.Tracker
 
   def check_paid_jobs_expiration() do
+    Tracker.track_operation({:check_expiration, "RemoteJobs"})
+
     JobOperator.find_all_paid_jobs()
     |> check_expire_date()
     |> update_expired_jobs()
