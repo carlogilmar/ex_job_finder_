@@ -1,0 +1,30 @@
+<div id="app"></div>
+
+<br><br>
+<div class="container">
+  <div class="row">
+  <h1> Tracking </h1>
+  <br><br><br><br>
+    <table class="table table-sm table-striped">
+      <thead>
+        <tr>
+          <th class="text-center" scope="col">#</th>
+          <th class="text-center" scope="col">Autor</th>
+          <th class="text-center" scope="col">Fecha y Hora</th>
+          <th class="text-center" scope="col">Descripción</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= for track <- @tracks do %>
+          <tr>
+            <th class="text-center"><%= track.id%></th>
+            <td class="text-center"><b><%= track.author%></b></td>
+            <td class="text-center"><small><%= get_date(track.inserted_at) %></small></td>
+            <td class="text-center" width="60%"><%= track.description%></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+

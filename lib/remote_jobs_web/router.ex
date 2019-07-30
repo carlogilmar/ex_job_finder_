@@ -18,13 +18,8 @@ defmodule RemoteJobsWeb.Router do
   scope "/", RemoteJobsWeb do
     pipe_through :browser
 
-    # get "/", PageController, :index
     live "/", DashboardLive
+    live "/tracking", TrackingLive
     get "/job", JobController, :index
   end
-
-  # Other scopes may use custom stacks.
-  # scope "/api", RemoteJobsWeb do
-  #   pipe_through :api
-  # end
 end
