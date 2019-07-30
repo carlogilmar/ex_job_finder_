@@ -51,7 +51,8 @@ defmodule RemoteJobs.MixProject do
       {:httpoison, "~> 1.2.0"},
       {:conekta, github: "r-icarus/conekta-elixir"},
       {:quantum, "~> 2.3"},
-      {:timex, "~> 3.0"}
+      {:timex, "~> 3.0"},
+      {:logger_file_backend, "~> 0.0.10"}
     ]
   end
 

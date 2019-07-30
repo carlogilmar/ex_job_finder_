@@ -14,9 +14,16 @@ config :remote_jobs, RemoteJobsWeb.Endpoint,
   cloudinary_preset: System.get_env("CLOUDINARY_PRESET")
 
 # Configures Elixir's Logger
-config :logger, :console,
+config :logger,
   format: "$time $metadata[$level] $message\n",
-  metadata: [:request_id]
+  backends: [
+    {LoggerFileBackend, :remote_jobs},
+    :console
+  ]
+
+config :logger, :remote_jobs,
+  path: "remote_jobs.log",
+  level: :debug
 
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
