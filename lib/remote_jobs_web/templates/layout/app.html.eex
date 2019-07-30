@@ -41,5 +41,10 @@
 		</footer>
 
 		<script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
+    <script>
+      function open_url(url) {
+        window.open(url, '_blank');
+      };
+    </script>
 	</body>
 </html>

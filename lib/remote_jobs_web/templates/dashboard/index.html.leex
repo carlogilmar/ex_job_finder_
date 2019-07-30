@@ -11,7 +11,6 @@
 	</div>
 </div>
 
-
 <div class="container" style="padding-top: 50px;">
   <div class="row">
     <div class="col-md-12">
@@ -32,7 +31,8 @@
 								<p><i class="fas fa-globe-americas"></i>&nbsp; <%= job.location_restricted %></p>
                 <h3><%= job.position %></h3>
 								<span class="badge badge-secondary primary_tag"> <i class="fas fa-tag"></i>&nbsp;<%= job.primary_tag %> </span>
-                <br><br><small><i class="fas fa-angle-down"></i> &nbsp;Haz click para ver más detalles</small>
+                <br><small><b><i class="fas fa-fire"></i> &nbsp; ¡<%= job.visits %> han visto esta vacante!</small></b>
+                <br><small><i class="fas fa-angle-down"></i> &nbsp;Haz click para ver más detalles</small>
               </div>
 
               <!-- Extra tags -->
@@ -45,7 +45,8 @@
               <!-- Apply button -->
               <div class="col-md-2 text-center d-flex align-items-center justify-content-center">
                 <button class="btn btn-info"
-									role="link" onclick="window.location='<%= job.url %>'"> <i class="fas fa-check-circle"></i>&nbsp; Apply</button>
+									role="link" phx-click="update_counter" phx-value="<%= job.id %>"  onclick="open_url('<%= job.url %>')"> <i class="fas fa-check-circle"></i>&nbsp; Apply</button>
+
               </div>
             </div>
           </a>
@@ -85,12 +86,11 @@
 									  <br>
 									</div>
                 	<div class="col-md-12 text-center">
-                    <br>
-                    <button class="btn btn-info btn-lg"
-								    	role="link" onclick="window.location='<%= job.url %>'">
-                      <i class="fas fa-check-circle"></i>&nbsp; Aplicar para <b><%= job.position %></b> </button>
+									<br>
+									<button class="btn btn-info"
+									role="link" phx-click="update_counter" phx-value="<%= job.id %>"  onclick="open_url('<%= job.url %>')"> <i class="fas fa-check-circle"></i>&nbsp; Aplicar para <b><%= job.position %></b></button>
 									</div>
-								</div>
+									</div>
               </div>
               <div class="col-md-2"></div>
             </div>
@@ -111,5 +111,4 @@
               <h1> Holi </h1>
             </div>
 -->
-
 

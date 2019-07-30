@@ -15,6 +15,10 @@ defmodule RemoteJobs.JobManager do
     GenServer.cast(__MODULE__, {:create, job})
   end
 
+  def update_visit_counter(job_id) do
+    GenServer.cast(__MODULE__, {:update_visit_counter, job_id})
+  end
+
   def get do
     GenServer.call(__MODULE__, :get)
   end
@@ -30,6 +34,13 @@ defmodule RemoteJobs.JobManager do
   def handle_cast({:create, job}, state) do
     job_status = JobOperator.create(job)
     notify_and_update.(job_status)
+    {:noreply, state}
+  end
+
+  def handle_cast({:update_visit_counter, job_id}, state) do
+    job = JobOperator.find(job_id)
+    _ = JobOperator.update(job, %{visits: job.visits + 1})
+    _ = send(self(), :update_dashboard)
     {:noreply, state}
   end
 

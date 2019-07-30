@@ -24,6 +24,12 @@ defmodule RemoteJobsWeb.DashboardLive do
     {:ok, socket}
   end
 
+  def handle_event("update_counter", job_id, socket) do
+    job_id = String.to_integer(job_id)
+    _ = JobManager.update_visit_counter(job_id)
+    {:noreply, socket}
+  end
+
   def handle_info(%{event: "update_jobs", payload: %{jobs: jobs}}, socket) do
     quantity = length(jobs)
 

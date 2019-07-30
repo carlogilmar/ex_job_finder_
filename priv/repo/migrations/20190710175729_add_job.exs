@@ -19,6 +19,7 @@ defmodule RemoteJobs.Repo.Migrations.AddJob do
       add :logo, :string
       add :expire_date, :date
       add :status, :string
+      add :visits, :integer, default: 0
       timestamps()
     end
   end

@@ -23,13 +23,14 @@ defmodule RemoteJobs.Job do
     field :logo, :string
     field :expire_date, :date
     field :status, :string, default: "CREATED"
+    field :visits, :integer
     timestamps()
   end
 
   @doc false
   def changeset(job, attrs) do
     job
-    |> cast(attrs, [:status, :expire_date])
+    |> cast(attrs, [:status, :expire_date, :visits])
     |> validate_inclusion(:status, @states)
     |> validate_required([])
   end

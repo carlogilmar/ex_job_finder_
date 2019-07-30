@@ -61,6 +61,8 @@ defmodule RemoteJobs.JobOperator do
     |> Repo.update()
   end
 
+  def find(job_id), do: Repo.get(Job, job_id)
+
   defp get_extra_tags do
     fn
       [] ->
