@@ -12,28 +12,40 @@
           <div class="input-group-prepend">
             <div class="input-group-text"> <i class="fas fa-hammer"></i> &nbsp; Posición </div>
           </div>
-          <input type="text" class="form-control" v-model="position">
+          <input type="text" class="form-control" v-model="position" @blur="validate($event.target.value, 'position', 'text')">
+        </div>
+        <div v-if="validation_errors['position']" class="row" style="padding-bottom: 10px; padding-left: 18px;">
+          <small class="error_color">{{validation_errors.position}}</small>
         </div>
 
         <div class="input-group mb-2">
           <div class="input-group-prepend">
             <div class="input-group-text"> <i class="fas fa-building"></i> &nbsp; Compañía </div>
           </div>
-          <input type="text" class="form-control" v-model="company_name">
+          <input type="text" class="form-control" v-model="company_name" @blur="validate($event.target.value, 'company_name', 'text')">
+        </div>
+        <div v-if="validation_errors['company_name']" class="row" style="padding-bottom: 10px; padding-left: 18px;">
+          <small class="error_color">{{validation_errors.company_name}}</small>
         </div>
 
         <div class="input-group mb-2">
           <div class="input-group-prepend">
             <div class="input-group-text"> <i class="fas fa-globe-americas"></i> &nbsp; Restricciones Geográficas</div>
           </div>
-          <input type="text" class="form-control" v-model="location_restricted">
+          <input type="text" class="form-control" v-model="location_restricted" @blur="validate($event.target.value, 'location_restricted', 'text')">
+        </div>
+        <div v-if="validation_errors['location_restricted']" class="row" style="padding-bottom: 10px; padding-left: 18px;">
+          <small class="error_color">{{validation_errors.location_restricted}}</small>
         </div>
 
         <div class="input-group mb-2">
           <div class="input-group-prepend">
-            <div class="input-group-text"> <i class="fas fa-money-bill-wave"></i> &nbsp; Salario Anual M.N. </div>
+            <div class="input-group-text"> <i class="fas fa-money-bill-wave"></i> &nbsp; Salario Anual &nbsp;&nbsp;&nbsp;&nbsp;<b>M.N.</b> &nbsp;&nbsp; <i class="fas fa-dollar-sign"></i> </div>
           </div>
-          <input type="text" class="form-control" v-model="salary">
+          <input type="text" class="form-control" v-model="salary" @blur="validate($event.target.value, 'salary', 'number')">
+        </div>
+        <div v-if="validation_errors['salary']" class="row" style="padding-bottom: 10px; padding-left: 18px;">
+          <small class="error_color">El valor debe ser un número</small>
         </div>
 
         <br>
@@ -109,14 +121,20 @@
           <div class="input-group-prepend">
             <div class="input-group-text"> <i class="fas fa-link"></i> &nbsp; URL para aplicar </div>
           </div>
-          <input type="url" class="form-control" v-model="url">
+          <input type="url" class="form-control" v-model="url" @blur="validate($event.target.value, 'url', 'url')">
+        </div>
+        <div v-if="validation_errors['url']" class="row" style="padding-bottom: 10px; padding-left: 18px;">
+          <small class="error_color">Ingresa una url válida con certificado de seguridad (https) </small>
         </div>
 
         <div class="input-group mb-2">
           <div class="input-group-prepend">
             <div class="input-group-text"> <i class="fas fa-envelope"></i> &nbsp; Email de contacto </div>
           </div>
-          <input type="email" class="form-control" v-model="email">
+          <input type="email" class="form-control" v-model="email" @blur="validate($event.target.value, 'email', 'email')">
+        </div>
+        <div v-if="validation_errors['email']" class="row" style="padding-bottom: 10px; padding-left: 18px;">
+          <small class="error_color">Ingresa un correo electrónico válido </small>
         </div>
 
 				<br>
