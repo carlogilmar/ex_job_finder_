@@ -3,9 +3,9 @@ defmodule RemoteJobsWeb.TrackingLive do
     Module for implement live view for show the tracking
   """
   use Phoenix.LiveView
-  alias RemoteJobsWeb.TrackingView
   alias RemoteJobs.TrackerManager
   alias RemoteJobsWeb.Endpoint
+  alias RemoteJobsWeb.TrackingView
 
   def render(assigns) do
     TrackingView.render("index.html", assigns)

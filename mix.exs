@@ -10,7 +10,14 @@ defmodule RemoteJobs.MixProject do
       compilers: [:phoenix, :gettext] ++ Mix.compilers(),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
-      deps: deps()
+      deps: deps(),
+      test_coverage: [tool: ExCoveralls],
+      preferred_cli_env: [
+        coveralls: :test,
+        "coveralls.detail": :test,
+        "coveralls.post": :test,
+        "coveralls.html": :test
+      ]
     ]
   end
 
@@ -52,7 +59,10 @@ defmodule RemoteJobs.MixProject do
       {:conekta, github: "r-icarus/conekta-elixir"},
       {:quantum, "~> 2.3"},
       {:timex, "~> 3.0"},
-      {:logger_file_backend, "~> 0.0.10"}
+      {:logger_file_backend, "~> 0.0.10"},
+      {:excoveralls, "~> 0.10", only: :test},
+      {:quixir, "~> 0.9", only: :test},
+      {:rop, "~> 0.5"}
     ]
   end
 

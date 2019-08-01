@@ -10,7 +10,10 @@ defmodule RemoteJobs.EmailManager do
   @confirmation_pdf_template "templates/pdf.html"
 
   def send_confirmation(job_created) do
-    date = DateUtil.convert_to_spanish_date(Date.to_string(job_created.expire_date))
+    date =
+      job_created.expire_date
+      |> Date.to_string()
+      |> DateUtil.convert_to_spanish_date()
 
     email_attrs = [
       company_name: job_created.company_name,

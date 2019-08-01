@@ -20,7 +20,7 @@ defmodule RemoteJobs.DateUtil do
     end
   end
 
-  defp get_months() do
+  defp get_months do
     [
       enero: {1, "01"},
       febrero: {2, "02"},
@@ -46,19 +46,29 @@ defmodule RemoteJobs.DateUtil do
   end
 
   def convert_to_spanish_date(date) when byte_size(date) == 10 do
-    <<y1::8, y2::8, y3::8, y4::8, _::8, m1::8, m2::8, _::8, d1::8, d2::8>> = date
+    <<y1::8, y2::8, y3::8, y4::8,
+      _::8, m1::8, m2::8,
+      _::8, d1::8, d2::8>> = date
     spanish_month = get_spanish_month(<<m1>> <> <<m2>>)
 
     <<d1>> <>
-      <<d2>> <> " de " <> "#{spanish_month}" <> " del " <> <<y1>> <> <<y2>> <> <<y3>> <> <<y4>>
+      <<d2>> <>
+      " de " <>
+      "#{spanish_month}" <>
+      " del " <> <<y1>> <> <<y2>> <> <<y3>> <> <<y4>>
   end
 
   def convert_to_spanish_date_and_hour(date) do
-    <<y1::8, y2::8, y3::8, y4::8, _::8, m1::8, m2::8, _::8, d1::8, d2::8, _::8, hr1::8, hr2::8,
+    <<y1::8, y2::8, y3::8, y4::8, _::8, m1::8, m2::8,
+      _::8, d1::8, d2::8, _::8, hr1::8, hr2::8,
       _::8, min1::8, min2::8, _::8, _seg1::8, _seg2::8>> = date
 
     date =
-      <<y1>> <> <<y2>> <> <<y3>> <> <<y4>> <> "-" <> <<m1>> <> <<m2>> <> "-" <> <<d1>> <> <<d2>>
+      <<y1>> <>
+        <<y2>> <>
+        <<y3>> <>
+        <<y4>> <>
+        "-" <> <<m1>> <> <<m2>> <> "-" <> <<d1>> <> <<d2>>
 
     spanish_date = convert_to_spanish_date(date)
     "#{spanish_date} " <> <<hr1>> <> <<hr2>> <> ":" <> <<min1>> <> <<min2>> <> " hrs"

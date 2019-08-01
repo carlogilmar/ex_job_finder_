@@ -4,8 +4,6 @@ echo "Git fetch..."
 git fetch
 
 echo "[running] Pre Commit Hook"
-echo "[running] Mix format"0
-mix format
 echo "[running] === Favor de revisar que no existan warnings ==="
 echo "[running] mix credo"
 
@@ -35,7 +33,7 @@ echo ""
 
 BRANCH="$( git rev-parse --abbrev-ref HEAD )"
 GIT_USER="$(git config user.name)"
-MSG="*${GIT_USER}* esta actualizando el branch *${BRANCH}*"
+MSG="*${GIT_USER}* esta actualizando el branch *${BRANCH}* \n Revisa el CI https://circleci.com/gh/codigoambar/remote_jobs"
 DATA="{\"text\":\"${MSG}\"}"
 
 echo $MSG
@@ -43,6 +41,7 @@ echo "[running] Avisando a todos en el slack que estás subiendo cambios..."
 WEBHOOK="https://hooks.slack.com/services/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"
 curl -X POST -H 'Content-type: application/json' --data "${DATA}" "${WEBHOOK}"
 echo "[Done] Listo."
+echo " Revisa el CI https://circleci.com/gh/codigoambar/remote_jobs "
 echo ""
 echo ""
 

@@ -2,37 +2,17 @@ defmodule RemoteJobs.JobOperator do
   @moduledoc """
     A module in charge of job managment.
   """
+  require Logger
+  use Rop
+  use JobTracker
   import Ecto.Query, only: [from: 2]
   alias RemoteJobs.DateUtil
   alias RemoteJobs.Job
   alias RemoteJobs.ParserUtil
-  alias RemoteJobs.PaymentOperator
   alias RemoteJobs.Repo
-  alias RemoteJobs.UploadOperator
-  alias RemoteJobs.Tracker
 
-  def create(job) do
-    job["logo"]
-    |> UploadOperator.up_img_to_cloudinary()
-    |> store_job(job)
-    |> PaymentOperator.pay_for_publish("card")
-    |> publish_job()
-  end
-
-  defp publish_job(payment), do: validate_payment.(payment)
-
-  defp validate_payment do
-    fn
-      {:ok, job} ->
-        Tracker.track_operation({:job_created, job.email})
-        update(job, %{status: "PAID"})
-
-      {:error_in_payment, job} ->
-        {:error_in_payment, job}
-    end
-  end
-
-  defp store_job(img_url, job) do
+  # Create
+  def create_job(img_url, job) do
     %Job{
       position: job["position"],
       company_name: job["company_name"],
@@ -49,24 +29,50 @@ defmodule RemoteJobs.JobOperator do
       logo: img_url,
       expire_date: DateUtil.get_expired_date()
     }
-    |> Repo.insert!()
+    |> Repo.insert()
+    >>> tee(track())
   end
 
-  def find_all_paid_jobs, do: find_all("PAID")
-
+  # Get
   def find_all(status) do
-    query = from(j in Job, where: j.status == ^status, order_by: [desc: j.inserted_at])
+    query =
+      from(j in Job,
+        where: j.status == ^status,
+        order_by: [desc: j.inserted_at]
+      )
+
     jobs = Repo.all(query)
     get_extra_tags.(jobs)
   end
 
+  def find(job_id), do: Repo.get(Job, job_id)
+  def find_all_paid_jobs, do: find_all("PAID")
+
+  # Update
   def update(job, attrs) do
     job
     |> Job.changeset(attrs)
     |> Repo.update()
   end
 
-  def find(job_id), do: Repo.get(Job, job_id)
+  def update_paid_job(job) do
+    job
+      |> update(%{status: "PAID"})
+      >>> tee(track())
+  end
+
+  def update_expired_job(job) do
+    job
+      |> update(%{status: "EXPIRED"})
+      >>> tee(track())
+  end
+
+  #delete
+  def delete(job) do
+    job = Repo.delete!(job)
+    job = %{job | status: "ERASED_IN_STORAGE"}
+    track(job)
+  end
 
   defp get_extra_tags do
     fn

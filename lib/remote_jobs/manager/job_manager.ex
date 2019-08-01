@@ -2,9 +2,9 @@ defmodule RemoteJobs.JobManager do
   @moduledoc """
     A module in charge of all the tasks related to the jobs.
   """
-  alias RemoteJobs.EmailManager
+  require Logger
+  alias RemoteJobs.Core.JobFlow
   alias RemoteJobs.JobOperator
-  alias RemoteJobs.Tracker
   alias RemoteJobsWeb.Endpoint
   use GenServer
 
@@ -12,16 +12,16 @@ defmodule RemoteJobs.JobManager do
     GenServer.start_link(__MODULE__, nil, name: __MODULE__)
   end
 
-  def create(job) do
-    GenServer.cast(__MODULE__, {:create, job})
+  def get do
+    GenServer.call(__MODULE__, :get)
+  end
+
+  def create(job_from_view) do
+    GenServer.cast(__MODULE__, {:create, job_from_view})
   end
 
   def update_visit_counter(job_id) do
     GenServer.cast(__MODULE__, {:update_visit_counter, job_id})
-  end
-
-  def get do
-    GenServer.call(__MODULE__, :get)
   end
 
   def update_live_dashboard do
@@ -32,16 +32,21 @@ defmodule RemoteJobs.JobManager do
     {:ok, %{}}
   end
 
-  def handle_cast({:create, job}, state) do
-    Tracker.track_operation({:try_create_job, job["email"]})
-    job_status = JobOperator.create(job)
-    notify_and_update.(job_status)
+  def handle_call(:get, _from, state) do
+    jobs = JobOperator.find_all_paid_jobs()
+    {:reply, jobs, state}
+  end
+
+  def handle_cast({:create, job_from_view}, state) do
+    job_from_view
+    |> JobFlow.publish_job()
+    |> update_dashboard.()
+
     {:noreply, state}
   end
 
   def handle_cast({:update_visit_counter, job_id}, state) do
     job = JobOperator.find(job_id)
-    Tracker.track_operation("RemoteJobs", "Alguien visitó la vacante #{job.position}")
     _ = JobOperator.update(job, %{visits: job.visits + 1})
     _ = send(self(), :update_dashboard)
     {:noreply, state}
@@ -52,19 +57,14 @@ defmodule RemoteJobs.JobManager do
     {:noreply, state}
   end
 
-  defp notify_and_update() do
+  defp update_dashboard do
     fn
-      {:ok, job} ->
-        Tracker.track_operation({:job_published, job.email})
-        _ = EmailManager.send_confirmation(job)
-        _ = send(self(), :update_dashboard)
+      {:ok, _job_created} ->
+        Logger.info("\n\n:: Job Manager :: Job Created success! [DONE] \n")
+        send(self(), :update_dashboard)
 
-      {:error_in_payment, job} ->
-        Tracker.track_operation({:payment_rejected, job.email})
-        :send_email_with_errors
-
-      _ ->
-        raise "Job Manager: Error al crear job"
+      {:error, reason} ->
+        Logger.error("\n\n:: Job Manager :: Error al crear vacante :: <<#{reason.message}>> \n")
     end
   end
 
@@ -72,10 +72,5 @@ defmodule RemoteJobs.JobManager do
     jobs = JobOperator.find_all_paid_jobs()
     _broadcast = Endpoint.broadcast("dashboard", "update_jobs", %{jobs: jobs})
     {:noreply, state}
-  end
-
-  def handle_call(:get, _from, state) do
-    jobs = JobOperator.find_all_paid_jobs()
-    {:reply, jobs, state}
   end
 end
