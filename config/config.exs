@@ -23,7 +23,7 @@ config :logger,
 
 config :logger, :remote_jobs,
   path: "remote_jobs.log",
-  level: :debug
+  level: :info
 
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
