@@ -73,4 +73,5 @@ config :remote_jobs, RemoteJobs.Repo,
   password: "postgres",
   database: "remote_jobs_dev",
   hostname: "localhost",
+  show_sensitive_data_on_connection_error: true,
   pool_size: 10
