@@ -5,13 +5,15 @@ defmodule JobTracker do
   This will display the log and create a track
   iex> track(job)
   """
+  alias RemoteJobs.TrackerManager
 
   require Logger
   defmacro __using__([]) do
     quote do
       def track(job) do
-        msg = "\n ::Job Tracker:: Job ID #{job.id} -> #{job.status} \n"
-        Logger.info(msg)
+        msg = "Vacante ID #{job.id}, Status: #{job.status}"
+        _ = TrackerManager.create(job, msg)
+        Logger.info("\n Job Tracker :: #{msg} ::")
       end
     end
   end

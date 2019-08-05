@@ -70,8 +70,7 @@ defmodule RemoteJobs.JobOperator do
   #delete
   def delete(job) do
     job = Repo.delete!(job)
-    job = %{job | status: "ERASED_IN_STORAGE"}
-    track(job)
+    Logger.info("\n ::Job Tracker:: Job ID #{job.id} -> DELETED IN DB, PAYMENT FAIL! \n")
   end
 
   defp get_extra_tags do

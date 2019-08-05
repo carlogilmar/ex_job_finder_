@@ -7,6 +7,7 @@ defmodule RemoteJobs.Repo.Migrations.AddTracker do
       add :author, :string
       add :description, :string
       timestamps()
+      add :job_id, references(:jobs)
     end
   end
 end

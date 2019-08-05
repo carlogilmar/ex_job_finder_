@@ -7,13 +7,13 @@ defmodule RemoteJobs.TrackerOperator do
   alias RemoteJobs.Repo
   alias RemoteJobs.Track
 
-  def create(author, description) do
-    track = %Track{author: author, description: description}
+  def create(job, description) do
+    track = %Track{job: job, description: description}
     track |> Repo.insert!()
   end
 
   def get_tracking do
-    query = from(track in Track, order_by: [desc: track.inserted_at], limit: 20)
+    query = from(track in Track, order_by: [desc: track.inserted_at], limit: 20, preload: [:job])
     Repo.all(query)
   end
 end

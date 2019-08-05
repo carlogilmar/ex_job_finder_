@@ -4,12 +4,13 @@ defmodule RemoteJobs.Track do
   """
   use Ecto.Schema
   import Ecto.Changeset
+  alias RemoteJobs.Job
 
   @primary_key {:id, :id, autogenerate: true}
   schema "tracks" do
-    field :author, :string
     field :description, :string
     timestamps()
+    belongs_to :job, Job
   end
 
   @doc false

@@ -17,8 +17,8 @@
       <tbody>
         <%= for track <- @tracks do %>
           <tr>
-            <th class="text-center"><small><%= track.id%></small></th>
-            <td class="text-center"><b><%= track.author%></b></td>
+            <th class="text-center"><small><%= track.job.id%></small></th>
+            <td class="text-center"><b><%= track.job.position %></b></td>
             <td class="text-center" width="60%"><%= track.description%></td>
             <td class="text-center"><small><%= get_date(track.inserted_at) %></small></td>
           </tr>

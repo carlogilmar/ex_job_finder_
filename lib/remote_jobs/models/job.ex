@@ -4,8 +4,9 @@ defmodule RemoteJobs.Job do
   """
   use Ecto.Schema
   import Ecto.Changeset
+  alias RemoteJobs.Track
 
-  @states ["CREATED", "PAID", "TO_PAID", "EXPIRED"]
+  @states ["CREATED", "PAID", "EXPIRED"]
   @primary_key {:id, :id, autogenerate: true}
   schema "jobs" do
     field :position, :string
@@ -25,6 +26,7 @@ defmodule RemoteJobs.Job do
     field :status, :string, default: "CREATED"
     field :visits, :integer
     timestamps()
+    has_many :track, Track
   end
 
   @doc false
