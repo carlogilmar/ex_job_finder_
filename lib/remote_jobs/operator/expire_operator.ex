@@ -8,7 +8,6 @@ defmodule RemoteJobs.ExpireOperator do
   alias RemoteJobs.JobOperator
 
   def check_paid_jobs_expiration do
-
     JobOperator.find_all_paid_jobs()
     |> check_expire_date()
     |> update_expired_jobs()

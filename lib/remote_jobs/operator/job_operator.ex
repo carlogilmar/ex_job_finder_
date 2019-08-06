@@ -41,8 +41,9 @@ defmodule RemoteJobs.JobOperator do
         order_by: [desc: j.inserted_at]
       )
 
-    jobs = Repo.all(query)
-    get_extra_tags.(jobs)
+    query
+    |> Repo.all()
+    |> get_extra_tags.()
   end
 
   def find(job_id), do: Repo.get(Job, job_id)
@@ -69,7 +70,8 @@ defmodule RemoteJobs.JobOperator do
 
   #delete
   def delete(job) do
-    job = Repo.delete!(job)
+    job
+    |> Repo.delete!()
     Logger.info("\n ::Job Tracker:: Job ID #{job.id} -> DELETED IN DB, PAYMENT FAIL! \n")
   end
 

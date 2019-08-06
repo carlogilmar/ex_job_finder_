@@ -26,7 +26,7 @@ defmodule RemoteJobs.Job do
     field :status, :string, default: "CREATED"
     field :visits, :integer
     timestamps()
-    has_many :track, Track
+    has_many :track, Track, on_delete: :delete_all
   end
 
   @doc false
