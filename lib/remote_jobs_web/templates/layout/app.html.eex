@@ -11,13 +11,12 @@
 	<body>
 
 		<header>
-			<nav class="navbar navbar-expand-lg navbar-light bg-light">
-				<a class="navbar-brand" href="<%= Routes.static_path(@conn, "/") %>">Remote Jobs</a>
-				<div class="collapse navbar-collapse" id="navbarSupportedContent">
-					<ul class="navbar-nav mr-auto"></ul>
-					<a href="<%= Routes.static_path(@conn, "/job")%>" class="btn btn-secondary my-2 my-sm-0">Post a Job</a>
+			<div class="navbar navbar-expand-lg navbar-light bg-light">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="<%= Routes.static_path(@conn, "/") %>">Remote Jobs</a>
+					<a href="<%= Routes.static_path(@conn, "/job")%>" class="btn btn-secondary">Post a Job</a>
 				</div>
-			</nav>
+			</div>
 		</header>
 
 		<main role="main" class="container">
