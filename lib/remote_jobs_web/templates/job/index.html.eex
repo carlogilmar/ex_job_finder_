@@ -226,7 +226,7 @@
 
                   <div v-if="url" class="col-md-12 text-center">
                     <br><b>URL para aplicar</b>
-                    <br><small> <i class="fas fa-link"></i> &nbsp; <a :href="url">{{url}}</a></small>
+                    <br><small> <i class="fas fa-link"></i> &nbsp; <a :href="url" target="_blank">{{url}}</a></small>
                   </div>
                   <div v-if="email" class="col-md-12 text-center">
                     <br><b>Email de Contacto</b>
@@ -331,7 +331,7 @@
 
                   <div v-if="url" class="col-md-12 text-center">
                     <br><b>URL para aplicar</b>
-                    <br><small> <i class="fas fa-link"></i> &nbsp; <a :href="url">{{url}}</a></small>
+                    <br><small> <i class="fas fa-link"></i> &nbsp; <a :href="url" target="_blank">{{url}}</a></small>
                   </div>
                   <div v-if="email" class="col-md-12 text-center">
                     <br><b>Email de Contacto</b>
