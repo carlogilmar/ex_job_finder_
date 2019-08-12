@@ -13,7 +13,9 @@ import {methods} from './methods'
 export const app = new Vue({
 	el:"#app",
   data: data,
+  beforeCreate(){ $("#job_template").hide(); },
 	created: function() {
+    $("#job_template").show();
 		this.channel = socket.channel("remote:job", {});
 		this.channel.join()
 			.receive("ok", resp => {

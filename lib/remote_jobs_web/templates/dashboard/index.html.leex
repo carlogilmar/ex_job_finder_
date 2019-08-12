@@ -1,14 +1,73 @@
+<div class="overflow-hidden text-center main_color">
+	<div class="container">
+	<div class="row">
+	  <div class="col-md-4">
+			<br><br>
+			<br><br>
+			<br>
+			<span class="osc_font title"> <b>Remote</b> <b class="font-red">Jobs</b> </span>
+			<br><br>
+			<span class="osc_font">
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+				Donec a massa efficitur orci condimentum malesuada.
+			</span>
+	  </div>
+	  <div class="col-md-8 d-flex align-items-center justify-content-center">
+    	<img src="https://res.cloudinary.com/carlogilmar/image/upload/v1565636789/remotejobs/remote1_ddtjxf.png" width="100%">
+	  </div>
+	</div>
+	</div>
+</div>
+
+<br>
+
+<div class="overflow-hidden feature_div d-none d-xl-block">
+	<br>
+	<div class="container">
+	  <div class="row">
+	  	<div class="col-md-1 d-flex align-items-center justify-content-center">
+	  		<img src="https://res.cloudinary.com/carlogilmar/image/upload/v1565643723/remotejobs/icon1_iln7rv.png" width="100%"/>
+	  	</div>
+	  	<div class="col-md-3">
+	  		<span class="istok_font subtitle font-red"> DASHBOARD </span><br>
+	  		<span class="osc_font subtitle"> ¡Actualizado en tiempo real!</span>
+	  	</div>
+	  	<div class="col-md-1 d-flex align-items-center justify-content-center">
+	  		<img src="https://res.cloudinary.com/carlogilmar/image/upload/v1565643723/remotejobs/icon2_uzov1s.png" width="100%"/>
+	  	</div>
+	  	<div class="col-md-3">
+	  		<span class="istok_font subtitle font-red"> TRACKING </span><br>
+	  		<span class="osc_font subtitle"> ¡Sigue el estado de tu vacante!</span>
+	  	</div>
+	  	<div class="col-md-1 d-flex align-items-center justify-content-center">
+	  		<img src="https://res.cloudinary.com/carlogilmar/image/upload/v1565643723/remotejobs/icon3_is8wfb.png" width="100%"/>
+	  	</div>
+	  	<div class="col-md-3">
+	  		<span class="istok_font subtitle font-red"> POST A JOB </span><br>
+	  		<span class="osc_font subtitle"> ¡Ya son <span class="badge badge-secondary"><%= @quantity %></span> vacantes!</span>
+	  	</div>
+	  </div>
+	</div>
+  <br>
+</div>
+
+<br><br>
+
 <div id="app" class="container" style="padding-top: 50px;">
-  <div class="row">
-    <div class="col-md-12 text-center">
-			<h2>Remote Jobs</h2>
-			<p style="display: inline;"> ¡Ya son
-				<h3 style="display: inline;">
-					<span class="badge badge-success"><%= @quantity %></span>
-				</h3> vacantes!
-			</p>
+	<div class="row">
+		<div class="col-md-3 d-flex align-items-center justify-content-center">
+			<img src="https://res.cloudinary.com/carlogilmar/image/upload/v1565643723/remotejobs/icon1_iln7rv.png" width="40%"/>
+		</div>
+		<div class="col-md-6">
+			<span class="istok_font title_div font-red"> DASHBOARD </span><br>
+			<span class="osc_font subtitle"> ¡Actualizado en tiempo real!</span>
+		</div>
+		<div class="col-md-3 text-center">
+			<span class="istok_font subtitle font-red"> Vacantes Publicadas </span><br>
+			<span class="subtitle"> <span class="badge badge-secondary counter"><%= @quantity %></span> </span>
 		</div>
 	</div>
+  <hr>
 </div>
 
 <div class="container" style="padding-top: 50px;">
@@ -17,36 +76,37 @@
       <div class="list-group">
         <%= for job <- @jobs do %>
 				  <!-- List item start -->
-          <a class="list-group-item list-group-item-action" data-toggle="collapse"
+          <a class="list-group-item list-group-item-action box" data-toggle="collapse"
             href="#collapseJob<%= job.id %>" role="button" aria-expanded="false" aria-controls="collapseExample">
             <div class="row">
 
               <!-- Job Logo -->
               <div class="col-md-2 text-center d-flex align-items-center justify-content-center">
-                <img src="<%= job.logo  %>" width="100%"/>
+                <img class="dashboard-img" src="<%= job.logo  %>" width="70%"/>
               </div>
 
               <!-- Job Main Description -->
-              <div class="col-md-3">
-								<p><i class="fas fa-globe-americas"></i>&nbsp; <%= job.location_restricted %></p>
-                <h3><%= job.position %></h3>
-								<span class="badge badge-secondary primary_tag"> <i class="fas fa-tag"></i>&nbsp;<%= job.primary_tag %> </span>
-                <br><small><b><i class="fas fa-fire"></i> &nbsp; ¡<%= job.visits %> han visto esta vacante!</small></b>
-                <br><small><i class="fas fa-angle-down"></i> &nbsp;Haz click para ver más detalles</small>
-              </div>
-
-              <!-- Extra tags -->
-              <div class="col-md-5 text-center d-flex align-items-center justify-content-center">
-        				<%= for tag <- job.extra_tags do %>
-                	<span class="badge badge-pill badge-light extra_tag"><%= tag %></span> &nbsp;
-        				<% end %>
+              <div class="col-md-8">
+                <div class="row">
+                  <div class="col-md-5">
+                    <h3 class="osc_font"><%= job.position %></h3>
+								    <i class="fas fa-globe-americas"></i>&nbsp; <%= job.location_restricted %>
+                  </div>
+                  <div class="col-md-7 text-center">
+								    <br><span class="badge badge-secondary primary_tag"> <i class="fas fa-tag"></i>&nbsp;<%= job.primary_tag %> </span>
+        				    &nbsp;
+                    <%= for tag <- job.extra_tags do %>
+                    	<span class="badge badge-pill extra_tag"><small><b><%= tag %></b></small></span> &nbsp;
+        				    <% end %>
+                  </div>
+                </div>
               </div>
 
               <!-- Apply button -->
-              <div class="col-md-2 text-center d-flex align-items-center justify-content-center">
-                <button class="btn btn-info"
-									role="link" phx-click="update_counter" phx-value="<%= job.id %>"  onclick="open_url('<%= job.url %>')"> <i class="fas fa-check-circle"></i>&nbsp; Apply</button>
-
+              <div class="col-md-2 text-center">
+                <button class="btn btn-light"
+                role="link"> <i class="fas fa-eye"></i>&nbsp; Ver </button>
+                <br><small class="font-red"><b><i class="fas fa-fire"></i> &nbsp; ¡<%= job.visits %> la han visto!</small></b>
               </div>
             </div>
           </a>
@@ -54,24 +114,40 @@
 				  <!-- Detail -->
           <div class="collapse" id="collapseJob<%= job.id %>">
             <div class="row">
-              <div class="col-md-2"></div>
-              <div class="col-md-8">
+              <div class="col-md-12">
 								<br><br>
 								<div class="jumbotron blue_jumbotron">
-                	<div class="col-md-12 text-center">
-                    <i class="fas fa-hammer" style="font-size: 45px;"></i><br>
-                    <small>Remote Jobs</small>
-                    <br><strong>D E T A L L E</strong>
-                    <br><br>
-								    <h1> <i class="fas fa-building"></i> &nbsp; <%= job.company_name %></h1>
-								    <p> Salario Anual: <strong>$ <%= job.salary %></strong></p>
-									</div>
-                	<div class="col-md-12">
-										<br>
-  								  <h1 class="display-5 job_title">Descripción</h1>
+
+                	<div class="row">
+                    <div class="col-md-6 text-center">
+                      <span class="osc_font subtitle"> Remote Jobs </span><br>
+    	                <img src="https://res.cloudinary.com/carlogilmar/image/upload/v1565636790/remotejobs/remote2_h8fvlb.png" width="100%">
+                    </div>
+                    <div class="col-md-6 text-center">
+                      <h1 class="osc_font font-red"><%= job.position %></h1>
+                      <br><strong class="osc_font">D E T A L L E</strong>
+                      <br>
+								      <h3> <i class="fas fa-building"></i> &nbsp; <%= job.company_name %></h3>
+								      <p> Salario Anual: <strong>$ <%= job.salary %></strong></p>
+                      <i class="fas fa-globe-americas"></i>&nbsp; <%= job.location_restricted %>
+                    </div>
+                  </div>
+
+                	<div class="row">
+                    <div class="col-md-6">
+  								  <h1 class="display-5 job_title"> <i class="fas fa-hammer"></i> &nbsp; Descripción</h1>
                     <hr>
 								    <%= raw(job.description) %>
-									  <br>
+                    </div>
+                    <div class="col-md-6">
+  								  <h1 class="display-5 job_title"> <i class="fas fa-hammer"></i> &nbsp; Detalles de la vacante</h1>
+                    <hr>
+								    <%= raw(job.apply_description) %>
+                    </div>
+                  </div>
+
+                	<div class="col-md-12">
+										<br>
   								  <h1 class="display-5 job_title">Responsabilidades</h1>
                     <hr>
 								    <%= raw(job.responsabilities) %>
@@ -80,19 +156,14 @@
                     <hr>
 								    <%= raw(job.requirements) %>
 									  <br>
-  								  <h1 class="display-5 job_title">Detalles de la vacante</h1>
-                    <hr>
-								    <%= raw(job.apply_description) %>
-									  <br>
 									</div>
                 	<div class="col-md-12 text-center">
 									<br>
-									<button class="btn btn-info"
-									role="link" phx-click="update_counter" phx-value="<%= job.id %>"  onclick="open_url('<%= job.url %>')"> <i class="fas fa-check-circle"></i>&nbsp; Aplicar para <b><%= job.position %></b></button>
+									<button class="btn btn-success btn-block"
+									role="link" phx-click="update_counter" phx-value="<%= job.id %>"  onclick="open_url('<%= job.url %>')"> <h3><i class="fas fa-check-circle"></i>&nbsp; Aplicar para <b><%= job.position %></b></h3> </button>
 									</div>
 									</div>
               </div>
-              <div class="col-md-2"></div>
             </div>
           </div>
 				  <!-- Detail end -->
@@ -101,14 +172,4 @@
     </div>
   </div>
 </div>
-<!--
-            <p>
-              <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                Link with href
-              </a>
-            </p>
-            <div class="collapse" id="collapseExample">
-              <h1> Holi </h1>
-            </div>
--->
 

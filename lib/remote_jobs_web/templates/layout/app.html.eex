@@ -1,49 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8"/>
-		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-		<title>RemoteJobs · Phoenix Framework</title>
-		<link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
+  <head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title> Remote Jobs </title>
+    <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
     <script src="https://kit.fontawesome.com/0f4591b7a3.js"></script>
-	</head>
-	<body>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Istok+Web&display=swap" rel="stylesheet">
+  </head>
+  <body>
 
-		<header>
-			<div class="navbar navbar-expand-lg navbar-light bg-light">
-				<div class="navbar-header">
-					<a class="navbar-brand" href="<%= Routes.static_path(@conn, "/") %>">Remote Jobs</a>
-					<a href="<%= Routes.static_path(@conn, "/job")%>" class="btn btn-secondary">Post a Job</a>
-				</div>
-			</div>
-		</header>
+    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 border-bottom box-shadow navbar_color">
+      <h5 class="my-0 mr-md-auto font-weight-normal">
+        <a class="nav_title font-white" href="<%= Routes.static_path(@conn, "/") %>">
+          Remote Jobs
+        </a>
+      </h5>
+      <nav class="my-2 my-md-0 mr-md-3">
+        <a href="<%= Routes.static_path(@conn, "/")%>" class="p-2 osc_font nav_simple_btn">Dashboard</a>
+        <a href="<%= Routes.static_path(@conn, "/tracking")%>" class="p-2 osc_font nav_simple_btn">Tracking</a>
+        &nbsp; &nbsp;
+        <a href="<%= Routes.static_path(@conn, "/job")%>" class="p-2 btn btn-success osc_font nav_btn">Post a Job!</a>
+      </nav>
+    </div>
+    <div class="navbar navbar-expand-lg navbar-light navbar_color2"></div>
+    <div class="navbar navbar-expand-lg navbar-light navbar_color3"></div>
 
-		<main role="main" class="container">
-		<%= render @view_module, @view_template, assigns %>
-		</main>
+    <main role="main">
+    <%= render @view_module, @view_template, assigns %>
+    </main>
 
-		<!-- FOOTER -->
-		<footer class="container text-center">
-			<div class="row text-center">
-				<div class="col-md-4">
-				</div>
-				<div class="col-md-4">
-					<p class="lead footer-min">
-					<br><span class="oswald"><b>Código Ambar</b></span>
-					</p>
-				</div>
-				<div class="col-md-4">
-				</div>
-			</div>
-			<br><br>
-		</footer>
+    <br><br>
 
-		<script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
+    <!-- FOOTER -->
+    <footer class="container text-center">
+      <hr>
+      <div class="row text-center">
+        <div class="col-md-12">
+          <br><br>
+          <img src="https://res.cloudinary.com/carlogilmar/image/upload/v1565643723/remotejobs/icon3_is8wfb.png" width="10%"/>
+          <br>
+          <span class="osc_font title_footer"> <b>Remote</b> <b class="font-red">Jobs</b> </span>
+          <br><br>
+          <span class="osc_font">
+            <b>2019</b> <br>
+            Version 0.0.1 Ciudad de México <br>
+            Código Ambar <br>
+          </span>
+        </div>
+      </div>
+      <br><br>
+    </footer>
+
+    <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
     <script>
-      function open_url(url) {
-        window.open(url, '_blank');
-      };
+function open_url(url) {
+  window.open(url, '_blank');
+};
     </script>
-	</body>
+  </body>
 </html>
