@@ -6,9 +6,9 @@
       <div class="col-md-6">
 
         <br>
-        <div class="row">
+        <div class="row text-center">
           <div class="col-md-3 d-flex align-items-center justify-content-center">
-            <img src="https://res.cloudinary.com/carlogilmar/image/upload/v1565643723/remotejobs/icon3_is8wfb.png" width="100%"/>
+            <img src="https://res.cloudinary.com/carlogilmar/image/upload/v1565643723/remotejobs/icon3_is8wfb.png" width="60%"/>
           </div>
           <div class="col-md-9">
             <span class="istok_font title_div font-red"> POST A JOB</span><br>
@@ -255,7 +255,7 @@
             </div>
 
             <div v-else class="text-center">
-              <p><i class="fas fa-hammer" style="font-size: 80px;"></i></p>
+              <img src="https://res.cloudinary.com/carlogilmar/image/upload/v1565636790/remotejobs/remote2_h8fvlb.png" width="100%">
               <h1 class="display-4">Job Preview</h1>
               <p class="lead"> Escribe tu vacante y visualizala aquí.</p>
             </div>
