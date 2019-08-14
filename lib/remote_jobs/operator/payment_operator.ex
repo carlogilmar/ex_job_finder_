@@ -4,11 +4,21 @@ defmodule RemoteJobs.PaymentOperator do
     when someone create a job
   """
   alias RemoteJobs.JobOperator
+  alias Payments.Methods.Adapters.Conekta
+  require Logger
 
-  def pay_for_publish(job_created, _card) do
-    # Implement payment
-    payment = {:ok, job_created}
-    validate_payment.(payment)
+  def pay_for_publish(job) do
+    with {:ok, created_order} <- Conekta.create_card_order_with_token(job.name, job.email, job.card_token) do
+      Logger.info("\n ::Job Tracker:: Job paid successfully, ORDER ID #{created_order.id} ->\n")
+      validate_payment.({
+        :ok,
+        %{job: job, 
+          order_id: created_order.id}
+      })
+    else {:error, e = %ConektaError{}} ->
+      Logger.info("\n ::Job Tracker:: Job payment failed ERROR: #{e.message}  \n")
+      validate_payment.({:error, job})
+    end
   end
 
   def validate_payment do

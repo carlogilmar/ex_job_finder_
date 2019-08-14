@@ -3,6 +3,11 @@ defmodule Payments.Methods.Adapters.Conekta do
   Behaviour for the payments module
   """
 
+  alias Conekta.Customers
+  alias Conekta.Orders
+
+  @job_cost Application.get_env(:remote_jobs, :job_price)
+
   def conekta do
     :conekta
   end
@@ -73,6 +78,37 @@ defmodule Payments.Methods.Adapters.Conekta do
     }
 
     {:ok, new_order}
+  end
+  
+  def create_card_order_with_token(name, email, card_token) do
+
+    new_order = %Conekta.Order{
+      currency: "MXN",
+      customer_info: %{
+        name: name,
+        email: email,
+        phone: "5500000000",
+      },
+      line_items: [%{
+        name: "Publish a job",
+        unit_price: @job_cost,
+        quantity: 1
+      }],
+      charges: [%{
+        amount: @job_cost,
+        payment_method: %{
+          type: "card",
+          token_id: card_token,
+        },
+      }]
+    }
+
+    with {:ok, created_order } <- create_order(new_order) do
+      {:ok, created_order}
+    else {:error, error} ->
+      {:error, error}
+    end
+
   end
 
   defp create_customer(new_customer) do

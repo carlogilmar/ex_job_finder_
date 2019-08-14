@@ -27,6 +27,8 @@ defmodule RemoteJobs.JobOperator do
       url: job["url"],
       email: job["email"],
       logo: img_url,
+      name: job["name"],
+      card_token: job["token"],
       expire_date: DateUtil.get_expired_date()
     }
     |> Repo.insert()
@@ -56,10 +58,14 @@ defmodule RemoteJobs.JobOperator do
     |> Repo.update()
   end
 
-  def update_paid_job(job) do
+  def update_paid_job(%{:job => job, :order_id => order_id}) do
     job
-      |> update(%{status: "PAID"})
+      |> update(%{status: "PAID", order_id: order_id})
       >>> tee(track())
+  end
+
+  def update_paid_job(error) do
+    error
   end
 
   def update_expired_job(job) do

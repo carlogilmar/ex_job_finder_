@@ -44,6 +44,9 @@ config :remote_jobs, RemoteJobs.Scheduler,
     {"@daily", {RemoteJobs.ExpireOperator, :check_paid_jobs_expiration, []}}
   ]
 
+# Configures the price charged when publishing a job
+config :remote_jobs, job_price: 5_000
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env()}.exs"

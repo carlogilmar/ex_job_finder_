@@ -16,7 +16,7 @@ defmodule RemoteJobs.JobOperatorTest do
 		# Read
 		job_stored = JobOperator.find(job_created.id)
 		# Updated
-		{:ok, job_updated} = JobOperator.update_paid_job(job_stored)
+		{:ok, job_updated} = JobOperator.update_paid_job(%{:job => job_stored, :order_id => "order_id47d73784h"})
 		# Find all
 		jobs_paid = JobOperator.find_all_paid_jobs()
 		# Delete job
