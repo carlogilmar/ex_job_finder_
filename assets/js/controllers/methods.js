@@ -6,7 +6,7 @@ export let methods = {
    * */
 
   set_error_label: function(attr){
-    this.validation_errors[attr] = "Ingresa un valor válido";
+    this.validation_errors[attr] = "Add a valid value";
   },
   remove_error_label: function(attr){
     this.validation_errors[attr] = null;
@@ -85,9 +85,9 @@ export let methods = {
     let job_values = Object.values(job);
     let errors = this.validation_errors;
     let errors_values = Object.values(errors);
-    if(job_values.includes(null) || job_values.includes("") || errors_values.includes("Ingresa un valor válido")){
-      this.job_empty = "Por favor completa todos los campos de la vacante";
-      this.notify('warn', 'Vacante Incompleta', 'Completa tu vacante para continuar');
+    if(job_values.includes(null) || job_values.includes("") || errors_values.includes("Add a valid value")){
+      this.job_empty = "Add the missing fields for continue";
+      this.notify('warn', 'Missing fields', 'Add the missing fields for continue');
     } else {
       this.job_empty = null;
       $("#myModalConfirmation").modal('show');
@@ -102,11 +102,11 @@ export let methods = {
     let job = this.get_job()
     let job_values = Object.values(job);
     if(job_values.includes(null) || job_values.includes("")){
-      this.notify('error', 'Vacante Incompleta', 'Completa tu vacante para continuar');
+      this.notify('error', 'Incomplete Job', 'Complete all fields');
     } else {
       this.channel.push("remote:create", {data: job})
         .receive('ok', (res) => {
-          this.notify('success', 'Vacante en proceso de ser publicada', 'Verifica tu correo para confirmar publicación');
+          this.notify('success', 'Job in process', 'Check your email.');
           $("#reloadModal").modal({backdrop: 'static', keyboard: false});
         });
     }
