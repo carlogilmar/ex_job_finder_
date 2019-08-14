@@ -10,7 +10,7 @@ config :remote_jobs, RemoteJobsWeb.Endpoint,
   render_errors: [view: RemoteJobsWeb.ErrorView, accepts: ~w(html json)],
   pubsub: [name: RemoteJobs.PubSub, adapter: Phoenix.PubSub.PG2],
   live_view: [signing_salt: "v9A3XbdFJ7DGyUpax3MGjEveJAPmVFe1"],
-  cloudinary_url: "https://api.cloudinary.com/v1_1/carlogilmar/image/upload",
+  cloudinary_url: System.get_env("CLOUDINARY_CLOUD"),
   cloudinary_preset: System.get_env("CLOUDINARY_PRESET")
 
 # Configures Elixir's Logger
