@@ -69,8 +69,8 @@ config :phoenix, :plug_init_mode, :runtime
 
 # Configure your database
 config :remote_jobs, RemoteJobs.Repo,
-  username: "postgres",
-  password: "postgres",
+  username: "remote_jobs_dev",
+  password: "xpOWsn0Q!",
   database: "remote_jobs_dev",
   hostname: "localhost",
   show_sensitive_data_on_connection_error: true,
