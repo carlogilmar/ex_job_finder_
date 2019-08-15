@@ -3,11 +3,13 @@ defmodule RemoteJobs.ExpireOperator do
   This contains the function for update
   the jobs when someone is expired
   """
+  require Logger
   alias RemoteJobs.DateUtil
   alias RemoteJobs.JobManager
   alias RemoteJobs.JobOperator
 
   def check_paid_jobs_expiration do
+    Logger.info(" Expire Operator :: Starting cron job...")
     JobOperator.find_all_paid_jobs()
     |> check_expire_date()
     |> update_expired_jobs()

@@ -4,10 +4,13 @@ defmodule RemoteJobs.EmailManager do
   """
   alias RemoteJobs.DateUtil
   alias RemoteJobs.Email
+  alias RemoteJobs.EmailManager
   alias RemoteJobs.FileUtil
   alias RemoteJobs.Mailer
   @confirmation_email_template "templates/confirmation.html"
   @confirmation_pdf_template "templates/pdf.html"
+  @newsletter_template "templates/newsletter.html"
+  @newsletter_url "http://jobs.codigoambar.io/"
 
   def send_confirmation(job_created) do
     date =
@@ -40,7 +43,7 @@ defmodule RemoteJobs.EmailManager do
 
     email
     |> Email.build_with_attach(
-      "RemoteJobs: ¡La vacante #{position} ha sido procesada!",
+      "RemoteJobs: #{position} was published!",
       email_body,
       email_pdf
     )
@@ -48,4 +51,26 @@ defmodule RemoteJobs.EmailManager do
   end
 
   defp apply_execution(fun, args), do: fn -> fun.(args) end
+
+  def send_newsletter_email do
+    fn {email, attrs} ->
+      email_body = FileUtil.build_email.({@newsletter_template, attrs})
+      email
+      |> Email.build("RemoteJobs Lastest Jobs Published!", email_body)
+      |> Mailer.deliver_now()
+    end
+  end
+
+  def send_newsletter({suscriptors, job_section}) do
+    emails_sended =
+    suscriptors
+    |> Enum.map(fn suscriptor ->
+      apply_execution(EmailManager.send_newsletter_email,
+        {suscriptor.email, [name: suscriptor.name, url: @newsletter_url, jobs: job_section]})
+    end)
+    |> Enum.map(fn builder -> Task.async(builder) end)
+    |> Enum.map(fn task -> Task.await(task, 9000) end)
+
+    length(emails_sended)
+  end
 end
