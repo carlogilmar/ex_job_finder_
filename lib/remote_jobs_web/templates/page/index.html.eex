@@ -1,0 +1,114 @@
+<div id="app">
+	<div class="overflow-hidden text-center main_color">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4">
+					<br><br>
+					<br><br>
+					<br>
+					<span class="osc_font title"> <b>Remote</b> <b class="font-red">Jobs</b> </span>
+					<br><br>
+					<span class="osc_font">
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+						Donec a massa efficitur orci condimentum malesuada.
+					</span>
+				</div>
+				<div class="col-md-8 d-flex align-items-center justify-content-center">
+					<img src="https://res.cloudinary.com/carlogilmar/image/upload/v1565636789/remotejobs/remote1_ddtjxf.png" width="100%">
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<br>
+
+	<div class="overflow-hidden feature_div d-none d-xl-block">
+		<br>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-1 d-flex align-items-center justify-content-center">
+					<img src="https://res.cloudinary.com/carlogilmar/image/upload/v1565643723/remotejobs/icon1_iln7rv.png" width="100%"/>
+				</div>
+				<div class="col-md-3">
+					<span class="istok_font subtitle font-red"> DASHBOARD </span><br>
+					<span class="osc_font subtitle"> Real-time!</span>
+				</div>
+				<div class="col-md-1 d-flex align-items-center justify-content-center">
+					<img src="https://res.cloudinary.com/carlogilmar/image/upload/v1565643723/remotejobs/icon2_uzov1s.png" width="100%"/>
+				</div>
+				<div class="col-md-3">
+					<span class="istok_font subtitle font-red"> TRACKING </span><br>
+					<span class="osc_font subtitle"> Follow the job's journey!</span>
+				</div>
+				<div class="col-md-1 d-flex align-items-center justify-content-center">
+					<img src="https://res.cloudinary.com/carlogilmar/image/upload/v1565643723/remotejobs/icon3_is8wfb.png" width="100%"/>
+				</div>
+				<div class="col-md-3">
+					<span class="istok_font subtitle font-red"> POST A JOB </span><br>
+					<span class="osc_font subtitle"> Publish your job!</span>
+				</div>
+			</div>
+		</div>
+		<br>
+	</div>
+
+	<br><br><br>
+	<div class="container">
+		<div class="row rcorners">
+			<div class="col-md-6 d-flex align-items-center justify-content-center">
+				<span class="osc_font title_newsletter"> <b>Suscribe to our </b> <b class="font-red">Newsletter</b> </span>
+			</div>
+			<div class="col-md-6 text-center">
+				<br>
+				<form v-on:submit.prevent="validate_form">
+					<div class="form-group">
+						<div class="input-group">
+							<div class="input-group-prepend">
+								<div class="input-group-text">  <i class="fas fa-user"></i> &nbsp; Name</div>
+							</div>
+							<input type="text" class="form-control" required v-model="name" placeholder="Your name">
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="input-group">
+							<div class="input-group-prepend">
+								<div class="input-group-text">  <i class="fas fa-envelope"></i> &nbsp; Email</div>
+							</div>
+							<input type="email" class="form-control" v-model="email" required placeholder="Your email">
+						</div>
+					</div>
+          <span style="color: red">{{error_msg}}</span><br>
+          <span style="color: green">{{done_msg}}</span><br>
+					<button type="submit" class="btn btn-info"> <i class="fas fa-check"></i> &nbsp; Become a suscriptor</button>
+				</form>
+				<br>
+			</div>
+		</div>
+	</div>
+	<br>
+
+  <!-- Modal -->
+  <div class="modal fade" id="continueModal" role="dialog">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-body text-center">
+          <br>
+					<p><i class="fas fa-rocket" style="font-size: 60px;"></i></p>
+          <br>
+          <h4 class="modal-title">You're a suscriptor!</h4>
+          <br><p>
+						We'll send you the lastest jobs published here!
+          </p>
+        </div>
+        <div class="modal-footer">
+					<button v-on:click="suscribe" class="btn btn-info"> <i class="fas fa-check"></i> &nbsp; Continue </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<%= live_render(@conn, RemoteJobsWeb.DashboardLive) %>
+
+<script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/suscriptor_controller.js") %>"></script>

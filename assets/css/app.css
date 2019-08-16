@@ -74,6 +74,10 @@
 	font-size: 50px;
 }
 
+.title_newsletter{
+	font-size: 35px;
+}
+
 .title_div{
 	font-size: 40px;
 }
@@ -166,6 +170,10 @@
 
 .feature_div{
   background-color: #f8f8f8;
+}
+
+.suscribe_div{
+  background-color: #002973;
 }
 
 .title_footer{

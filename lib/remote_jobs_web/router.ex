@@ -18,7 +18,7 @@ defmodule RemoteJobsWeb.Router do
   scope "/", RemoteJobsWeb do
     pipe_through :browser
 
-    live "/", DashboardLive
+    get "/", PageController, :index
     live "/tracking", TrackingLive
     get "/job", JobController, :index
   end

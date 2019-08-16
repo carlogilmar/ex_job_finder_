@@ -5,8 +5,14 @@ defmodule RemoteJobs.SuscriptorOperator do
   """
   alias RemoteJobs.Repo
   alias RemoteJobs.Suscriptor
+  use Rop
 
   def create(email, name) do
+    {email, name}
+    |> try_catch(create_suscriptor)
+  end
+
+  def create_suscriptor({email, name}) do
     %Suscriptor{}
     |> Suscriptor.changeset(%{name: name, email: email})
     |> Repo.insert()

@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/job_controller.css") %>"/>
+
 <div id="app">
 
   <div class="container" id="job_template">
@@ -157,7 +159,7 @@
             <div class="card-js" id="my-card">
               <input class="card-number form-control" name="card-number" placeholder="Número de tarjeta">
               <input class="name" id="the-card-name-id" name="card-holders-name" placeholder="Nombre">
-            </div>        
+            </div>
           </div>
         </div>
 
@@ -401,3 +403,6 @@
   <notifications group="foo" />
 
 </div>
+
+<script type="text/javascript" src="https://cdn.conekta.io/js/latest/conekta.js"></script>
+<script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/job_controller.js") %>"></script>
