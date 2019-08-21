@@ -42,7 +42,7 @@ config :conekta,
 config :remote_jobs, RemoteJobs.Scheduler,
   jobs: [
     {"@daily", {RemoteJobs.ExpireOperator, :check_paid_jobs_expiration, []}},
-    {"@daily", {RemoteJobs.NewsletterOperator, :send_newsletter, []}}
+    {"@daily", {RemoteJobs.NewsletterFlow, :send_newsletter, []}}
   ]
 
 # Configures the price charged when publishing a job

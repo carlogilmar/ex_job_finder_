@@ -1,6 +1,14 @@
 defmodule RemoteJobs.Core.JobFlow do
   @moduledoc """
   This module represents the main flows
+
+  This module is using Railway through ROP macro
+
+  Review https://hexdocs.pm/rop/readme.html for more details
+
+  Rop pipe: >>>
+  Rop binding: bind(fun)
+  Rop Try Catch: try_catch(fun)
   """
   use Rop
   alias RemoteJobs.EmailManager

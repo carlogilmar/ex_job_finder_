@@ -1,6 +1,12 @@
 defmodule RemoteJobs.JobOperator do
   @moduledoc """
-    A module in charge of job managment.
+  A module in charge of job managment.
+  This module is using Railway through ROP macro
+
+  Review https://hexdocs.pm/rop/readme.html for more details
+
+  Rop pipe: >>>
+  Rop tee: tee(fun)
   """
   require Logger
   use Rop
