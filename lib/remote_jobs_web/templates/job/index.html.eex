@@ -149,23 +149,6 @@
           <small class="error_color"> Add a valid email </small>
         </div>
 
-	      <label style="margin-top:16px;">
-          &nbsp; <i class="fas fa-edit"></i> &nbsp; <b>M É T O D O&nbsp; D E &nbsp;P A G O</b>
-        </label>
-        <br>
-
-        <div class="rcorners" style="padding:16px;">
-          <div class="input-group mb-2">
-            <div class="card-js" id="my-card">
-              <input class="card-number form-control" name="card-number" placeholder="Número de tarjeta">
-              <input class="name" id="the-card-name-id" name="card-holders-name" placeholder="Nombre">
-            </div>
-          </div>
-        </div>
-
-
-
-
 				<br>
 				<div class="container">
 				<div class="row parent">

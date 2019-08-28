@@ -25,8 +25,8 @@ defmodule RemoteJobs.ExpireOperatorTest do
     {:ok, job2} = JobOperator.create_job("src.com", fake_job)
     expired_date1 = Date.add(job1.expire_date, -40)
     expired_date2 = Date.add(job2.expire_date, -40)
-    {:ok, job_upd1} = JobOperator.update(job1, %{status: "PAID", expire_date: expired_date1})
-    {:ok, job_upd2} = JobOperator.update(job2, %{status: "PAID", expire_date: expired_date2})
+    {:ok, job_upd1} = JobOperator.update(job1, %{status: "CREATED", expire_date: expired_date1})
+    {:ok, job_upd2} = JobOperator.update(job2, %{status: "CREATED", expire_date: expired_date2})
     {job_upd1, job_upd2}
   end
 

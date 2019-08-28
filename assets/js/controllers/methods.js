@@ -105,19 +105,11 @@ export let methods = {
       this.notify('error', 'Incomplete Job', 'Complete all fields');
     } else {
 
-      Conekta.Token.create(job.payment, (token) => {
-        job.token = token.id;
-        job.name = job.payment.card.name;
-
-        this.channel.push("remote:create", {data: job})
-        .receive('ok', (res) => {
-          this.notify('success', 'Vacante en proceso de ser publicada', 'Verifica tu correo para confirmar publicación');
-          $("#reloadModal").modal({backdrop: 'static', keyboard: false});
-        });
-
-      }, (error) => {
-        this.notify('error', 'Error con el método pago', error.message_to_purchaser);
-      });
+    this.channel.push("remote:create", {data: job})
+      .receive('ok', (res) => {
+        this.notify('success', 'Vacante en proceso de ser publicada', 'Verifica tu correo para confirmar publicación');
+        $("#reloadModal").modal({backdrop: 'static', keyboard: false});
+    });
 
     }
   },
@@ -125,7 +117,6 @@ export let methods = {
     location.reload();
   },
   get_job: function(){
-    const card = $('#my-card');
     let job = {
       position: this.position,
       company_name: this.company_name,
@@ -139,16 +130,7 @@ export let methods = {
       apply_description: this.apply_description,
       url: this.url,
       email: this.email,
-      logo: this.image,
-      payment:{
-        card:{
-          number: card.CardJs('cardNumber'),
-          name: card.CardJs('name'),
-          exp_year: card.CardJs('expiryYear'),
-          exp_month: card.CardJs('expiryMonth'),
-          cvc: card.CardJs('cvc'),
-        },
-      }
+      logo: this.image
     }
     return job;
   },

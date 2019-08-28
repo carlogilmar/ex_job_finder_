@@ -5,12 +5,10 @@ import VueTagsInput from '@johmun/vue-tags-input';
 import 'quill/dist/quill.snow.css'
 import Notifications from 'vue-notification'
 import ImageUploader from 'vue-image-upload-resize'
-import CardJs from 'card-js';
 Vue.use(Notifications)
 Vue.use(ImageUploader)
 import {data} from './data'
 import {methods} from './methods'
-Conekta.setPublicKey('key_Fq9rBzrPqu7QkwCqmykXquQ');
 
 export const app = new Vue({
 	el:"#app",

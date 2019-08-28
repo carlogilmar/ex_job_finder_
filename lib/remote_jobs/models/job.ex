@@ -25,9 +25,6 @@ defmodule RemoteJobs.Job do
     field :expire_date, :date
     field :status, :string, default: "CREATED"
     field :visits, :integer
-    field :card_token, :string, virtual: true
-    field :name, :string, virtual: true
-    field :order_id, :string
     timestamps()
     has_many :track, Track, on_delete: :delete_all
   end
@@ -35,7 +32,7 @@ defmodule RemoteJobs.Job do
   @doc false
   def changeset(job, attrs) do
     job
-    |> cast(attrs, [:status, :expire_date, :visits, :order_id])
+    |> cast(attrs, [:status, :expire_date, :visits])
     |> validate_inclusion(:status, @states)
     |> validate_required([])
   end
