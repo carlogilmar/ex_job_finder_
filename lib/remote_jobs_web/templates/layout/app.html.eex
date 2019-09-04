@@ -9,52 +9,49 @@
     <script src="https://kit.fontawesome.com/0f4591b7a3.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Istok+Web&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700|Raleway:300,400,500,600,700|Crete+Round:400i" rel="stylesheet" type="text/css" />
+
     <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
   </head>
+
   <body>
 
-    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 border-bottom box-shadow navbar_color">
-      <h5 class="my-0 mr-md-auto font-weight-normal">
-        <a class="nav_title font-white" href="<%= Routes.static_path(@conn, "/") %>">
-          Remote Jobs
-        </a>
-      </h5>
-      <nav class="my-2 my-md-0 mr-md-3">
-        <a href="<%= Routes.static_path(@conn, "/")%>" class="p-2 osc_font nav_simple_btn">Dashboard</a>
-        <a href="<%= Routes.static_path(@conn, "/tracking")%>" class="p-2 osc_font nav_simple_btn">Tracking</a>
-        &nbsp; &nbsp;
-        <a href="<%= Routes.static_path(@conn, "/job")%>" class="p-2 btn btn-success osc_font nav_btn">Post a Job!</a>
-      </nav>
-    </div>
-    <div class="navbar navbar-expand-lg navbar-light navbar_color2"></div>
-    <div class="navbar navbar-expand-lg navbar-light navbar_color3"></div>
+    <!-- BAR -->
+		<div id="page-menu">
+			<div id="page-menu-wrap">
+				<div class="container clearfix">
+					<div class="menu-title">Remote <span>JOBS</span></div>
+					<nav class="one-page-menu">
+						<ul>
+              <li><a href="<%= Routes.static_path(@conn, "/")%>" data-href="#header"><div>Dashboard</div></a></li>
+              <li><a href="<%= Routes.static_path(@conn, "/tracking")%>" data-href="#header"><div>Tracking</div></a></li>
+              <li><a href="<%= Routes.static_path(@conn, "/job")%>" data-href="#header"><div>Post a Job</div></a></li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+		</div><!-- #page-menu end -->
 
-    <main role="main">
+    <!-- body -->
     <%= render @view_module, @view_template, assigns %>
-    </main>
+    <br><br><br><br>
 
-    <br><br>
-
-    <!-- FOOTER -->
-    <footer class="container text-center">
-      <hr>
-      <div class="row text-center">
-        <div class="col-md-12">
-          <br><br>
-          <img src="https://res.cloudinary.com/carlogilmar/image/upload/v1565643723/remotejobs/icon3_is8wfb.png" width="10%"/>
-          <br>
-          <span class="osc_font title_footer"> <b>Remote</b> <b class="font-red">Jobs</b> </span>
-          <br><br>
-          <span class="osc_font">
-            <b>2019</b> <br>
-            Version 0.0.1 <br>
-            Ciudad de México <br>
-            Código Ambar <br>
-          </span>
-        </div>
-      </div>
-      <br><br>
-    </footer>
+    <!-- footer -->
+		<footer id="footer" class="dark">
+			<div id="copyrights">
+				<div class="container clearfix">
+					<div class="col_half">
+						Copyrights &copy; 2014 All Rights Reserved by Canvas Inc.<br>
+						<div class="copyright-links"><a href="#">Terms of Use</a> / <a href="#">Privacy Policy</a></div>
+					</div>
+					<div class="col_half col_last tright">
+						<div class="clear"></div>
+						<i class="icon-envelope2"></i> info@canvas.com <span class="middot">&middot;</span> <i class="icon-headphones"></i> +91-11-6541-6369 <span class="middot">&middot;</span> <i class="icon-skype2"></i> CanvasOnSkype
+					</div>
+				</div>
+			</div>
+		</footer>
+    <!-- #footer end -->
 
     <script>
 function open_url(url) {

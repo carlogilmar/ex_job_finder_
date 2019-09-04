@@ -4,6 +4,10 @@
 @import '../node_modules/bootstrap/dist/css/bootstrap.css';
 @import '../node_modules/card-js/card-js.min.css';
 
+@import 'theme/style.css';
+@import 'theme/swiper.css';
+/*@import 'theme/responsive.css';*/
+
 .ql-toolbar.ql-snow + .ql-container.ql-snow {
   height: 10rem;
 }
@@ -15,7 +19,7 @@
 
 .extra_tag{
   color: #ffffff;
-  background-color: #002973;
+  background-color: #33bd9b;
   font-size: 93%;
 }
 
@@ -119,7 +123,7 @@
 }
 
 .font-red{
-	color: #e0022b;
+	color: #33bd9b;
 }
 
 .nav_btn{
@@ -193,7 +197,7 @@
 }
 
 .box:hover{
-  background-color: #ffe2e8;
+  background-color: #caf6cb;
 }
 
 .footer {
@@ -202,4 +206,8 @@
   bottom: 0;
   width: 100%;
   background-color: #ffe2e8;
+}
+
+[v-cloak] {
+  display:none;
 }
