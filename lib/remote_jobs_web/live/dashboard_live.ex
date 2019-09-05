@@ -6,6 +6,8 @@ defmodule RemoteJobsWeb.DashboardLive do
   alias RemoteJobs.JobManager
   alias RemoteJobsWeb.DashboardView
   alias RemoteJobsWeb.Endpoint
+  alias RemoteJobsWeb.JobPreviewLive
+  alias RemoteJobsWeb.Router.Helpers, as: Routes
 
   def render(assigns) do
     DashboardView.render("index.html", assigns)
@@ -27,7 +29,8 @@ defmodule RemoteJobsWeb.DashboardLive do
   def handle_event("update_counter", job_id, socket) do
     job_id = String.to_integer(job_id)
     _ = JobManager.update_visit_counter(job_id)
-    {:noreply, socket}
+    #{:noreply, socket}
+    {:noreply, live_redirect(socket, to: Routes.live_path(socket, JobPreviewLive, job_id))}
   end
 
   def handle_info(%{event: "update_jobs", payload: %{jobs: jobs}}, socket) do

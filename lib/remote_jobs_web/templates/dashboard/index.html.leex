@@ -1,5 +1,5 @@
 <div class="heading-block center bottommargin-lg">
-	<h2>Jobs Dashboard</h2>
+	<h2> Available Jobs </h2>
 	<span>Check the lastest jobs</span>
 	<span class="subtitle"> <span class="badge badge-secondary counter"><%= @quantity %></span></span>
 </div>
@@ -39,68 +39,13 @@
               <!-- Apply button -->
               <div class="col-md-2 text-center">
                 <button class="btn btn-light"
-                role="link"> <i class="fas fa-eye"></i>&nbsp; Open </button>
+                role="link" phx-click="update_counter" phx-value="<%= job.id %>">
+                  <i class="fas fa-eye"></i>&nbsp; Open
+                </button>
                 <br><small class="font-red"><b><i class="fas fa-fire"></i> &nbsp; <%= job.visits %> visits!</small></b>
               </div>
             </div>
           </a>
-				  <!-- List item end -->
-				  <!-- Detail -->
-          <div class="collapse" id="collapseJob<%= job.id %>">
-            <div class="row">
-              <div class="col-md-12">
-								<br><br>
-								<div class="jumbotron blue_jumbotron">
-
-                	<div class="row">
-                    <div class="col-md-6 text-center">
-                      <span class="osc_font subtitle"> Remote Jobs </span><br>
-    	                <img src="https://res.cloudinary.com/carlogilmar/image/upload/v1565636790/remotejobs/remote2_h8fvlb.png" width="100%">
-                    </div>
-                    <div class="col-md-6 text-center">
-                      <h1 class="osc_font font-red"><%= job.position %></h1>
-                      <br><strong class="osc_font">D E T A I L S</strong>
-                      <br>
-								      <h3> <i class="fas fa-building"></i> &nbsp; <%= job.company_name %></h3>
-								      <p> Salario Anual: <strong>$ <%= job.salary %></strong></p>
-                      <i class="fas fa-globe-americas"></i>&nbsp; <%= job.location_restricted %>
-                    </div>
-                  </div>
-
-                	<div class="row">
-                    <div class="col-md-6">
-  								  <h1 class="display-5 job_title"> <i class="fas fa-hammer"></i> &nbsp; Description </h1>
-                    <hr>
-								    <%= raw(job.description) %>
-                    </div>
-                    <div class="col-md-6">
-  								  <h1 class="display-5 job_title"> <i class="fas fa-hammer"></i> &nbsp; Details </h1>
-                    <hr>
-								    <%= raw(job.apply_description) %>
-                    </div>
-                  </div>
-
-                	<div class="col-md-12">
-										<br>
-  								  <h1 class="display-5 job_title">Responsabilities</h1>
-                    <hr>
-								    <%= raw(job.responsabilities) %>
-									  <br>
-  								  <h1 class="display-5 job_title">Requirements</h1>
-                    <hr>
-								    <%= raw(job.requirements) %>
-									  <br>
-									</div>
-                	<div class="col-md-12 text-center">
-									<br>
-									<button class="btn btn-danger btn-block btn-lg bgcolor border-color"
-									role="link" phx-click="update_counter" phx-value="<%= job.id %>"  onclick="open_url('<%= job.url %>')"> Apply for <b><%= job.position %></b></h3> </button>
-									</div>
-									</div>
-              </div>
-            </div>
-          </div>
-				  <!-- Detail end -->
         <% end %>
       </div>
     </div>

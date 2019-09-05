@@ -20,12 +20,10 @@
 		<div id="page-menu">
 			<div id="page-menu-wrap">
 				<div class="container clearfix">
-					<div class="menu-title">Remote <span>JOBS</span></div>
+					<div class="menu-title"><span>JOBS</span></div>
 					<nav class="one-page-menu">
 						<ul>
-              <li><a href="<%= Routes.static_path(@conn, "/")%>" data-href="#header"><div>Dashboard</div></a></li>
-              <li><a href="<%= Routes.static_path(@conn, "/tracking")%>" data-href="#header"><div>Tracking</div></a></li>
-              <li><a href="<%= Routes.static_path(@conn, "/job")%>" data-href="#header"><div>Post a Job</div></a></li>
+              <li><a href="<%= Routes.static_path(@conn, "/")%>" data-href="#header"><div>Available Jobs</div></a></li>
 						</ul>
 					</nav>
 				</div>
@@ -41,12 +39,7 @@
 			<div id="copyrights">
 				<div class="container clearfix">
 					<div class="col_half">
-						Copyrights &copy; 2014 All Rights Reserved by Canvas Inc.<br>
-						<div class="copyright-links"><a href="#">Terms of Use</a> / <a href="#">Privacy Policy</a></div>
-					</div>
-					<div class="col_half col_last tright">
-						<div class="clear"></div>
-						<i class="icon-envelope2"></i> info@canvas.com <span class="middot">&middot;</span> <i class="icon-headphones"></i> +91-11-6541-6369 <span class="middot">&middot;</span> <i class="icon-skype2"></i> CanvasOnSkype
+						Jobs, 2019.<br>
 					</div>
 				</div>
 			</div>

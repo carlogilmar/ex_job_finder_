@@ -6,6 +6,7 @@
 
 @import 'theme/style.css';
 @import 'theme/swiper.css';
+@import 'theme/movers.css';
 /*@import 'theme/responsive.css';*/
 
 .ql-toolbar.ql-snow + .ql-container.ql-snow {

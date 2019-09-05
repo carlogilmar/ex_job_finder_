@@ -7,7 +7,7 @@
 					<br><br>
 					<br><br>
 					<br>
-          <h2 data-animate="fadeinup"> Remote <b class="font-red">Jobs</b></h2>
+          <h2 data-animate="fadeinup"> <b class="font-red">Jobs</b></h2>
 					<p class="d-none d-sm-block" data-animate="fadeinup" data-delay="200">
 						Do you want to get the lastest jobs posted here? Suscribe  in our <b class="font-red">newsletter</b> here!
 					</p>
@@ -42,38 +42,7 @@
 	</div>
   </div>
 
-	<br>
-
-		<section id="page-title">
-			<div class="container clearfix text-center">
-		    	<div class="row">
-		    		<div class="col-md-1 d-flex align-items-center justify-content-center">
-		    			<img src="https://res.cloudinary.com/carlogilmar/image/upload/v1565643723/remotejobs/icon1_iln7rv.png" width="100%"/>
-		    		</div>
-		    		<div class="col-md-3">
-		    			<span class="osc_font subtitle"> Real-time!</span>
-							<h2 data-animate="fadeinup"> DASHBOARD </h2>
-		    		</div>
-		    		<div class="col-md-1 d-flex align-items-center justify-content-center">
-		    			<img src="https://res.cloudinary.com/carlogilmar/image/upload/v1565643723/remotejobs/icon2_uzov1s.png" width="100%"/>
-		    		</div>
-		    		<div class="col-md-3">
-		    			<span class="osc_font subtitle"> Follow the job's journey!</span>
-							<h2 data-animate="fadeinup"> TRACKING </h2>
-		    		</div>
-		    		<div class="col-md-1 d-flex align-items-center justify-content-center">
-		    			<img src="https://res.cloudinary.com/carlogilmar/image/upload/v1565643723/remotejobs/icon3_is8wfb.png" width="100%"/>
-		    		</div>
-		    		<div class="col-md-3">
-		    			<span class="osc_font subtitle"> Publish your job!</span>
-							<h2 data-animate="fadeinup"> POST A JOB </h2>
-		    		</div>
-		    </div>
-			</div>
-		</section>
-
 	<br><br><br>
-	<br>
 
   <!-- Modal -->
   <div class="modal fade" id="continueModal" role="dialog">

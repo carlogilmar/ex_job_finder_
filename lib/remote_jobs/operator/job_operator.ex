@@ -52,7 +52,12 @@ defmodule RemoteJobs.JobOperator do
     |> get_extra_tags.()
   end
 
-  def find(job_id), do: Repo.get(Job, job_id)
+  def find(job_id) do
+    job = Repo.get(Job, job_id)
+    [job] = get_extra_tags.([job])
+    job
+  end
+
   def find_all_paid_jobs, do: find_all("CREATED")
 
   # Update
