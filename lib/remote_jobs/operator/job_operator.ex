@@ -31,15 +31,30 @@ defmodule RemoteJobs.JobOperator do
       requirements: job["requirements"],
       apply_description: job["apply_description"],
       url: job["url"],
+      graphic_job: job["job_url"],
       email: job["email"],
       logo: img_url,
-      expire_date: DateUtil.get_expired_date()
+      expire_date: DateUtil.get_expired_date(),
+      modality: job["modality"],
+      hiring_scheme: job["hiring_scheme"],
+      contact_info: job["contact_info"],
+      certified_author: job["certified_author"]
     }
     |> Repo.insert()
     >>> tee(track())
   end
 
   # Get
+  def find_all() do
+    query =
+      from(j in Job,
+        order_by: [desc: j.inserted_at]
+      )
+
+    query
+    |> Repo.all()
+  end
+
   def find_all(status) do
     query =
       from(j in Job,
@@ -58,7 +73,8 @@ defmodule RemoteJobs.JobOperator do
     job
   end
 
-  def find_all_paid_jobs, do: find_all("CREATED")
+  def find_all_paid_jobs, do: find_all("AVAILABLE")
+
 
   # Update
   def update(job, attrs) do
@@ -78,6 +94,14 @@ defmodule RemoteJobs.JobOperator do
     |> update(%{status: "EXPIRED"})
     >>> tee(track())
   end
+
+  def update_status(job_id, status) do
+    job = Repo.get(Job, job_id)
+
+    job
+    |> update(%{status: status})
+    >>> tee(track())
+	end
 
   #delete
   def delete(job) do

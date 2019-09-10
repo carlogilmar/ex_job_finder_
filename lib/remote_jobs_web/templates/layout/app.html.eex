@@ -23,7 +23,7 @@
 					<div class="menu-title"><span>JOBS</span></div>
 					<nav class="one-page-menu">
 						<ul>
-              <li><a href="<%= Routes.static_path(@conn, "/")%>" data-href="#header"><div>Available Jobs</div></a></li>
+              <li><a href="<%= Routes.static_path(@conn, "/")%>" data-href="#header"><div>Jobs</div></a></li>
 						</ul>
 					</nav>
 				</div>

@@ -24,7 +24,7 @@ defmodule RemoteJobs.JobOperatorTest do
     assert :ok == create_resp
 		assert job_stored.id == job_created.id
 		assert job_updated.status == "CREATED"
-		assert length(jobs_paid) > 0
+		assert length(jobs_paid) == 0
 		assert job_deleted == :ok
   end
 

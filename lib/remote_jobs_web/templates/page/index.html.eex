@@ -9,16 +9,16 @@
 					<br>
           <h2 data-animate="fadeinup"> <b class="font-red">Jobs</b></h2>
 					<p class="d-none d-sm-block" data-animate="fadeinup" data-delay="200">
-						Do you want to get the lastest jobs posted here? Suscribe  in our <b class="font-red">newsletter</b> here!
+						¿Quieres recibir los últimos jobs publicados aquí? Suscríbete a nuestro <b class="font-red">newsletter</b> aquí!
 					</p>
 
 				<form v-on:submit.prevent="validate_form">
 					<div class="form-group">
 						<div class="input-group">
 							<div class="input-group-prepend">
-								<div class="input-group-text">  <i class="fas fa-user"></i> &nbsp; Name</div>
+								<div class="input-group-text">  <i class="fas fa-user"></i> &nbsp; Nombre</div>
 							</div>
-							<input type="text" class="form-control" required v-model="name" placeholder="Your name">
+							<input type="text" class="form-control" required v-model="name" placeholder="Tu nombre">
 						</div>
 					</div>
 					<div class="form-group">
@@ -26,10 +26,10 @@
 							<div class="input-group-prepend">
 								<div class="input-group-text">  <i class="fas fa-envelope"></i> &nbsp; Email</div>
 							</div>
-							<input type="email" class="form-control" v-model="email" required placeholder="Your email">
+							<input type="email" class="form-control" v-model="email" required placeholder="Tu email">
 						</div>
 					</div>
-					<button type="submit" class="btn btn-danger btn-block btn-lg bgcolor border-color"> <i class="fas fa-check"></i> &nbsp; Become a suscriptor</button>
+					<button type="submit" class="btn btn-danger btn-block btn-lg bgcolor border-color"> <i class="fas fa-check"></i> &nbsp; Conviértete en suscriptor</button>
           <span style="color: red">{{error_msg}}</span><br>
           <span style="color: green">{{done_msg}}</span><br>
 				</form>
@@ -52,13 +52,13 @@
           <br>
 					<p><i class="fas fa-rocket" style="font-size: 60px;"></i></p>
           <br>
-          <h4 class="modal-title">You're a suscriptor!</h4>
+          <h4 class="modal-title">¡Bienvenido!</h4>
           <br><p>
-						We'll send you the lastest jobs published here!
+          Recibirás constantemente un correo con las últimas vacantes.
           </p>
         </div>
         <div class="modal-footer">
-					<button v-on:click="suscribe" class="btn btn-info"> <i class="fas fa-check"></i> &nbsp; Continue </button>
+					<button v-on:click="suscribe" class="btn btn-info"> <i class="fas fa-check"></i> &nbsp; Continuar</button>
         </div>
       </div>
     </div>

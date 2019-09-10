@@ -1,6 +1,6 @@
 <div class="heading-block center bottommargin-lg">
-	<h2> Available Jobs </h2>
-	<span>Check the lastest jobs</span>
+	<h2> Jobs Disponibles </h2>
+	<span> Aquí encontrarás los últimos jobs publicados</span>
 	<span class="subtitle"> <span class="badge badge-secondary counter"><%= @quantity %></span></span>
 </div>
 
@@ -40,9 +40,9 @@
               <div class="col-md-2 text-center">
                 <button class="btn btn-light"
                 role="link" phx-click="update_counter" phx-value="<%= job.id %>">
-                  <i class="fas fa-eye"></i>&nbsp; Open
+                  <i class="fas fa-eye"></i>&nbsp; Ver
                 </button>
-                <br><small class="font-red"><b><i class="fas fa-fire"></i> &nbsp; <%= job.visits %> visits!</small></b>
+                <br><small class="font-red"><b><i class="fas fa-fire"></i> &nbsp; <%= job.visits %> visitas</small></b>
               </div>
             </div>
           </a>

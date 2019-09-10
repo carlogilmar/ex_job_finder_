@@ -3,6 +3,12 @@ export let methods = {
   /*
    *  Validation functions
    *  This functions are for validate text, number, url and email strings from inputs
+   *  For apply this validation follow this guide:
+   *  1. Add in the view the input with the vmodel and in the @blur vue function add:
+   *     @blur="validate($event.target.value, 'your_attribute', 'type_of_attribute')"
+   *  Every type of attribute have a evaluation given by a refex function: text, number, email, url
+   *  If you need more, you'll have to create it and implement here
+   *  2. Add in the data the attribute and the error attribute.
    * */
 
   set_error_label: function(attr){
@@ -12,6 +18,7 @@ export let methods = {
     this.validation_errors[attr] = null;
   },
   validate:function(val, attr, type){
+    /*this object contains the regex for evaluate mistakes*/
     let apply_type_validation =
       {text: this.is_invalid_text,
        number: this.is_invalid_number,
@@ -23,7 +30,6 @@ export let methods = {
     validation_tuple[[false]] = this.remove_error_label;
     validation_tuple[[validation]](attr)
   },
-
   /*
    * Regular expressions for validate strings
    * */
@@ -129,8 +135,13 @@ export let methods = {
       requirements: this.requirements,
       apply_description: this.apply_description,
       url: this.url,
+      job_url: this.job_url,
       email: this.email,
-      logo: this.image
+      logo: this.image,
+      modality: this.modality,
+      hiring_scheme: this.hiring_scheme,
+      contact_info: this.contact_info,
+      certified_author: this.certified_author
     }
     return job;
   },

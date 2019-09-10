@@ -15,7 +15,11 @@ export let data = {
     location_restricted: null,
     salary: null,
     url: null,
-    email: null
+    job_url: null,
+    email: null,
+		modality: null,
+		hiring_scheme: null,
+		certified_author: null
   },
   job_empty: null,
   position: null,
@@ -29,6 +33,7 @@ export let data = {
   requirements: "Requirements",
   apply_description: "Details for apply",
   url: null,
+  job_url: null,
   email: null,
   tag: '',
   tags: [],
@@ -36,5 +41,9 @@ export let data = {
   placeholderValue: 'Max 5 tags',
   placeholderValueMainTag: 'Only 1 tag',
   image: null,
-  hasImage: null
+  hasImage: null,
+  modality: null,
+  hiring_scheme: null,
+  contact_info: "Contact description for show",
+  certified_author: null
 }

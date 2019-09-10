@@ -36,6 +36,26 @@
 
         <div class="input-group mb-2">
           <div class="input-group-prepend">
+            <div class="input-group-text"> <i class="fas fa-adjust"></i> &nbsp; Modality </div>
+          </div>
+          <input type="text" class="form-control" v-model="modality" @blur="validate($event.target.value, 'modality', 'text')">
+        </div>
+        <div v-if="validation_errors['modality']" class="row" style="padding-bottom: 10px; padding-left: 18px;">
+          <small class="error_color">{{validation_errors.modality}}</small>
+        </div>
+
+        <div class="input-group mb-2">
+          <div class="input-group-prepend">
+            <div class="input-group-text"> <i class="fas fa-id-card"></i> &nbsp; Hiring Scheme</div>
+          </div>
+          <input type="text" class="form-control" v-model="hiring_scheme" @blur="validate($event.target.value, 'hiring_scheme', 'text')">
+        </div>
+        <div v-if="validation_errors['hiring_scheme']" class="row" style="padding-bottom: 10px; padding-left: 18px;">
+          <small class="error_color">{{validation_errors.hiring_scheme}}</small>
+        </div>
+
+        <div class="input-group mb-2">
+          <div class="input-group-prepend">
             <div class="input-group-text"> <i class="fas fa-globe-americas"></i> &nbsp; Location </div>
           </div>
           <input type="text" class="form-control" v-model="location_restricted" @blur="validate($event.target.value, 'location_restricted', 'text')">
@@ -46,9 +66,9 @@
 
         <div class="input-group mb-2">
           <div class="input-group-prepend">
-            <div class="input-group-text"> <i class="fas fa-money-bill-wave"></i> &nbsp; Annual Salary &nbsp;&nbsp;&nbsp;&nbsp;<b>M.N.</b> &nbsp;&nbsp; <i class="fas fa-dollar-sign"></i> </div>
+            <div class="input-group-text"> <i class="fas fa-money-bill-wave"></i> &nbsp; Salary Range &nbsp;&nbsp;&nbsp;&nbsp;<b>M.N.</b> &nbsp;&nbsp; <i class="fas fa-dollar-sign"></i> </div>
           </div>
-          <input type="text" class="form-control" v-model="salary" @blur="validate($event.target.value, 'salary', 'number')">
+          <input type="text" class="form-control" v-model="salary" @blur="validate($event.target.value, 'salary', 'text')">
         </div>
         <div v-if="validation_errors['salary']" class="row" style="padding-bottom: 10px; padding-left: 18px;">
           <small class="error_color">Add only numbers</small>
@@ -123,6 +143,15 @@
           </local-quill-editor>
         </div>
 
+        <div class="form-group">
+					<label>
+						&nbsp; <i class="fas fa-edit"></i> &nbsp; <b>C O N T A C T &nbsp; D E S C R I P T I O N</b>
+					</label><br>
+          <local-quill-editor
+             v-model="contact_info" ref="quillEditorB" :options="editorOption">
+          </local-quill-editor>
+        </div>
+
         <div class="input-group mb-2">
           <div class="input-group-prepend">
             <div class="input-group-text"> <i class="fas fa-link"></i> &nbsp; URL for apply </div>
@@ -142,6 +171,7 @@
         <div v-if="validation_errors['email']" class="row" style="padding-bottom: 10px; padding-left: 18px;">
           <small class="error_color"> Add a valid email </small>
         </div>
+
 
 				<br>
 				<div class="container">
@@ -174,6 +204,28 @@
 					</div>
 				</div>
 			</div>
+      <!-- image uploader end-->
+
+      <br>
+        <div class="input-group mb-2">
+          <div class="input-group-prepend">
+            <div class="input-group-text"> <i class="fas fa-image"></i> &nbsp; Graphic Job URL </div>
+          </div>
+          <input type="url" class="form-control" v-model="job_url" @blur="validate($event.target.value, 'job_url', 'url')">
+        </div>
+        <div v-if="validation_errors['job_url']" class="row" style="padding-bottom: 10px; padding-left: 18px;">
+          <small class="error_color"> Add a valid url </small>
+        </div>
+
+        <div class="input-group mb-2">
+          <div class="input-group-prepend">
+            <div class="input-group-text"> <i class="fas fa-child"></i> &nbsp; Certified by</div>
+          </div>
+          <input type="email" class="form-control" v-model="certified_author" @blur="validate($event.target.value, 'certified_author', 'text')">
+        </div>
+        <div v-if="validation_errors['certified_author']" class="row" style="padding-bottom: 10px; padding-left: 18px;">
+          <small class="error_color"> Add a valid value </small>
+        </div>
 
 
       </div>
