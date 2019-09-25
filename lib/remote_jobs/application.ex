@@ -9,7 +9,6 @@ defmodule RemoteJobs.Application do
       RemoteJobs.Repo,
       RemoteJobsWeb.Endpoint,
       {RemoteJobs.JobManager, []},
-      {RemoteJobs.TrackerManager, []},
       RemoteJobs.Scheduler
     ]
 

@@ -4,12 +4,12 @@ defmodule RemoteJobs.NewsletterOperator do
   """
   use Rop
   require Logger
-  alias RemoteJobs.EmailManager
   alias RemoteJobs.JobOperator
   alias RemoteJobs.SuscriptorOperator
+  @available_status "AVAILABLE"
 
   def get_jobs do
-    JobOperator.find_all_paid_jobs()
+    JobOperator.find_all(@available_status)
     |> validate_empty_list.(:jobs)
   end
 

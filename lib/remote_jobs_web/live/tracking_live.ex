@@ -3,7 +3,8 @@ defmodule RemoteJobsWeb.TrackingLive do
     Module for implement live view for show the tracking
   """
   use Phoenix.LiveView
-  alias RemoteJobs.TrackerManager
+  alias RemoteJobs.JobOperator
+  alias RemoteJobs.TrackerOperator
   alias RemoteJobsWeb.Endpoint
   alias RemoteJobsWeb.TrackingView
 
@@ -11,22 +12,17 @@ defmodule RemoteJobsWeb.TrackingLive do
     TrackingView.render("index.html", assigns)
   end
 
-  def mount(_session, socket) do
+  def mount(%{path_params: %{"id" => job_id}}, socket) do
     Endpoint.subscribe("tracking")
-    tracks = TrackerManager.get()
+    tracks = TrackerOperator.get_tracking(job_id)
+    job = JobOperator.find(job_id)
 
     socket =
       socket
       |> assign(:tracks, tracks)
+      |> assign(:job, job)
 
     {:ok, socket}
   end
 
-  def handle_info(%{event: "update_tracking", payload: %{tracks: tracks}}, socket) do
-    socket =
-      socket
-      |> assign(:tracks, tracks)
-
-    {:noreply, socket}
-  end
 end

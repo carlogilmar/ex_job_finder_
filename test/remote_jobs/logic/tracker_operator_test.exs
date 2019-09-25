@@ -14,7 +14,7 @@ defmodule RemoteJobs.TrackerOperatorTest do
     fake_job = %{"position" => "dev", "primary_tag" => ["tag"], "extra_tags" => ["ui"]}
     {:ok, job} = JobOperator.create_job("src.com", fake_job)
     track = TrackerOperator.create(job, "Testing tracker")
-    tracking  = TrackerOperator.get_tracking()
+    tracking  = TrackerOperator.get_tracking(job.id)
     assert length(tracking) > 0
     assert track.description == "Testing tracker"
   end

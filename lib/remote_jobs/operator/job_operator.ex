@@ -14,6 +14,7 @@ defmodule RemoteJobs.JobOperator do
   import Ecto.Query, only: [from: 2]
   alias RemoteJobs.DateUtil
   alias RemoteJobs.Job
+  alias RemoteJobs.JobManager
   alias RemoteJobs.ParserUtil
   alias RemoteJobs.Repo
 
@@ -73,35 +74,30 @@ defmodule RemoteJobs.JobOperator do
     job
   end
 
-  def find_all_paid_jobs, do: find_all("AVAILABLE")
-
-
   # Update
   def update(job, attrs) do
     job
     |> Job.changeset(attrs)
     |> Repo.update()
-  end
-
-  def update_paid_job(%{:job => job}) do
-    job
-    |> update(%{status: "CREATED"})
     >>> tee(track())
   end
 
-  def update_expired_job(job) do
-    job
-    |> update(%{status: "EXPIRED"})
-    >>> tee(track())
-  end
-
-  def update_status(job_id, status) do
-    job = Repo.get(Job, job_id)
-
-    job
-    |> update(%{status: status})
-    >>> tee(track())
+  def update_status do
+    fn
+      # Available: Assign the expired date (30 days)
+      {job_id, "AVAILABLE"} ->
+        upd_job(job_id,
+          %{status: "AVAILABLE", expire_date: DateUtil.get_expired_date()})
+        _ = JobManager.update_live_dashboard()
+      # Status: EXPIRED & UNAVAILABLE
+      {job_id, status} ->
+        upd_job(job_id, %{status: status})
+        _ = JobManager.update_live_dashboard()
+      _ -> raise "Job Operator: Error in update job status"
+    end
 	end
+
+  defp upd_job(job_id, attrs), do: Repo.get(Job, job_id) |> update(attrs)
 
   #delete
   def delete(job) do
@@ -109,6 +105,8 @@ defmodule RemoteJobs.JobOperator do
     |> Repo.delete!()
     Logger.info("\n ::Job Tracker:: Job ID #{job.id} -> DELETED IN DB, PAYMENT FAIL! \n")
   end
+
+  def delete_job(job_id), do: Repo.get(Job, job_id) |> delete()
 
   defp get_extra_tags do
     fn

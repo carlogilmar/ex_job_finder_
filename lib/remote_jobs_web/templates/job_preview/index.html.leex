@@ -5,85 +5,93 @@
 
 		<div class="center">
 			<h2 class="h2 t600 mb-2"><%= @job.position %></h2>
-			<p> Explore this opportunity! </p>
+			<p> Take the risk! </p>
 		</div>
 
 		<div class="row topmargin justify-content-end clearfix">
 			<div class="col-lg-7">
 
-				<ul class="nav nav-tabs nav-justified flex-column border-bottom-0 flex-md-row bgcolor mt-4" role="tablist">
-					<li class="nav-item">
-						<a class="nav-link py-3 active" id="about-tab" data-toggle="tab" href="#about-moving" role="tab" aria-controls="about-moving" aria-selected="true">About</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link py-3" id="description-moving-tab" data-toggle="tab" href="#description-moving" role="tab" aria-controls="description-moving" aria-selected="true">Description</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link py-3" id="details-moving-tab" data-toggle="tab" href="#details-moving" role="tab" aria-controls="details-moving" aria-selected="false">Details</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link py-3" id="responsibilities-moving-tab" data-toggle="tab" href="#responsibilities-moving" role="tab" aria-controls="responsibilities-moving" aria-selected="false">Responsibilities</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link py-3" id="requirements-moving-tab" data-toggle="tab" href="#requirements-moving" role="tab" aria-controls="requirements-moving" aria-selected="false">Requirements</a>
-					</li>
-				</ul>
+    		<ul class="nav nav-tabs nav-justified flex-column border-bottom-0 flex-md-row bgcolor mt-4" role="tablist">
+    			<li class="nav-item">
+    				<a class="nav-link py-3 active" id="about-tab" data-toggle="tab" href="#about-moving" role="tab" aria-controls="about-moving" aria-selected="true">Acerca de</a>
+    			</li>
+    			<li class="nav-item">
+    				<a class="nav-link py-3" id="description-moving-tab" data-toggle="tab" href="#description-moving" role="tab" aria-controls="description-moving" aria-selected="true">Descripción</a>
+    			</li>
+    			<li class="nav-item">
+    				<a class="nav-link py-3" id="details-moving-tab" data-toggle="tab" href="#details-moving" role="tab" aria-controls="details-moving" aria-selected="false">Detalles</a>
+    			</li>
+    			<li class="nav-item">
+    				<a class="nav-link py-3" id="responsibilities-moving-tab" data-toggle="tab" href="#responsibilities-moving" role="tab" aria-controls="responsibilities-moving" aria-selected="false">Responsabilidades</a>
+    			</li>
+    			<li class="nav-item">
+    				<a class="nav-link py-3" id="requirements-moving-tab" data-toggle="tab" href="#requirements-moving" role="tab" aria-controls="requirements-moving" aria-selected="false">Requerimientos</a>
+    			</li>
+    		</ul>
 
 				<div class="tab-content rounded-bottom shadow bg-white py-4 px-5">
 
-				<!-- tab1 -->
-					<div class="tab-pane fade show active" id="about-moving" role="tabpanel" aria-labelledby="about-moving-tab">
-            <div class="text-center">
-						  <h5> <i class="fas fa-building"></i> &nbsp; <%= @job.company_name %></h5>
-		          <p> Annual Salary: <strong>$ <%= @job.salary %></strong> M.N.</p>
-              <i class="fas fa-globe-americas"></i>&nbsp; <%= @job.location_restricted %>
-		        	<br><br><span class="badge badge-secondary primary_tag"> <i class="fas fa-tag"></i>&nbsp;<%= @job.primary_tag %> </span>
-            	<br><br>
-              <%= for tag <- @job.extra_tags do %>
-              	<span class="badge badge-pill extra_tag"><small><b><%= tag %></b></small></span> &nbsp;
-            	<% end %>
-              <br><br><small class="font-red"><b><i class="fas fa-fire"></i> &nbsp; <%= @job.visits %> visits</small></b><br>
-							<br><br>
-			        <button class="btn btn-danger btn-block btn-lg bgcolor border-color"
-			        role="link" onclick="open_url('<%= @job.url %>')"> Apply for <b><%= @job.position %></b></h3> </button>
-            </div>
-					</div>
+    				<!-- tab1 -->
+    					<div class="tab-pane fade show active" id="about-moving" role="tabpanel" aria-labelledby="about-moving-tab">
+                <div class="text-center">
+    						  <h5> <i class="fas fa-building"></i> &nbsp; <%= @job.company_name %></h5>
+    		          <p> Rango Salarial: <strong> <%= @job.salary %></strong></p>
+                  <i class="fas fa-globe-americas"></i>&nbsp; <%= @job.location_restricted %>
+                  &nbsp; &nbsp; <i class="fas fa-id-card"></i>&nbsp; <%= @job.hiring_scheme%>
+                  &nbsp; &nbsp; <i class="fas fa-adjust"></i>&nbsp; <%= @job.modality %>
+    		        	<br><br><span class="badge badge-secondary primary_tag"> <i class="fas fa-tag"></i>&nbsp;<%= @job.primary_tag %> </span>
+                	<br><br>
+                  <%= for tag <- @job.extra_tags do %>
+                  	<span class="badge badge-pill extra_tag"><small><b><%= tag %></b></small></span> &nbsp;
+                	<% end %>
+                  <br><br><small class="font-red"><b><i class="fas fa-fire"></i> &nbsp; <%= @job.visits %> visitas</small></b><br>
+    							<br><br>
+    			        <button class="btn btn-danger btn-block btn-lg bgcolor border-color"
+    			        role="link" onclick="open_url('<%= @job.url %>')"> Aplicar Aquí</h3> </button>
+                </div>
+    					</div>
 
-					<!-- tab2 -->
-					<div class="tab-pane fade" id="description-moving" role="tabpanel" aria-labelledby="description-moving-tab">
-            <div class="text-center">
-  	          <h3 class="display-5"> <i class="fas fa-hammer"></i> &nbsp; Description </h3>
-              <hr>
-            </div>
-		        <%= raw(@job.description) %>
-					</div>
+    					<!-- tab2 -->
+    					<div class="tab-pane fade" id="description-moving" role="tabpanel" aria-labelledby="description-moving-tab">
+                <div class="text-center">
+      	          <h3 class="display-5"> <i class="fas fa-hammer"></i> &nbsp; Descripción </h3>
+                  <hr>
+                </div>
+    		        <%= raw(@job.description) %>
+								<br><br>
+                <div class="text-center">
+      	          <h3 class="display-5"> <i class="fas fa-phone"></i> &nbsp; Contacto</h3>
+                  <hr>
+                </div>
+    		        <%= raw(@job.contact_info) %>
+    					</div>
 
-					<!-- tab2 -->
-					<div class="tab-pane fade" id="details-moving" role="tabpanel" aria-labelledby="details-moving-tab">
-            <div class="text-center">
-  	          <h3 class="display-5"> <i class="fas fa-hammer"></i> &nbsp; Details</h3>
-              <hr>
-            </div>
-		        <%= raw(@job.apply_description) %>
-					</div>
+    					<!-- tab2 -->
+    					<div class="tab-pane fade" id="details-moving" role="tabpanel" aria-labelledby="details-moving-tab">
+                <div class="text-center">
+      	          <h3 class="display-5"> <i class="fas fa-hammer"></i> &nbsp; Detalles</h3>
+                  <hr>
+                </div>
+    		        <%= raw(@job.apply_description) %>
+    					</div>
 
-					<!-- tab2 -->
-					<div class="tab-pane fade" id="responsibilities-moving" role="tabpanel" aria-labelledby="responsibilities-moving-tab">
-            <div class="text-center">
-  	          <h3 class="display-5"> <i class="fas fa-hammer"></i> &nbsp; Responsibilities</h3>
-              <hr>
-            </div>
-		        <%= raw(@job.responsabilities) %>
-					</div>
+    					<!-- tab2 -->
+    					<div class="tab-pane fade" id="responsibilities-moving" role="tabpanel" aria-labelledby="responsibilities-moving-tab">
+                <div class="text-center">
+      	          <h3 class="display-5"> <i class="fas fa-hammer"></i> &nbsp; Responsabilidades</h3>
+                  <hr>
+                </div>
+    		        <%= raw(@job.responsabilities) %>
+    					</div>
 
-					<!-- tab2 -->
-					<div class="tab-pane fade" id="requirements-moving" role="tabpanel" aria-labelledby="requirements-moving-tab">
-           <div class="text-center">
-  	         <h3 class="display-5"> <i class="fas fa-hammer"></i> &nbsp; Requirements</h3>
-             <hr>
-           </div>
-		       <%= raw(@job.requirements) %>
-					</div>
+    					<!-- tab2 -->
+    					<div class="tab-pane fade" id="requirements-moving" role="tabpanel" aria-labelledby="requirements-moving-tab">
+               <div class="text-center">
+      	         <h3 class="display-5"> <i class="fas fa-hammer"></i> &nbsp; Requerimientos </h3>
+                 <hr>
+               </div>
+    		       <%= raw(@job.requirements) %>
+    					</div>
 				</div>
 			</div>
 
@@ -93,3 +101,4 @@
 		</div>
 	</div>
 </section>
+

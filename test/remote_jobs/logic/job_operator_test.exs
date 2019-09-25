@@ -15,16 +15,13 @@ defmodule RemoteJobs.JobOperatorTest do
     {create_resp, job_created} = JobOperator.create_job("src.com", job)
 		# Read
 		job_stored = JobOperator.find(job_created.id)
-		# Updated
-		{:ok, job_updated} = JobOperator.update_paid_job(%{:job => job_stored})
 		# Find all
-		jobs_paid = JobOperator.find_all_paid_jobs()
+		jobs_paid = JobOperator.find_all()
 		# Delete job
-		job_deleted = JobOperator.delete(job_updated)
+		job_deleted = JobOperator.delete(job_stored)
     assert :ok == create_resp
 		assert job_stored.id == job_created.id
-		assert job_updated.status == "CREATED"
-		assert length(jobs_paid) == 0
+		assert length(jobs_paid) > 0
 		assert job_deleted == :ok
   end
 

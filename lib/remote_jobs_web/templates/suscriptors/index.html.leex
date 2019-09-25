@@ -1,0 +1,30 @@
+<br>
+<div class="container">
+
+  <br><br>
+  <div class="heading-block center bottommargin-lg">
+    <h2>Suscriptores</h2>
+  </div>
+
+  <br>
+
+  <div class="row">
+    <table class="table table-sm table-striped table-hover">
+      <thead>
+        <tr>
+          <th class="text-center" scope="col">Nombre</th>
+          <th class="text-center" scope="col">Email</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= for suscriptor <- @suscriptors do %>
+          <tr>
+            <td class="text-center" width="60%"><%= suscriptor.name %></td>
+            <td class="text-center" ><%= suscriptor.email%></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+

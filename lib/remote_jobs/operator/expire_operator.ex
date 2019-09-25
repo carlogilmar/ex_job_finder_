@@ -5,12 +5,13 @@ defmodule RemoteJobs.ExpireOperator do
   """
   require Logger
   alias RemoteJobs.DateUtil
-  alias RemoteJobs.JobManager
   alias RemoteJobs.JobOperator
+  @available_status "AVAILABLE"
+  @expired_status "EXPIRED"
 
   def check_paid_jobs_expiration do
     Logger.info(" Expire Operator :: Starting cron job...")
-    JobOperator.find_all_paid_jobs()
+    JobOperator.find_all(@available_status)
     |> check_expire_date()
     |> update_expired_jobs()
   end
@@ -32,8 +33,7 @@ defmodule RemoteJobs.ExpireOperator do
   defp update_expired_job do
     fn
       {job, true} ->
-        job_updated = JobOperator.update_expired_job(job)
-        _ = JobManager.update_live_dashboard()
+        job_updated = JobOperator.update_status.({job.id, @expired_status})
         job_updated
 
       {job, false} ->

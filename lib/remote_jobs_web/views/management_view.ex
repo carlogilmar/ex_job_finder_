@@ -1,4 +1,4 @@
-defmodule RemoteJobsWeb.JobsView do
+defmodule RemoteJobsWeb.ManagementView do
   use RemoteJobsWeb, :view
   alias RemoteJobs.DateUtil
 
@@ -9,9 +9,9 @@ defmodule RemoteJobsWeb.JobsView do
 
   def show_status(status) do
     case status do
-      "CREATED" -> "<span class='badge badge-info'>Creado</span>"
+      "CREATED" -> "<span class='badge badge-info'>Por Autorizar</span>"
+      "UNAVAILABLE" -> "<span class='badge badge-warning'>No Disponible</span>"
       "AVAILABLE" -> "<span class='badge badge-success'>Disponible</span>"
-      "PAID" -> "<span class='badge badge-primary'>Pagado</span>"
       "EXPIRED" -> "<span class='badge badge-secondary'>Expirado</span>"
     end
   end

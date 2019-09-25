@@ -3,8 +3,8 @@
 
   <br><br>
   <div class="heading-block center bottommargin-lg">
-    <h2>Tracking</h2>
-    <span>Technical tracking of every job post flow.</span>
+    <h2><%= @job.position %></h2>
+    <span>Bitácora de cambios</span>
   </div>
 
   <br>
@@ -13,8 +13,6 @@
     <table class="table table-sm table-striped table-hover">
       <thead>
         <tr>
-          <th class="text-center" scope="col"></th>
-          <th class="text-center" scope="col">Job</th>
           <th class="text-center" scope="col">Movement</th>
           <th class="text-center" scope="col">Date</th>
         </tr>
@@ -22,8 +20,6 @@
       <tbody>
         <%= for track <- @tracks do %>
           <tr>
-            <th class="text-center"><small><%= track.job.id%></small></th>
-            <td class="text-center"><b><%= track.job.position %></b></td>
             <td class="text-center" width="60%"><%= track.description%></td>
             <td class="text-center"><small><%= get_date(track.inserted_at) %></small></td>
           </tr>

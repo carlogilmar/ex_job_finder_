@@ -19,9 +19,15 @@ defmodule RemoteJobsWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
-    live "/tracking", TrackingLive
+    live "/tracking/:id", TrackingLive
     get "/post", JobController, :index
     live "/preview/:id", JobPreviewLive
-    live "/management", JobsLive
+    live "/to_approve/:id", ApprovePreviewLive
+    live "/management", ManagementLive
+		live "/suscriptors", SuscriptorsLive
+
+    # Simple Post Job
+    get "/postajob", MinimalJobController, :index
+
   end
 end

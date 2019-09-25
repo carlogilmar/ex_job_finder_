@@ -11,12 +11,12 @@
         <br><br>
         <div class="heading-block center bottommargin-lg">
           <h2>Post A Job!</h2>
-          <span>Write and publish your job!</span>
+          <span>Escribe y publica tu vacante</span>
         </div>
 
         <div class="input-group mb-2">
           <div class="input-group-prepend">
-            <div class="input-group-text"> <i class="fas fa-hammer"></i> &nbsp; Position </div>
+            <div class="input-group-text"> <i class="fas fa-hammer"></i> &nbsp; Posición </div>
           </div>
           <input type="text" class="form-control" v-model="position" @blur="validate($event.target.value, 'position', 'text')">
         </div>
@@ -26,7 +26,7 @@
 
         <div class="input-group mb-2">
           <div class="input-group-prepend">
-            <div class="input-group-text"> <i class="fas fa-building"></i> &nbsp; Company </div>
+            <div class="input-group-text"> <i class="fas fa-building"></i> &nbsp; Empresa </div>
           </div>
           <input type="text" class="form-control" v-model="company_name" @blur="validate($event.target.value, 'company_name', 'text')">
         </div>
@@ -36,7 +36,7 @@
 
         <div class="input-group mb-2">
           <div class="input-group-prepend">
-            <div class="input-group-text"> <i class="fas fa-adjust"></i> &nbsp; Modality </div>
+            <div class="input-group-text"> <i class="fas fa-adjust"></i> &nbsp; Modalidad </div>
           </div>
           <input type="text" class="form-control" v-model="modality" @blur="validate($event.target.value, 'modality', 'text')">
         </div>
@@ -46,7 +46,7 @@
 
         <div class="input-group mb-2">
           <div class="input-group-prepend">
-            <div class="input-group-text"> <i class="fas fa-id-card"></i> &nbsp; Hiring Scheme</div>
+            <div class="input-group-text"> <i class="fas fa-id-card"></i> &nbsp; Esquema de Contratación</div>
           </div>
           <input type="text" class="form-control" v-model="hiring_scheme" @blur="validate($event.target.value, 'hiring_scheme', 'text')">
         </div>
@@ -56,7 +56,7 @@
 
         <div class="input-group mb-2">
           <div class="input-group-prepend">
-            <div class="input-group-text"> <i class="fas fa-globe-americas"></i> &nbsp; Location </div>
+            <div class="input-group-text"> <i class="fas fa-globe-americas"></i> &nbsp; Ubicación </div>
           </div>
           <input type="text" class="form-control" v-model="location_restricted" @blur="validate($event.target.value, 'location_restricted', 'text')">
         </div>
@@ -66,12 +66,12 @@
 
         <div class="input-group mb-2">
           <div class="input-group-prepend">
-            <div class="input-group-text"> <i class="fas fa-money-bill-wave"></i> &nbsp; Salary Range &nbsp;&nbsp;&nbsp;&nbsp;<b>M.N.</b> &nbsp;&nbsp; <i class="fas fa-dollar-sign"></i> </div>
+            <div class="input-group-text"> <i class="fas fa-money-bill-wave"></i> &nbsp; Rango Salarial &nbsp;&nbsp;&nbsp;&nbsp; <i class="fas fa-dollar-sign"></i> </div>
           </div>
           <input type="text" class="form-control" v-model="salary" @blur="validate($event.target.value, 'salary', 'text')">
         </div>
         <div v-if="validation_errors['salary']" class="row" style="padding-bottom: 10px; padding-left: 18px;">
-          <small class="error_color">Add only numbers</small>
+          <small class="error_color">No puede estar vacío</small>
         </div>
 
         <br>
@@ -80,7 +80,7 @@
 						<div class="col-md-12" style="padding-left: 35px;">
               <div class="form-group">
                 <label>
-                  &nbsp; <i class="fas fa-user-tag"></i> &nbsp; <b> Main Tag </b>
+                  &nbsp; <i class="fas fa-user-tag"></i> &nbsp; <b> Tag Principal </b>
                 </label>
                 <vue-tags-input
                    :placeholder="placeholderValueMainTag"
@@ -92,7 +92,7 @@
               </div>
               <div class="form-group">
                 <label>
-                  &nbsp; <i class="fas fa-tags"></i> &nbsp; <b>Extra Tags </b>
+                  &nbsp; <i class="fas fa-tags"></i> &nbsp; <b>Tags Extra</b>
                 </label>
                 <vue-tags-input
                    :placeholder="placeholderValue"
@@ -109,7 +109,7 @@
 
         <div class="form-group">
 					<label>
-						&nbsp; <i class="fas fa-edit"></i> &nbsp; <b>D E S C R I P T I O N</b>
+						&nbsp; <i class="fas fa-edit"></i> &nbsp; <b>D E S C R I P C I Ó N</b>
 					</label><br>
           <local-quill-editor
              v-model="description" ref="quillEditorB" :options="editorOption">
@@ -118,7 +118,7 @@
 
         <div class="form-group">
 					<label>
-						&nbsp; <i class="fas fa-edit"></i> &nbsp; <b>R E S P O N S A B I L I T I E S</b>
+						&nbsp; <i class="fas fa-edit"></i> &nbsp; <b>R E S P O N S A B I L I D A D E S</b>
 					</label><br>
           <local-quill-editor
              v-model="responsabilities" ref="quillEditorB" :options="editorOption">
@@ -127,7 +127,7 @@
 
         <div class="form-group">
 					<label>
-						&nbsp; <i class="fas fa-edit"></i> &nbsp; <b>R E Q U I R E M E N T S</b>
+						&nbsp; <i class="fas fa-edit"></i> &nbsp; <b>R E Q U E R I M I E N T O S</b>
 					</label><br>
           <local-quill-editor
              v-model="requirements" ref="quillEditorB" :options="editorOption">
@@ -136,7 +136,7 @@
 
         <div class="form-group">
 					<label>
-						&nbsp; <i class="fas fa-edit"></i> &nbsp; <b>D E T A I L S&nbsp; F O R &nbsp;A P P P L Y</b>
+						&nbsp; <i class="fas fa-edit"></i> &nbsp; <b>D E T A L L E S&nbsp; P A R A &nbsp;A P L I C A R</b>
 					</label><br>
           <local-quill-editor
              v-model="apply_description" ref="quillEditorB" :options="editorOption">
@@ -145,7 +145,7 @@
 
         <div class="form-group">
 					<label>
-						&nbsp; <i class="fas fa-edit"></i> &nbsp; <b>C O N T A C T &nbsp; D E S C R I P T I O N</b>
+						&nbsp; <i class="fas fa-edit"></i> &nbsp; <b>D A T O S &nbsp; DE &nbsp; C O N T A C T O</b>
 					</label><br>
           <local-quill-editor
              v-model="contact_info" ref="quillEditorB" :options="editorOption">
@@ -154,22 +154,22 @@
 
         <div class="input-group mb-2">
           <div class="input-group-prepend">
-            <div class="input-group-text"> <i class="fas fa-link"></i> &nbsp; URL for apply </div>
+            <div class="input-group-text"> <i class="fas fa-link"></i> &nbsp; URL para aplicar </div>
           </div>
           <input type="url" class="form-control" v-model="url" @blur="validate($event.target.value, 'url', 'url')">
         </div>
         <div v-if="validation_errors['url']" class="row" style="padding-bottom: 10px; padding-left: 18px;">
-          <small class="error_color"> Add a valid website url (https) </small>
+          <small class="error_color"> Agrega una url válida (https) </small>
         </div>
 
         <div class="input-group mb-2">
           <div class="input-group-prepend">
-            <div class="input-group-text"> <i class="fas fa-envelope"></i> &nbsp; Contact Email </div>
+            <div class="input-group-text"> <i class="fas fa-envelope"></i> &nbsp; Email de quien publica</div>
           </div>
-          <input type="email" class="form-control" v-model="email" @blur="validate($event.target.value, 'email', 'email')">
+          <input type="email" placeholder="A este email se enviará el seguimiento de la vacante" class="form-control" v-model="email" @blur="validate($event.target.value, 'email', 'email')">
         </div>
         <div v-if="validation_errors['email']" class="row" style="padding-bottom: 10px; padding-left: 18px;">
-          <small class="error_color"> Add a valid email </small>
+          <small class="error_color"> Agrega un email válido </small>
         </div>
 
 
@@ -195,7 +195,7 @@
                 >
                   <label for="fileInput" slot="upload-label">
                     <br><i class="fas fa-upload"></i> &nbsp; <span>{{
-                      hasImage ? "Image Preload" : "Click for upload"
+                      hasImage ? "Image Preload" : "Click para cargar"
                     }}</span><br><br>
 				        	</label>
                 </image-uploader>
@@ -209,22 +209,22 @@
       <br>
         <div class="input-group mb-2">
           <div class="input-group-prepend">
-            <div class="input-group-text"> <i class="fas fa-image"></i> &nbsp; Graphic Job URL </div>
+            <div class="input-group-text"> <i class="fas fa-image"></i> &nbsp; Graphic Job </div>
           </div>
           <input type="url" class="form-control" v-model="job_url" @blur="validate($event.target.value, 'job_url', 'url')">
         </div>
         <div v-if="validation_errors['job_url']" class="row" style="padding-bottom: 10px; padding-left: 18px;">
-          <small class="error_color"> Add a valid url </small>
+          <small class="error_color"> Agregar una url válida </small>
         </div>
 
         <div class="input-group mb-2">
           <div class="input-group-prepend">
-            <div class="input-group-text"> <i class="fas fa-child"></i> &nbsp; Certified by</div>
+            <div class="input-group-text"> <i class="fas fa-child"></i> &nbsp; Certificado por</div>
           </div>
           <input type="email" class="form-control" v-model="certified_author" @blur="validate($event.target.value, 'certified_author', 'text')">
         </div>
         <div v-if="validation_errors['certified_author']" class="row" style="padding-bottom: 10px; padding-left: 18px;">
-          <small class="error_color"> Add a valid value </small>
+          <small class="error_color"> Agrega un valor válido </small>
         </div>
 
 
@@ -267,34 +267,34 @@
 
                 <div v-if="company_name" class="col-md-12 text-center">
                   <br>
-                  <b>Company</b>
+                  <b>Compañía</b>
                   <p class="lead"> <i class="fas fa-building"></i> &nbsp;{{company_name}}</p>
                 </div>
 
                 <div v-if="location_restricted" class="col-md-12 text-center">
-                  <b>Location</b>
+                  <b>Ubicación</b>
                   <p class="lead"><i class="fas fa-globe-americas"></i> &nbsp; {{location_restricted}}</p>
                 </div>
 
                 <div class="col-md-12">
                   <div v-if="salary" class="text-center">
-                    <b>Annual Salary</b>
-                    <h2> $ {{salary}} M.N.</h2>
+                    <b>Rango Salarial</b>
+                    <h2> {{salary}}</h2>
                   </div>
 
                   <div v-if="url" class="col-md-12 text-center">
-                    <br><b>URL for apply</b>
+                    <br><b>URL para aplicar</b>
                     <br><small> <i class="fas fa-link"></i> &nbsp; <a :href="url" target="_blank">{{url}}</a></small>
                   </div>
                   <div v-if="email" class="col-md-12 text-center">
-                    <br><b>Contact Email</b>
+                    <br><b>Email para dar seguimiento</b>
                     <br><small> <i class="fas fa-envelope"></i> &nbsp; {{email}}</small>
                   </div>
 
                   <div v-if="position" class="col-md-12 text-center">
                     <br><br>
                     <button type="button" class="btn btn-danger btn-block btn-lg bgcolor border-color"
-                      v-on:click="confirm_preview"> <i class="fas fa-check-circle"></i> &nbsp; Confirm Preview </button>
+                      v-on:click="confirm_preview"> <i class="fas fa-check-circle"></i> &nbsp; Confirmar Preview </button>
                     <br><small style="color: red;">{{job_empty}}</small>
                   </div>
                 </div>
@@ -305,7 +305,7 @@
             <div v-else class="text-center">
               <img src="https://res.cloudinary.com/carlogilmar/image/upload/v1565636790/remotejobs/remote2_h8fvlb.png" width="100%">
               <h1 class="display-4">Job Preview</h1>
-              <p class="lead"> See your preview here. </p>
+              <p class="lead"> Mira tu vacante aquí </p>
             </div>
 
           </div>
@@ -360,40 +360,40 @@
                 <div class="col-md-12">
 
                   <div v-if="description">
-  								  <h3>Description</h3>
+  								  <h3>Descripción</h3>
                     <hr>
 										<p v-html="description"></p>
 									</div>
 
                   <div v-if="responsabilities">
-  								  <h3>Responsabilities</h3>
+  								  <h3>Responsabilidades</h3>
                     <hr>
 										<p v-html="responsabilities"></p>
                   </div>
 
                   <div v-if="requirements">
-  								  <h3>Requirements</h3>
+  								  <h3>Requerimientos</h3>
                     <hr>
 										<p v-html="requirements"></p>
                   </div>
 
                   <div v-if="apply_description">
-  								  <h3>Details for apply</h3>
+  								  <h3>Detalles para aplicar</h3>
                     <hr>
 										<p v-html="apply_description"></p>
                   </div>
 
                   <div v-if="salary" class="text-center">
-                    <b>Annual Salary</b>
-                    <h2> $ {{salary}} M.N. </h2>
+                    <b>Rango de Salario</b>
+                    <h2> {{salary}} </h2>
                   </div>
 
                   <div v-if="url" class="col-md-12 text-center">
-                    <br><b>URL for apply</b>
+                    <br><b>URL para aplicar</b>
                     <br><small> <i class="fas fa-link"></i> &nbsp; <a :href="url" target="_blank">{{url}}</a></small>
                   </div>
                   <div v-if="email" class="col-md-12 text-center">
-                    <br><b>Contact Email</b>
+                    <br><b>Email de seguimiento</b>
                     <br><small> <i class="fas fa-envelope"></i> &nbsp; {{email}}</small>
                   </div>
 
@@ -404,8 +404,8 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button v-on:click="create_job" class="btn btn-success">  <i class="fas fa-check-circle"></i> &nbsp; Publish </button>
-          <button type="button" class="btn btn-default" data-dismiss="modal">  <i class="fas fa-window-cancel"></i> &nbsp; Cancel</button>
+          <button v-on:click="create_job" class="btn btn-success">  <i class="fas fa-check-circle"></i> &nbsp; Enviar a Revisión </button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">  <i class="fas fa-window-cancel"></i> &nbsp; Cancelar</button>
         </div>
       </div>
     </div>
@@ -419,12 +419,11 @@
           <br>
 					<p><i class="fas fa-rocket" style="font-size: 60px;"></i></p>
           <br>
-          <h4 class="modal-title">Job in process...</h4>
-          <br><p>We're processing your request,
-          we're going to send you an email to <i class="fas fa-envelope"></i> &nbsp; {{email}} to confirm when your job was published.</p>
+          <h4 class="modal-title">Job en revisión...</h4>
+          <br><p>Te enviaremos los datos de pago e instrucciones para que tu vacante pueda ser publicada al siguiente correo <i class="fas fa-envelope"></i> &nbsp; {{email}}.</p>
         </div>
         <div class="modal-footer">
-          <button v-on:click="reload_page" class="btn btn-success"> <i class="fas fa-check-circle"></i> &nbsp; Continue </button>
+          <button v-on:click="reload_page" class="btn btn-success"> <i class="fas fa-check-circle"></i> &nbsp; Continuar </button>
         </div>
       </div>
     </div>
@@ -434,5 +433,4 @@
 
 </div>
 
-<script type="text/javascript" src="https://cdn.conekta.io/js/latest/conekta.js"></script>
 <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/job_controller.js") %>"></script>

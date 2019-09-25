@@ -1,0 +1,153 @@
+<br><br>
+
+<div class="row" style="padding-left: 30px; padding-right: 30px;">
+	<div class="col-md-3">
+		<div class="text-center">
+		  <h3 class="osc_font"> <%= @job.position %> </h3>
+		  <img src="<%= @job.logo %>" class="text-center" width="100%">
+		</div>
+
+		<br>
+
+			<ul class="list-group">
+				<li class="list-group-item text-center">
+				    <span class="float-left osc_font" style="margin-top: 3px;">
+						  <i class="fas fa-circle"></i> &nbsp; <strong>STATUS</strong> </span>
+			    <%= raw(show_status(@job.status)) %>
+				</li>
+				<li class="list-group-item">
+				    <span class="float-left osc_font" style="margin-top: 3px;">
+						  <i class="fas fa-child"></i> &nbsp; <strong>CERTIFICADO POR</strong> </span>
+				    <span class="float-right" style="margin-top: 3px;"><%= @job.certified_author  %></span>
+				</li>
+				<li class="list-group-item">
+				    <span class="float-left osc_font" style="margin-top: 3px;">
+						  <i class="fas fa-fire"></i> &nbsp; <strong>VISITAS</strong> </span>
+				    <span class="float-right" style="margin-top: 3px;"><%= @job.visits  %></span>
+				</li>
+				<li class="list-group-item">
+				    <span class="float-left osc_font" style="margin-top: 3px;">
+						  <i class="fas fa-calendar"></i> &nbsp; <strong>DISPONIBLE HASTA</strong> </span>
+				    <span class="float-right" style="margin-top: 3px;"><%= @job.expire_date  %></span>
+				</li>
+				<li class="list-group-item">
+				    <span class="float-left osc_font" style="margin-top: 3px;">
+						  <i class="fas fa-envelope"></i> &nbsp; <strong>EMAIL</strong> </span>
+				    <span class="float-right" style="margin-top: 3px;"><%= @job.email  %></span>
+				</li>
+				<li class="list-group-item">
+				    <span class="float-left osc_font" style="margin-top: 3px;">
+						  <i class="fas fa-link"></i> &nbsp; <strong>PREVIEW</strong> </span>
+				    <span class="float-right" style="margin-top: 3px;">
+              <a href="#" phx-click="preview_job" phx-value="<%= @job.id %>"><%= @job.position %></a>
+						</span>
+				</li>
+				<li class="list-group-item">
+				    <span class="float-left osc_font" style="margin-top: 3px;">
+						  <i class="fas fa-tag"></i> &nbsp; <strong>TRACKING</strong> </span>
+				    <span class="float-right" style="margin-top: 3px;">
+              <a href="#" phx-click="tracking" phx-value="<%= @job.id %>">Bitácora</a>
+						</span>
+				</li>
+			</ul>
+
+  </div>
+	<div class="col-md-9">
+
+    <section id="slider">
+    	<div class="container" style="z-index: 2">
+
+    		<div class="row topmargin justify-content-end clearfix">
+    			<div class="col-md-12">
+
+    				<ul class="nav nav-tabs nav-justified flex-column border-bottom-0 flex-md-row bgcolor mt-4" role="tablist">
+    					<li class="nav-item">
+    						<a class="nav-link py-3 active" id="about-tab" data-toggle="tab" href="#about-moving" role="tab" aria-controls="about-moving" aria-selected="true">Acerca de</a>
+    					</li>
+    					<li class="nav-item">
+    						<a class="nav-link py-3" id="description-moving-tab" data-toggle="tab" href="#description-moving" role="tab" aria-controls="description-moving" aria-selected="true">Descripción</a>
+    					</li>
+    					<li class="nav-item">
+    						<a class="nav-link py-3" id="details-moving-tab" data-toggle="tab" href="#details-moving" role="tab" aria-controls="details-moving" aria-selected="false">Detalles</a>
+    					</li>
+    					<li class="nav-item">
+    						<a class="nav-link py-3" id="responsibilities-moving-tab" data-toggle="tab" href="#responsibilities-moving" role="tab" aria-controls="responsibilities-moving" aria-selected="false">Responsabilidades</a>
+    					</li>
+    					<li class="nav-item">
+    						<a class="nav-link py-3" id="requirements-moving-tab" data-toggle="tab" href="#requirements-moving" role="tab" aria-controls="requirements-moving" aria-selected="false">Requerimientos</a>
+    					</li>
+    				</ul>
+
+    				<div class="tab-content rounded-bottom shadow bg-white py-4 px-5">
+
+    				<!-- tab1 -->
+    					<div class="tab-pane fade show active" id="about-moving" role="tabpanel" aria-labelledby="about-moving-tab">
+                <div class="text-center">
+    						  <h5> <i class="fas fa-building"></i> &nbsp; <%= @job.company_name %></h5>
+    		          <p> Rango Salarial: <strong> <%= @job.salary %></strong></p>
+                  <i class="fas fa-globe-americas"></i>&nbsp; <%= @job.location_restricted %>
+                  &nbsp; &nbsp; <i class="fas fa-id-card"></i>&nbsp; <%= @job.hiring_scheme%>
+                  &nbsp; &nbsp; <i class="fas fa-adjust"></i>&nbsp; <%= @job.modality %>
+    		        	<br><br><span class="badge badge-secondary primary_tag"> <i class="fas fa-tag"></i>&nbsp;<%= @job.primary_tag %> </span>
+                	<br><br>
+                  <%= for tag <- @job.extra_tags do %>
+                  	<span class="badge badge-pill extra_tag"><small><b><%= tag %></b></small></span> &nbsp;
+                	<% end %>
+                  <br><br><small class="font-red"><b><i class="fas fa-fire"></i> &nbsp; <%= @job.visits %> visitas</small></b><br>
+    							<br><br>
+    			        <button disabled class="btn btn-danger btn-block btn-lg bgcolor border-color"
+    			        role="link" onclick="open_url('<%= @job.url %>')"> Aplicar Aquí</h3> </button>
+                </div>
+    					</div>
+
+    					<!-- tab2 -->
+    					<div class="tab-pane fade" id="description-moving" role="tabpanel" aria-labelledby="description-moving-tab">
+                <div class="text-center">
+      	          <h3 class="display-5"> <i class="fas fa-hammer"></i> &nbsp; Descripción </h3>
+                  <hr>
+                </div>
+    		        <%= raw(@job.description) %>
+								<br><br>
+                <div class="text-center">
+      	          <h3 class="display-5"> <i class="fas fa-phone"></i> &nbsp; Contacto</h3>
+                  <hr>
+                </div>
+    		        <%= raw(@job.contact_info) %>
+    					</div>
+
+    					<!-- tab2 -->
+    					<div class="tab-pane fade" id="details-moving" role="tabpanel" aria-labelledby="details-moving-tab">
+                <div class="text-center">
+      	          <h3 class="display-5"> <i class="fas fa-hammer"></i> &nbsp; Detalles</h3>
+                  <hr>
+                </div>
+    		        <%= raw(@job.apply_description) %>
+    					</div>
+
+    					<!-- tab2 -->
+    					<div class="tab-pane fade" id="responsibilities-moving" role="tabpanel" aria-labelledby="responsibilities-moving-tab">
+                <div class="text-center">
+      	          <h3 class="display-5"> <i class="fas fa-hammer"></i> &nbsp; Responsabilidades</h3>
+                  <hr>
+                </div>
+    		        <%= raw(@job.responsabilities) %>
+    					</div>
+
+    					<!-- tab2 -->
+    					<div class="tab-pane fade" id="requirements-moving" role="tabpanel" aria-labelledby="requirements-moving-tab">
+               <div class="text-center">
+      	         <h3 class="display-5"> <i class="fas fa-hammer"></i> &nbsp; Requerimientos </h3>
+                 <hr>
+               </div>
+    		       <%= raw(@job.requirements) %>
+    					</div>
+    				</div>
+    			</div>
+    		</div>
+    	</div>
+    			<div class="col-lg-5 d-none d-lg-flex flex-wrap justify-content-center">
+    			</div>
+    </section>
+  </div>
+</div>
+

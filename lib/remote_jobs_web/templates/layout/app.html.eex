@@ -4,7 +4,7 @@
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title> Remote Jobs </title>
+    <title> Take The Risk </title>
     <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
     <script src="https://kit.fontawesome.com/0f4591b7a3.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:700&display=swap" rel="stylesheet">
@@ -20,10 +20,12 @@
 		<div id="page-menu">
 			<div id="page-menu-wrap">
 				<div class="container clearfix">
-					<div class="menu-title"><span>JOBS</span></div>
+          <div class="menu-title">
+            <span>Take The Risk</span>
+          </div>
 					<nav class="one-page-menu">
 						<ul>
-              <li><a href="<%= Routes.static_path(@conn, "/")%>" data-href="#header"><div>Jobs</div></a></li>
+              <li><a href="<%= Routes.static_path(@conn, "/")%>" data-href="#header"><div>Vacantes</div></a></li>
 						</ul>
 					</nav>
 				</div>

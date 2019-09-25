@@ -212,3 +212,11 @@
 [v-cloak] {
   display:none;
 }
+
+.panel-title {
+    font-size: 52px;
+    font-weight: bold;
+    line-height: 45px;
+    padding-top: 20px;
+    letter-spacing: -0.8px;
+}

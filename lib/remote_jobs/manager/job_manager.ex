@@ -7,6 +7,7 @@ defmodule RemoteJobs.JobManager do
   alias RemoteJobs.JobOperator
   alias RemoteJobsWeb.Endpoint
   use GenServer
+  @available_status "AVAILABLE"
 
   def start_link(_opts \\ []) do
     GenServer.start_link(__MODULE__, nil, name: __MODULE__)
@@ -33,7 +34,7 @@ defmodule RemoteJobs.JobManager do
   end
 
   def handle_call(:get, _from, state) do
-    jobs = JobOperator.find_all_paid_jobs()
+    jobs = JobOperator.find_all(@available_status)
     {:reply, jobs, state}
   end
 
@@ -69,7 +70,7 @@ defmodule RemoteJobs.JobManager do
   end
 
   def handle_info(:update_dashboard, state) do
-    jobs = JobOperator.find_all_paid_jobs()
+    jobs = JobOperator.find_all(@available_status)
     _broadcast = Endpoint.broadcast("dashboard", "update_jobs", %{jobs: jobs})
     {:noreply, state}
   end

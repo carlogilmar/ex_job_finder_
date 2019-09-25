@@ -10,6 +10,7 @@ defmodule RemoteJobs.EmailManager do
   @confirmation_email_template "templates/confirmation.html"
   @confirmation_pdf_template "templates/pdf.html"
   @newsletter_template "templates/newsletter.html"
+  @invite_template "templates/invite.html"
   @newsletter_url "http://jobs.codigoambar.io/"
 
   def send_confirmation(job_created) do
@@ -73,4 +74,14 @@ defmodule RemoteJobs.EmailManager do
 
     length(emails_sended)
   end
+
+  def send_invite_email(email) do
+    # TODO set url for invite to post a job
+    email_body = FileUtil.build_email.({@invite_template,
+      [url: "http://localhost:4000/post"]})
+    email
+    |> Email.build(":: Take The Risk :: Invitación", email_body)
+    |> Mailer.deliver_now()
+  end
+
 end

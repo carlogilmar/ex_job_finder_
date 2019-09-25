@@ -1,0 +1,87 @@
+<br>
+<div class="container">
+
+  <br><br>
+  <div class="heading-block center bottommargin-lg">
+    <h2>Jobs</h2>
+    <span>Vacantes en esta plataforma</span>
+  </div>
+
+  <div class="row">
+		<div class="col-md-8">
+      <form class="form-inline" phx_submit="send_invite">
+        <input type="email" class="form-control mb-2 mr-sm-2" required name="email_to_invite" placeholder="Email">
+				<%= submit " Enviar invitación", class: "btn btn-danger bgcolor border-color mb-2" %>
+      </form>
+		</div>
+		<div class="col-md-1"></div>
+		<div class="col-md-3 text-center">
+			<div class="btn-group" role="group" aria-label="Basic example">
+        <button type="button" phx-click="redirect_url" phx-value="/suscriptors" class="btn btn-danger  bgcolor border-color">
+          <i class="fas fa-users"></i>&nbsp; Suscriptores</button>
+        <button type="button" phx-click="redirect_url" phx-value="/post" class="btn btn-danger  bgcolor border-color">
+          <i class="fas fa-rocket"></i>&nbsp; Post A Job</button>
+      </div>
+		</div>
+	</div>
+
+  <br>
+
+  <div class="row">
+    <table class="table table-sm table-striped table-hover">
+      <thead>
+        <tr>
+          <th class="text-center" scope="col">Vacante</th>
+          <th class="text-center" scope="col">Autor</th>
+          <th class="text-center" scope="col">Visitas</th>
+          <th class="text-center" scope="col">Expira</th>
+          <th class="text-center" scope="col">Status</th>
+          <th class="text-center" scope="col"></th>
+          <th class="text-center" scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= for job <- @jobs do %>
+          <tr>
+            <th class="text-center"><small><a href="#" phx-click="detail" phx-value="<%= job.id %>"><%= job.position %></a></small></th>
+            <td class="text-center"><small><b><%= job.company_name%></b>&nbsp;<%= job.certified_author%></small></td>
+            <td class="text-center"><small><%= job.visits%></small></td>
+            <td class="text-center"><small><%= job.expire_date %></small></td>
+            <th class="text-center"><%= raw(show_status(job.status)) %></th>
+            <th class="text-center">
+              <div class="dropdown">
+                <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="fas fa-cog"></i>&nbsp;
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+									<%= if job.status == "EXPIRED" do %>
+									  <a class="dropdown-item"> <i class="fas fa-times"></i>&nbsp; Sin cambios disponibles. </a>
+									<% else %>
+									  <a class="dropdown-item" href="#" phx-click="to_unavailable" phx-value="<%= job.id %>">
+                      <i class="fas fa-times-circle"></i>&nbsp; No Disponible</a>
+									  <a class="dropdown-item" href="#" phx-click="to_available" phx-value="<%= job.id %>">
+                      <i class="fas fa-check"></i>&nbsp; Publicar</a>
+									<% end %>
+									  <a class="dropdown-item" href="#" phx-click="delete" phx-value="<%= job.id %>">
+                      <i class="fas fa-trash"></i>&nbsp; Eliminar
+                    </a>
+                </div>
+              </div>
+            </th>
+            <th class="text-center">
+              <button class="btn btn-light btn-sm"
+              role="link" phx-click="preview_job" phx-value="<%= job.id %>">
+                <i class="fas fa-eye"></i>&nbsp;
+              </button>
+              <button class="btn btn-light btn-sm"
+              role="link" phx-click="tracking" phx-value="<%= job.id %>">
+                <i class="fas fa-tag"></i>&nbsp;
+              </button>
+            </th>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+

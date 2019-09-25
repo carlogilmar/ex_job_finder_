@@ -3,7 +3,7 @@ defmodule RemoteJobs.TrackerOperator do
   This contains the functions for
   track important changes in this app
   """
-  import Ecto.Query, only: [from: 2]
+  alias RemoteJobs.Job
   alias RemoteJobs.Repo
   alias RemoteJobs.Track
 
@@ -12,12 +12,10 @@ defmodule RemoteJobs.TrackerOperator do
     track |> Repo.insert!()
   end
 
-  def get_tracking do
-    query = from(
-      track in Track,
-      order_by: [desc: track.inserted_at],
-      limit: 20,
-      preload: [:job])
-    Repo.all(query)
+  def get_tracking(job_id) do
+    job =
+      Repo.get(Job, job_id)
+      |> Repo.preload([:track])
+    Enum.reverse(job.track)
   end
 end
