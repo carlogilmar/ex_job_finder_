@@ -21,6 +21,7 @@ defmodule RemoteJobsWeb.Router do
     get "/", PageController, :index
     live "/tracking/:id", TrackingLive
     get "/post", JobController, :index
+    get "/update/:id", UpdtJobController, :index
     live "/preview/:id", JobPreviewLive
     live "/to_approve/:id", ApprovePreviewLive
     live "/management", ManagementLive
