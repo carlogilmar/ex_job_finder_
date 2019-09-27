@@ -1,11 +1,7 @@
+
+<div id="app">
+<input type="hidden" id="job" value="<%= @job %>">
 <h1> Updating job <%= @job %> </h1>
-<h1> Updating job <%= @job %> </h1>
-<h1> Updating job <%= @job %> </h1>
-<h1> Updating job <%= @job %> </h1>
-<h1> Updating job <%= @job %> </h1>
-<h1> Updating job <%= @job %> </h1>
-<h1> Updating job <%= @job %> </h1>
-<h1> Updating job <%= @job %> </h1>
-<h1> Updating job <%= @job %> </h1>
-<h1> Updating job <%= @job %> </h1>
-<h1> Updating job <%= @job %> </h1>
+</div>
+
+<script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/updt_job_controller.js") %>"></script>

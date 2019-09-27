@@ -3,6 +3,7 @@ defmodule RemoteJobsWeb.UserSocket do
 
   channel "remote:*", RemoteJobsWeb.JobsChannel
   channel "suscriptor:*", RemoteJobsWeb.SuscriptorsChannel
+  channel "updt_job:*", RemoteJobsWeb.UpdtJobChannel
 
   def connect(_params, socket, _connect_info) do
     {:ok, socket}
