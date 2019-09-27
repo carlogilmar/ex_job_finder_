@@ -16,9 +16,8 @@ defmodule RemoteJobsWeb.UpdtJobChannel do
   end
 
   def handle_in("updt_job:update", %{"attribute" => attribute, "job" => job_id, "value" => value}, socket) do
-    IO.puts attribute
-    IO.puts job_id
-    IO.puts value
+    attrs = Map.new [{String.to_atom(attribute), value}]
+    _ = JobOperator.upd_job(attrs, job_id)
     {:reply, {:ok, %{status: "200"}}, socket}
   end
 

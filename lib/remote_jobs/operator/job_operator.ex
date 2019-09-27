@@ -79,7 +79,6 @@ defmodule RemoteJobs.JobOperator do
     job
     |> Job.changeset(attrs)
     |> Repo.update()
-    >>> tee(track())
   end
 
   def update_status do
@@ -87,17 +86,20 @@ defmodule RemoteJobs.JobOperator do
       # Available: Assign the expired date (30 days)
       {job_id, "AVAILABLE"} ->
         upd_job(job_id,
-          %{status: "AVAILABLE", expire_date: DateUtil.get_expired_date()})
+          %{status: "AVAILABLE", expire_date: DateUtil.get_expired_date()}) >>> tee(track())
         _ = JobManager.update_live_dashboard()
       # Status: EXPIRED & UNAVAILABLE
       {job_id, status} ->
-        upd_job(job_id, %{status: status})
+        upd_job(job_id, %{status: status}) >>> tee(track())
         _ = JobManager.update_live_dashboard()
       _ -> raise "Job Operator: Error in update job status"
     end
 	end
 
-  defp upd_job(job_id, attrs), do: Repo.get(Job, job_id) |> update(attrs)
+  def upd_job(attrs, job_id) do
+    Repo.get(Job, job_id) |> update(attrs)
+    _ = JobManager.update_live_dashboard()
+  end
 
   #delete
   def delete(job) do
