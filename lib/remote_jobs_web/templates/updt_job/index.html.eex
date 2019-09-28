@@ -58,6 +58,51 @@
           <input type="text" class="form-control" v-model="job.location_restricted" @blur="update($event.target.value, 'location_restricted')">
         </div>
 
+        <div class="input-group mb-2">
+          <div class="input-group-prepend">
+            <div class="input-group-text"> <i class="fas fa-money-bill-wave"></i> &nbsp; Rango Salarial &nbsp;&nbsp;&nbsp;&nbsp; <i class="fas fa-dollar-sign"></i> </div>
+          </div>
+          <input type="text" class="form-control" v-model="job.salary" @blur="update($event.target.value, 'salary')">
+        </div>
+
+        <div class="input-group mb-2">
+          <div class="input-group-prepend">
+            <div class="input-group-text"> <i class="fas fa-tag"></i> &nbsp; Tag Principal </div>
+          </div>
+          <input type="text" class="form-control" v-model="job.primary_tag" @blur="update($event.target.value, 'primary_tag')">
+          &nbsp;&nbsp;
+          <span class="badge badge-secondary" style="padding: 1.25em 0.4em;">{{job.primary_tag}}</span>
+        </div>
+
+
+        <br>
+				<div class="rcorners">
+					<br>
+						<div class="col-md-12" style="padding-left: 35px;">
+              <div class="form-group">
+                <label>
+                  &nbsp; <i class="fas fa-tags"></i> &nbsp; <b>Tags Extra</b>
+                </label>
+                <br>
+                  Tags Asignados:
+                  <span v-for="tag in job.extra_tags" style="font-size: 120%;" class="badge badge-pill badge-light">
+                    {{tag}}
+                  </span>
+                  <br><br>
+                <vue-tags-input
+                   :placeholder="placeholderValue"
+                   v-model="tag"
+                   :tags="tags"
+                   :max-tags=5
+                   @tags-changed="newTags => tags = newTags"
+                   />
+              </div>
+						</div>
+            <button type="button" class="btn btn-danger bgcolor border-color" v-on:click="update_tags"> <i class="fas fa-check-circle"></i> &nbsp; Actualizar Tags Extra </button>
+            <br>
+				</div>
+        <br>
+
     </div>
   </div>
 

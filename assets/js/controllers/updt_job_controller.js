@@ -1,19 +1,30 @@
 import Vue from 'vue'
 import socket from "./../socket"
 import Notifications from 'vue-notification'
+import VueTagsInput from '@johmun/vue-tags-input';
 Vue.use(Notifications)
 
 export const app = new Vue({
 	el:"#app",
   data: {
+    extra_tags: "",
+    tag: '',
+    tags: [],
+    placeholderValue: 'Max 5 tags',
     job: {
       position: null,
       company_name: null,
       modality: null,
       hiring_scheme: null,
-      location_restricted: null
+      location_restricted: null,
+      salary: null,
+      primary_tag: "",
+      extra_tags: null
     }
   },
+	components: {
+		VueTagsInput
+	},
 	created: function() {
     let job = document.getElementById("job").value
 		this.channel = socket.channel("updt_job:join", {job: job});
@@ -28,6 +39,11 @@ export const app = new Vue({
 			});
 	},
   methods: {
+    update_tags: function(){
+      let tags= this.get_tags(this.tags);
+      this.update_job(tags, "extra_tags", this.job.id);
+      this.job.extra_tags = tags;
+    },
   /*
    * Notifications
    * */
@@ -47,9 +63,20 @@ export const app = new Vue({
     update_job: function(value, attribute,  job_id){
       this.channel.push("updt_job:update", {job: job_id, attribute: attribute, value: value})
         .receive('ok', (res) => {
-          this.notify('info', 'Vacante Actualizada', '');
+          this.notify('info', 'Vacante Actualizada', attribute+' updated [ok]');
         })
         .receive("error", resp => { this.notify('error', 'No se pudo actualizar', ''); });
+    },
+    get_tags: function(tags){
+      if(tags.length === 0){
+        return null;
+      } else {
+        let current_tags = [];
+        tags.forEach(function(element) {
+          current_tags.push(element.text);
+        });
+        return current_tags;
+      }
     }
   }
 });
