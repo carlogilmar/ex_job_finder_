@@ -19,13 +19,13 @@ defmodule RemoteJobsWeb.UpdtJobChannel do
   def handle_in("updt_job:update", %{"attribute" => "extra_tags", "job" => job_id, "value" => value}, socket) do
     value = ParserUtil.resume_tags().(value)
     attrs = Map.new [{:extra_tags, value}]
-    _ = JobOperator.upd_job(attrs, job_id)
+    _ = JobOperator.upd_job(job_id, attrs)
     {:reply, {:ok, %{status: "200"}}, socket}
   end
 
   def handle_in("updt_job:update", %{"attribute" => attribute, "job" => job_id, "value" => value}, socket) do
     attrs = Map.new [{String.to_atom(attribute), value}]
-    _ = JobOperator.upd_job(attrs, job_id)
+    _ = JobOperator.upd_job(job_id, attrs)
     {:reply, {:ok, %{status: "200"}}, socket}
   end
 

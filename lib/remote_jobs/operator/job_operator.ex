@@ -96,9 +96,10 @@ defmodule RemoteJobs.JobOperator do
     end
 	end
 
-  def upd_job(attrs, job_id) do
-    Repo.get(Job, job_id) |> update(attrs)
+  def upd_job(job_id, attrs) do
+    res = Repo.get(Job, job_id) |> update(attrs)
     _ = JobManager.update_live_dashboard()
+    res
   end
 
   #delete
