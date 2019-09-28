@@ -36,7 +36,10 @@ export const app = new Vue({
       responsabilities: "",
       requirements: "",
       apply_description: "",
-      contact_info: ""
+      contact_info: "",
+      url: null,
+      email: null,
+      certified_author: null
     }
   },
 	components: {
