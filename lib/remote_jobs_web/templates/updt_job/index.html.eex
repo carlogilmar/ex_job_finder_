@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/job_controller.css") %>"/>
 <div id="app">
   <br><br>
   <input type="hidden" id="job" value="<%= @job %>">
@@ -103,6 +104,50 @@
 				</div>
         <br>
 
+        <div class="form-group">
+					<label>
+						&nbsp; <i class="fas fa-edit"></i> &nbsp; <b>D E S C R I P C I Ó N</b>
+					</label><br>
+          <local-quill-editor
+             @blur="update(job.description, 'description')" v-model="job.description" ref="quillEditorB" :options="editorOption">
+          </local-quill-editor>
+        </div>
+
+        <div class="form-group">
+					<label>
+						&nbsp; <i class="fas fa-edit"></i> &nbsp; <b>R E S P O N S A B I L I D A D E S</b>
+					</label><br>
+          <local-quill-editor
+             @blur="update(job.responsabilities, 'responsabilities')" v-model="job.responsabilities" ref="quillEditorB" :options="editorOption">
+          </local-quill-editor>
+        </div>
+
+        <div class="form-group">
+					<label>
+						&nbsp; <i class="fas fa-edit"></i> &nbsp; <b>R E Q U E R I M I E N T O S</b>
+					</label><br>
+          <local-quill-editor
+             @blur="update(job.requirements, 'requirements')" v-model="job.requirements" ref="quillEditorB" :options="editorOption">
+          </local-quill-editor>
+        </div>
+
+        <div class="form-group">
+					<label>
+						&nbsp; <i class="fas fa-edit"></i> &nbsp; <b>D E T A L L E S&nbsp; P A R A &nbsp;A P L I C A R</b>
+					</label><br>
+          <local-quill-editor
+             @blur="update(job.apply_description, 'apply_description')" v-model="job.apply_description" ref="quillEditorB" :options="editorOption">
+          </local-quill-editor>
+        </div>
+
+        <div class="form-group">
+					<label>
+						&nbsp; <i class="fas fa-edit"></i> &nbsp; <b>D A T O S &nbsp; DE &nbsp; C O N T A C T O</b>
+					</label><br>
+          <local-quill-editor
+             @blur="update(job.contact_info, 'contact_info')" v-model="job.contact_info" ref="quillEditorB" :options="editorOption">
+          </local-quill-editor>
+        </div>
     </div>
   </div>
 

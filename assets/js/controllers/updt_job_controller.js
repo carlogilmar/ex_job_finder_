@@ -2,11 +2,23 @@ import Vue from 'vue'
 import socket from "./../socket"
 import Notifications from 'vue-notification'
 import VueTagsInput from '@johmun/vue-tags-input';
+import VueQuillEditor from 'vue-quill-editor'
+import 'quill/dist/quill.snow.css'
 Vue.use(Notifications)
 
 export const app = new Vue({
 	el:"#app",
   data: {
+    editorOption: {
+      theme: 'snow',
+      modules: {
+        toolbar: [
+          [{ 'size': ['small', false, 'large'] }],
+          ['bold', 'italic'],
+          [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+        ]
+      }
+    },
     extra_tags: "",
     tag: '',
     tags: [],
@@ -19,10 +31,16 @@ export const app = new Vue({
       location_restricted: null,
       salary: null,
       primary_tag: "",
-      extra_tags: null
+      extra_tags: null,
+      description: "",
+      responsabilities: "",
+      requirements: "",
+      apply_description: "",
+      contact_info: ""
     }
   },
 	components: {
+		LocalQuillEditor: VueQuillEditor.quillEditor,
 		VueTagsInput
 	},
 	created: function() {
