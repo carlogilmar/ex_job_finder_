@@ -37,6 +37,13 @@
         <input type="text" class="form-control" v-model="job.company_name" @blur="upt_position($event.target.value, 'company_name')">
       </div>
 
+        <div class="input-group mb-2">
+          <div class="input-group-prepend">
+            <div class="input-group-text"> <i class="fas fa-adjust"></i> &nbsp; Modalidad </div>
+          </div>
+          <input type="text" class="form-control" v-model="job.modality" @blur="upt_job($event.target.value, 'modality')">
+        </div>
+
     </div>
   </div>
 

@@ -37,7 +37,7 @@ defmodule RemoteJobs.Job do
   @doc false
   def changeset(job, attrs) do
     job
-    |> cast(attrs, [:status, :expire_date, :visits, :position, :company_name])
+    |> cast(attrs, [:status, :expire_date, :visits, :position, :company_name, :modality])
     |> validate_inclusion(:status, @states)
     |> validate_required([])
   end

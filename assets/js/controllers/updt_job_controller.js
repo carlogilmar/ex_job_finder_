@@ -7,7 +7,9 @@ export const app = new Vue({
 	el:"#app",
   data: {
     job: {
-      position: null
+      position: null,
+      company_name: null,
+      modality: null
     }
   },
 	created: function() {
