@@ -85,7 +85,7 @@ export const app = new Vue({
          && attribute !== 'requirements' && attribute !== 'responsabilities'){
       this.channel.push("updt_job:update", {job: job_id, attribute: attribute, value: value})
         .receive('ok', (res) => {
-          this.notify('info', 'Vacante Actualizada', attribute+' updated [ok]');
+          this.notify('info', 'Guardando el cambio...', '');
         })
         .receive("error", resp => { this.notify('error', 'No se pudo actualizar', ''); });
       }
