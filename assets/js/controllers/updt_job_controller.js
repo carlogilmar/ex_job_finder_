@@ -53,7 +53,6 @@ export const app = new Vue({
 			.receive("ok", resp => {
 				console.log("Joined successfully", resp);
         this.job = resp;
-        console.log(this.job);
 			})
 			.receive("error", resp => {
 				console.log("Unable to join", resp);
@@ -82,11 +81,14 @@ export const app = new Vue({
       this.update_job(value, attribute, this.job.id);
     },
     update_job: function(value, attribute,  job_id){
+      if(attribute !== 'description' && attribute !== 'apply_description'
+         && attribute !== 'requirements' && attribute !== 'responsabilities'){
       this.channel.push("updt_job:update", {job: job_id, attribute: attribute, value: value})
         .receive('ok', (res) => {
           this.notify('info', 'Vacante Actualizada', attribute+' updated [ok]');
         })
         .receive("error", resp => { this.notify('error', 'No se pudo actualizar', ''); });
+      }
     },
     get_tags: function(tags){
       if(tags.length === 0){
