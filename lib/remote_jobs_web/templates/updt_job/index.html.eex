@@ -27,21 +27,28 @@
         <div class="input-group-prepend">
           <div class="input-group-text"> <i class="fas fa-hammer"></i> &nbsp; Posición </div>
         </div>
-        <input @blur="upt_position($event.target.value, 'position')" type="text" class="form-control" v-model="job.position">
+        <input @blur="update($event.target.value, 'position')" type="text" class="form-control" v-model="job.position">
       </div>
 
       <div class="input-group mb-2">
         <div class="input-group-prepend">
           <div class="input-group-text"> <i class="fas fa-building"></i> &nbsp; Empresa </div>
         </div>
-        <input type="text" class="form-control" v-model="job.company_name" @blur="upt_position($event.target.value, 'company_name')">
+        <input type="text" class="form-control" v-model="job.company_name" @blur="update($event.target.value, 'company_name')">
       </div>
 
         <div class="input-group mb-2">
           <div class="input-group-prepend">
             <div class="input-group-text"> <i class="fas fa-adjust"></i> &nbsp; Modalidad </div>
           </div>
-          <input type="text" class="form-control" v-model="job.modality" @blur="upt_job($event.target.value, 'modality')">
+          <input type="text" class="form-control" v-model="job.modality" @blur="update($event.target.value, 'modality')">
+        </div>
+
+        <div class="input-group mb-2">
+          <div class="input-group-prepend">
+            <div class="input-group-text"> <i class="fas fa-id-card"></i> &nbsp; Esquema de Contratación</div>
+          </div>
+          <input type="text" class="form-control" v-model="job.hiring_scheme" @blur="update($event.target.value, 'hiring_scheme')">
         </div>
 
     </div>

@@ -9,7 +9,8 @@ export const app = new Vue({
     job: {
       position: null,
       company_name: null,
-      modality: null
+      modality: null,
+      hiring_scheme: null
     }
   },
 	created: function() {
@@ -39,7 +40,7 @@ export const app = new Vue({
         speed: 1000
       })
     },
-    upt_position: function(value, attribute){
+    update: function(value, attribute){
       this.update_job(value, attribute, this.job.id);
     },
     update_job: function(value, attribute,  job_id){
