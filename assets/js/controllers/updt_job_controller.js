@@ -10,7 +10,8 @@ export const app = new Vue({
       position: null,
       company_name: null,
       modality: null,
-      hiring_scheme: null
+      hiring_scheme: null,
+      location_restricted: null
     }
   },
 	created: function() {

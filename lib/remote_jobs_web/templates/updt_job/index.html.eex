@@ -51,6 +51,13 @@
           <input type="text" class="form-control" v-model="job.hiring_scheme" @blur="update($event.target.value, 'hiring_scheme')">
         </div>
 
+        <div class="input-group mb-2">
+          <div class="input-group-prepend">
+            <div class="input-group-text"> <i class="fas fa-globe-americas"></i> &nbsp; Ubicación </div>
+          </div>
+          <input type="text" class="form-control" v-model="job.location_restricted" @blur="update($event.target.value, 'location_restricted')">
+        </div>
+
     </div>
   </div>
 
