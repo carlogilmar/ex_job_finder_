@@ -11,7 +11,7 @@ defmodule RemoteJobs.EmailManager do
   @confirmation_pdf_template "templates/pdf.html"
   @newsletter_template "templates/newsletter.html"
   @invite_template "templates/invite.html"
-  @newsletter_url "http://jobs.codigoambar.io/"
+  @newsletter_url "http://taketherisk.mx/"
 
   def send_confirmation(job_created) do
     date =
@@ -44,7 +44,7 @@ defmodule RemoteJobs.EmailManager do
 
     email
     |> Email.build_with_attach(
-      "RemoteJobs: #{position} was published!",
+      "Take the Risk: #{position} fue publicada!",
       email_body,
       email_pdf
     )
@@ -57,7 +57,7 @@ defmodule RemoteJobs.EmailManager do
     fn {email, attrs} ->
       email_body = FileUtil.build_email.({@newsletter_template, attrs})
       email
-      |> Email.build("RemoteJobs Lastest Jobs Published!", email_body)
+      |> Email.build("Últimas vacantes publicadas!", email_body)
       |> Mailer.deliver_now()
     end
   end

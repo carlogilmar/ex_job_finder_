@@ -8,7 +8,7 @@ defmodule RemoteJobs.Email do
   def build(email, subject, body) do
     new_email()
     |> to(email)
-    |> from("confirmation@remotejobs.io")
+    |> from("info@taketherisk.mx")
     |> subject(subject)
     |> html_body(body)
   end
@@ -16,7 +16,7 @@ defmodule RemoteJobs.Email do
   def build_with_attach(email, subject, body, pdf_path) do
     new_email()
     |> to(email)
-    |> from("confirmation@remotejobs.io")
+    |> from("info@taketherisk.mx")
     |> subject(subject)
     |> put_attachment(Attachment.new(pdf_path))
     |> html_body(body)
