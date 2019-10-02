@@ -21,6 +21,7 @@
 						<input type="password" name="password" class="form-control" placeholder="Password">
 					</div>
 					<button type="submit" class="btn btn-danger btn-block btn-sm bgcolor border-color">Login</button>
+					<small class="error_color"> <%= @error %></small>
 				<% end %>
 			</div>
 		</div>
