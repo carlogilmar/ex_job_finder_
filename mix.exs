@@ -62,7 +62,9 @@ defmodule RemoteJobs.MixProject do
       {:logger_file_backend, "~> 0.0.11"},
       {:excoveralls, "~> 0.11.2", only: :test},
       {:quixir, "~> 0.9", only: :test},
-      {:rop, "~> 0.5"}
+      {:rop, "~> 0.5"},
+      {:comeonin, "~> 5.1"},
+      {:argon2_elixir, "~> 2.0"}
     ]
   end
 
