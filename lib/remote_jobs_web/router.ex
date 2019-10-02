@@ -11,9 +11,17 @@ defmodule RemoteJobsWeb.Router do
     plug :put_layout, {RemoteJobsWeb.LayoutView, :app}
   end
 
-  pipeline :api do
-    plug :accepts, ["json"]
-  end
+	pipeline :api do
+		plug :accepts, ["json"]
+	end
+
+	pipeline :browser_pipeline do
+		plug RemoteJobs.Guardian.BrowserPipeline
+	end
+
+	pipeline :ensure_auth do
+		plug Guardian.Plug.EnsureAuthenticated
+	end
 
   scope "/", RemoteJobsWeb do
     pipe_through :browser
@@ -28,11 +36,16 @@ defmodule RemoteJobsWeb.Router do
 		live "/suscriptors", SuscriptorsLive
 
     get "/login", LoginController, :index
-    get "/home", LoginController, :home
     post "/login", LoginController, :login
 
     # Simple Post Job
     get "/postajob", MinimalJobController, :index
 
   end
+
+	scope "/auth", RemoteJobsWeb do
+		pipe_through [:browser, :browser_pipeline, :ensure_auth]
+    get "/", LoginController, :home
+	end
+
 end

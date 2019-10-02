@@ -7,10 +7,16 @@ defmodule RemoteJobsWeb.LoginController do
 			false ->
 				render(conn, "index.html")
 			true ->
-        conn |> redirect(to: "/post")
+				user = %{id: 1, username: "carlogilmar", password: "1234567890"}
+				login_reply({:ok, user}, conn)
 		end
 		v.(form_params)
 	end
+
+  defp login_reply({:ok, user}, conn) do
+    user = RemoteJobs.Guardian.encode_and_sign(user)
+    RemoteJobs.Guardian.Plug.sign_in(conn, user) |> redirect(to: "/auth")
+  end
 
   def home(conn, params) do
 		render(conn, "home.html")
