@@ -11,7 +11,7 @@ defmodule RemoteJobs.EmailManager do
   @confirmation_pdf_template "templates/pdf.html"
   @newsletter_template "templates/newsletter.html"
   @invite_template "templates/invite.html"
-  @newsletter_url "http://taketherisk.mx/"
+  @newsletter_url "https://taketherisk.mx/"
 
   def send_confirmation(job_created) do
     date =
@@ -78,7 +78,7 @@ defmodule RemoteJobs.EmailManager do
   def send_invite_email(email) do
     # TODO set url for invite to post a job
     email_body = FileUtil.build_email.({@invite_template,
-      [url: "http://taketherisk.mx/post"]})
+      [url: "https://taketherisk.mx/post"]})
     email
     |> Email.build(":: Take The Risk :: Invitación", email_body)
     |> Mailer.deliver_now()

@@ -11,8 +11,10 @@ use Mix.Config
 # before starting your production server.
 config :remote_jobs, RemoteJobsWeb.Endpoint,
   load_from_system_env: true,
-  http: [:inet6, port: System.get_env("PORT") || 4000],
-  url: [host: System.get_env("RENDER_EXTERNAL_HOSTNAME") || "localhost", port: 80],
+  # http: [:inet6, port: System.get_env("PORT") || 4000],
+  # url: [host: System.get_env("RENDER_EXTERNAL_HOSTNAME") || "localhost", port: 80],
+  url: [scheme: "https", host: System.get_env("RENDER_EXTERNAL_HOSTNAME"), port: 443],
+  force_ssl: [rewrite_on: [:x_forwarded_proto]],
   cache_static_manifest: "priv/static/cache_manifest.json",
   secret_key_base: Map.fetch!(System.get_env(), "SECRET_KEY_BASE"),
   https: [port: 443,
