@@ -2,6 +2,7 @@ defmodule RemoteJobs.UserOperator do
   @moduledoc """
     User operator definition
   """
+  alias RemoteJobs.Repo
   alias RemoteJobs.User
 
   def create_user(username, role, password) do
