@@ -78,7 +78,7 @@ defmodule RemoteJobs.EmailManager do
   def send_invite_email(email) do
     # TODO set url for invite to post a job
     email_body = FileUtil.build_email.({@invite_template,
-      [url: "http://localhost:4000/post"]})
+      [url: "http://taketherisk.mx/post"]})
     email
     |> Email.build(":: Take The Risk :: Invitación", email_body)
     |> Mailer.deliver_now()
