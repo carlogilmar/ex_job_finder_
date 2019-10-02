@@ -64,7 +64,8 @@ defmodule RemoteJobs.MixProject do
       {:quixir, "~> 0.9", only: :test},
       {:rop, "~> 0.5"},
       {:comeonin, "~> 5.1"},
-      {:argon2_elixir, "~> 2.0"}
+      {:argon2_elixir, "~> 2.0"},
+			{:guardian, "~> 1.2"}
     ]
   end
 

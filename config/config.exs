@@ -48,6 +48,12 @@ config :remote_jobs, RemoteJobs.Scheduler,
 # Configures the price charged when publishing a job
 config :remote_jobs, job_price: 5_000
 
+# Guardian
+# Guardian config
+config :remote_jobs, RemoteJobs.Guardian,
+issuer: "remote_jobs",
+secret_key: "9FD6M4ohFDcGojY1CmXkjFhV56i3OGytrNFyiTWDzkeMkE5JZ+sg6BIBYY6370lI"
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env()}.exs"
