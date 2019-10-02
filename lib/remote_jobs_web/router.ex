@@ -28,6 +28,8 @@ defmodule RemoteJobsWeb.Router do
 		live "/suscriptors", SuscriptorsLive
 
     get "/login", LoginController, :index
+    get "/home", LoginController, :home
+    post "/login", LoginController, :login
 
     # Simple Post Job
     get "/postajob", MinimalJobController, :index
