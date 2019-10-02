@@ -10,18 +10,18 @@
 /*@import 'theme/responsive.css';*/
 
 .ql-toolbar.ql-snow + .ql-container.ql-snow {
-  height: 10rem;
+	height: 10rem;
 }
 
 .primary_tag{
-  color: #3e3838;
-  background-color: #e4e4e4;
+	color: #3e3838;
+	background-color: #e4e4e4;
 }
 
 .extra_tag{
-  color: #ffffff;
-  background-color: #33bd9b;
-  font-size: 93%;
+	color: #ffffff;
+	background-color: #33bd9b;
+	font-size: 93%;
 }
 
 .job_title{
@@ -29,42 +29,42 @@
 }
 
 .blue_jumbotron{
- background-color: #f8f8f8;
+	background-color: #f8f8f8;
 }
 
 .title{
-  font_size: 32px;
+	font_size: 32px;
 }
 
 .large_text_jumbotron{
-  background-color: #fafafb;
-  padding: 1rem 1rem;
+	background-color: #fafafb;
+	padding: 1rem 1rem;
 }
 
 .rcorners {
-  border-radius: 25px;
-  border: 2px solid #c3c3c2;
+	border-radius: 25px;
+	border: 2px solid #c3c3c2;
 }
 
 .img-back{
-  background-color: #e8ecef;
+	background-color: #e8ecef;
 }
 
 .img-preview{
-  width: 75%;
-  padding-top: 15px;
+	width: 75%;
+	padding-top: 15px;
 }
 
 #parent:hover .parent-highlight {
-    background-color: #afb8bf;
+	background-color: #afb8bf;
 }
 
 .error_color{
-  color: #b50c0c;
+	color: #b50c0c;
 }
 
 .main_color{
-  background-color: #ffffff;
+	background-color: #ffffff;
 }
 
 .osc_font{
@@ -95,15 +95,15 @@
 }
 
 .navbar_color{
-  background-color: #002973;
+	background-color: #002973;
 }
 
 .navbar_color2{
-  background-color: #ffe2e8;
+	background-color: #ffe2e8;
 }
 
 .navbar_color3{
-  background-color: #f8f8f8;
+	background-color: #f8f8f8;
 }
 
 .nav_title{
@@ -144,7 +144,7 @@
 }
 
 .dashboard_btn{
-  background-color: #ffe2e8;
+	background-color: #ffe2e8;
 	border: none;
 	font-size: 19px;
 }
@@ -174,49 +174,50 @@
 }
 
 .feature_div{
-  background-color: #f8f8f8;
+	background-color: #f8f8f8;
 }
 
 .suscribe_div{
-  background-color: #002973;
+	background-color: #002973;
 }
 
 .title_footer{
-  font-size: 30px;
+	font-size: 30px;
 }
 
 .dashboard-img{
-  border-radius: 10%;
-  padding-left: 0px;
-  padding-right: 0px;
+	border-radius: 10%;
+	padding-left: 0px;
+	padding-right: 0px;
 }
 
 .box{
-  border-right: none;
-  border-left: none;
-  border-top: none;
+	border-right: none;
+	border-left: none;
+	border-top: none;
 }
 
 .box:hover{
-  background-color: #caf6cb;
+	background-color: #caf6cb;
 }
 
 .footer {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  background-color: #ffe2e8;
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	background-color: #ffe2e8;
 }
 
 [v-cloak] {
-  display:none;
+	display:none;
 }
 
 .panel-title {
-    font-size: 52px;
-    font-weight: bold;
-    line-height: 45px;
-    padding-top: 20px;
-    letter-spacing: -0.8px;
+	font-size: 52px;
+	font-weight: bold;
+	line-height: 45px;
+	padding-top: 20px;
+	letter-spacing: -0.8px;
 }
+
