@@ -1,5 +1,12 @@
 # RemoteJobs
 
+## Previous steps:
+
+* Intstall the next dependencies:
+* 
+    * https://wkhtmltopdf.org/downloads.html
+
+
 To start your Phoenix server:
 
   * Install dependencies with `mix deps.get`
