@@ -14,7 +14,11 @@ config :remote_jobs, RemoteJobsWeb.Endpoint,
   http: [:inet6, port: System.get_env("PORT") || 4000],
   url: [host: System.get_env("RENDER_EXTERNAL_HOSTNAME") || "localhost", port: 80],
   cache_static_manifest: "priv/static/cache_manifest.json",
-  secret_key_base: Map.fetch!(System.get_env(), "SECRET_KEY_BASE")
+  secret_key_base: Map.fetch!(System.get_env(), "SECRET_KEY_BASE"),
+  https: [port: 443,
+    keyfile: "/etc/letsencrypt/live/taketherisk.mx/privkey.pem",
+    cacertfile: "/etc/letsencrypt/live/taketherisk.mx/chain.pem",
+    certfile: "/etc/letsencrypt/live/taketherisk.mx/cert.pem"]
 
 # config :real_world, RealWorldWeb.Endpoint,
 #  load_from_system_env: true,
