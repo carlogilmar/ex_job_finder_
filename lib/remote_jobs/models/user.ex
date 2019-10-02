@@ -8,15 +8,16 @@ defmodule RemoteJobs.User do
   @roles ["ADMIN"]
   @primary_key {:id, :id, autogenerate: true}
   schema "users" do
+    field :username, :string
     field :role, :string
     field :password, :string
     timestamps()
   end
 
   @doc false
-  def changeset(job, attrs) do
-    job
-    |> cast(attrs, [:role, :password])
+  def changeset(user, attrs) do
+    user
+    |> cast(attrs, [:username, :role, :password])
     |> validate_inclusion(:role, @roles)
     |> validate_required([])
   end
