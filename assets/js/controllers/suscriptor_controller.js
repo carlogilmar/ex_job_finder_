@@ -14,12 +14,16 @@ export const app = new Vue({
 		this.channel.join()
 			.receive("ok", resp => {
 				console.log("Joined successfully", resp);
+        this.get_session();
 			})
 			.receive("error", resp => {
 				console.log("Unable to join", resp);
 			});
 	},
   methods: {
+    get_session:function(){
+      $.get("https://api.ipdata.co?api-key=test", function(response) {console.log(response)})
+    },
     suscribe: function(){
       this.channel.push("suscriptor:create", {email: this.email, name: this.name})
         .receive('ok', (res) => {
