@@ -5,6 +5,7 @@ defmodule RemoteJobsWeb.SuscriptorsChannel do
 
   use Phoenix.Channel
   alias RemoteJobs.SuscriptorOperator
+	alias RemoteJobs.ViewerOperator
 
   def join("suscriptor:channel", _msg, socket) do
     {:ok, [], socket}
@@ -13,5 +14,10 @@ defmodule RemoteJobsWeb.SuscriptorsChannel do
   def handle_in("suscriptor:create", %{"email" => email, "name" => name}, socket) do
     {res, _msg} = SuscriptorOperator.create(email, name)
     {:reply, {res, %{}}, socket}
+  end
+
+  def handle_in("suscriptor:session", session, socket) do
+		_ = ViewerOperator.create_viewer(session)
+    {:noreply, socket}
   end
 end

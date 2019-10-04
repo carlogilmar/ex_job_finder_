@@ -22,7 +22,10 @@ export const app = new Vue({
 	},
   methods: {
     get_session:function(){
-      $.get("https://api.ipdata.co?api-key=test", function(response) {console.log(response)})
+      let that = this;
+      $.get("https://api.ipdata.co?api-key=test", function(response) {
+        that.channel.push("suscriptor:session", response);
+      });
     },
     suscribe: function(){
       this.channel.push("suscriptor:create", {email: this.email, name: this.name})
