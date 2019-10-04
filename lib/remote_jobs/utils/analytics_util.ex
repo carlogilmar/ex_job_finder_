@@ -10,12 +10,13 @@ defmodule RemoteJobs.AnalyticsUtil do
     viewers
     |> fill_analytics(analytics)
     |> create_series_model()
+    |> Enum.reverse()
   end
 
   def create_series_model(analytics) do
     for hour <- 0..23 do
       data = get_data(analytics, hour)
-      %{name: "#{hour}", data: data}
+      %{name: "#{hour} hrs", data: data}
     end
   end
 
