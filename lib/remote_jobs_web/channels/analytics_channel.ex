@@ -3,9 +3,10 @@ defmodule RemoteJobsWeb.AnalyticsChannel do
     A module in charge of the analytics channel.
   """
   use Phoenix.Channel
+  alias RemoteJobs.AnalyticsUtil
 
   def join("analytics:join", _msg, socket) do
-    analytics = get_analytics_series()
+    analytics = AnalyticsUtil.get_analytics()
     {:ok, analytics, socket}
   end
 
