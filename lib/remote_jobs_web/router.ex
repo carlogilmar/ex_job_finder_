@@ -32,7 +32,6 @@ defmodule RemoteJobsWeb.Router do
     get "/update/:id", UpdtJobController, :index
     live "/preview/:id", JobPreviewLive
     live "/to_approve/:id", ApprovePreviewLive
-    live "/management", ManagementLive
 		live "/suscriptors", SuscriptorsLive
 
     get "/login", LoginController, :index
@@ -43,9 +42,9 @@ defmodule RemoteJobsWeb.Router do
 
   end
 
-	scope "/auth", RemoteJobsWeb do
+	scope "/management", RemoteJobsWeb do
 		pipe_through [:browser, :browser_pipeline, :ensure_auth]
-    get "/", LoginController, :home
+    live "/", ManagementLive
 	end
 
 end

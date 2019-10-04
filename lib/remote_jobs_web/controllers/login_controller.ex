@@ -23,7 +23,7 @@ defmodule RemoteJobsWeb.LoginController do
 
   defp login_reply({:ok, user}, conn) do
     session = RemoteJobs.Guardian.encode_and_sign(user)
-    RemoteJobs.Guardian.Plug.sign_in(conn, session) |> redirect(to: "/auth")
+    RemoteJobs.Guardian.Plug.sign_in(conn, session) |> redirect(to: "/management")
   end
 
   def home(conn, params) do
