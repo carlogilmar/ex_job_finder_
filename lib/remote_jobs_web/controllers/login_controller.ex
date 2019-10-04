@@ -26,8 +26,10 @@ defmodule RemoteJobsWeb.LoginController do
     RemoteJobs.Guardian.Plug.sign_in(conn, session) |> redirect(to: "/management")
   end
 
-  def home(conn, params) do
-		render(conn, "home.html")
-	end
+  def logout(conn, _) do
+    conn
+    |> RemoteJobs.Guardian.Plug.sign_out()
+    |> redirect(to: "/login")
+  end
 
 end
