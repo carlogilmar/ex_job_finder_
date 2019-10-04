@@ -1,0 +1,4 @@
+<div id="app">
+  <h1> Analytics </h1>
+</div>
+<script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/analytics_controller.js") %>"></script>

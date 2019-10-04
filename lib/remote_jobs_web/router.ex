@@ -39,7 +39,7 @@ defmodule RemoteJobsWeb.Router do
     post "/login", LoginController, :login
 
     # Simple Post Job
-    get "/postajob", MinimalJobController, :index
+    get "/analytics", AnalyticsController, :index
 
   end
 

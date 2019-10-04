@@ -1,4 +1,4 @@
-defmodule RemoteJobsWeb.MinimalJobController do
+defmodule RemoteJobsWeb.AnalyticsController do
   use RemoteJobsWeb, :controller
 
   def index(conn, _params) do
