@@ -6,8 +6,8 @@ defmodule RemoteJobsWeb.AnalyticsChannel do
   alias RemoteJobs.AnalyticsUtil
 
   def join("analytics:join", _msg, socket) do
-    analytics = AnalyticsUtil.get_analytics()
-    {:ok, analytics, socket}
+    {analytics, info, counter} = AnalyticsUtil.get_analytics()
+    {:ok, %{analytics: analytics, counter: counter, info: info}, socket}
   end
 
 end
