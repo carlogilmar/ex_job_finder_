@@ -3,10 +3,12 @@ defmodule RemoteJobs.ViewerOperator do
     Viewer operator definition
   """
   import Ecto.Query, only: [from: 2]
+  alias RemoteJobs.AnalyticsUtil
   alias RemoteJobs.Viewer
   alias RemoteJobs.Repo
 
   def create_viewer(session) do
+    res =
     %Viewer{
       city: session["city"],
       continent: session["continent_name"],
@@ -16,6 +18,8 @@ defmodule RemoteJobs.ViewerOperator do
       latitude: session["latitude"],
       longitude: session["longitude"]
     } |> Repo.insert()
+    _ = AnalyticsUtil.update_analytics_dashboard()
+    res
   end
 
   def get_all do
