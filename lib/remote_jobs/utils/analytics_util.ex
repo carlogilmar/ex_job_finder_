@@ -6,21 +6,25 @@ defmodule RemoteJobs.AnalyticsUtil do
 
   def get_analytics do
     viewers = ViewerOperator.get_all() |> get_viewers()
+    analytics_info = ViewerOperator.get_viewers_info()
+    total = ViewerOperator.get_total_viewers()
     analytics = generate_analytics()
-    viewers
-    |> fill_analytics(analytics)
-    |> create_series_model()
-    |> Enum.reverse()
+    analytics_model =
+      viewers
+      |> fill_analytics(analytics)
+      |> create_series_model()
+      |> Enum.reverse()
+    {analytics_model, analytics_info, total}
   end
 
-  def create_series_model(analytics) do
+  defp create_series_model(analytics) do
     for hour <- 0..23 do
       data = get_data(analytics, hour)
       %{name: "#{hour} hrs", data: data}
     end
   end
 
-  def get_data(analytics, hour) do
+  defp get_data(analytics, hour) do
     {day_1, counters_1} = analytics[1]
     {day_2, counters_2} = analytics[2]
     {day_3, counters_3} = analytics[3]
@@ -39,8 +43,8 @@ defmodule RemoteJobs.AnalyticsUtil do
     ]
   end
 
-  def fill_analytics([], analytics), do: analytics
-  def fill_analytics([viewer|viewers], analytics) do
+  defp fill_analytics([], analytics), do: analytics
+  defp fill_analytics([viewer|viewers], analytics) do
     {weekday_name, counters} = analytics[viewer.weekday]
     current_counter = counters[viewer.inserted_at.hour]
     weekday_counter = Map.put(counters, viewer.inserted_at.hour, (current_counter+1))
@@ -48,7 +52,7 @@ defmodule RemoteJobs.AnalyticsUtil do
     fill_analytics(viewers, analytics_updated)
   end
 
-  def generate_analytics do
+  defp generate_analytics do
     starter_counter = for hour <- 0..23, do: {hour, 0}
     starter_counter = Map.new(starter_counter)
     weekdays = [
@@ -59,7 +63,7 @@ defmodule RemoteJobs.AnalyticsUtil do
     Map.new(counters)
   end
 
-  def get_viewers(viewers) do
+  defp get_viewers(viewers) do
     for viewer <- viewers do
       weekday =
         :calendar.day_of_the_week({
