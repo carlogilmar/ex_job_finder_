@@ -3,6 +3,7 @@ defmodule RemoteJobs.AnalyticsUtil do
     Module for get analytics
   """
   alias RemoteJobs.ViewerOperator
+  alias RemoteJobsWeb.Endpoint
 
   def get_analytics do
     viewers = ViewerOperator.get_all() |> get_viewers()
@@ -15,6 +16,12 @@ defmodule RemoteJobs.AnalyticsUtil do
       |> create_series_model()
       |> Enum.reverse()
     {analytics_model, analytics_info, total}
+  end
+
+  def update_analytics_dashboard do
+    {analytics, info, counter} = get_analytics()
+    update = %{analytics: analytics, counter: counter, info: info}
+		_ = Endpoint.broadcast("analytics:join", "analytics:broadcast", update)
   end
 
   defp create_series_model(analytics) do

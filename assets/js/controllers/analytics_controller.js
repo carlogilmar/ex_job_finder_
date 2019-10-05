@@ -34,6 +34,12 @@ export const app = new Vue({
 				console.log("Unable to join", resp);
 			});
 	},
-  methods: {
-  }
+  mounted(){
+		let that = this;
+		this.channel.on("analytics:broadcast", function(resp) {
+			that.series = resp.analytics;
+			that.counter = resp.counter;
+			that.info = resp.info;
+		});
+  },
 });
