@@ -9,15 +9,16 @@
   </div>
 
   <div class="row">
-		<div class="col-md-8">
+		<div class="col-md-7">
       <form class="form-inline" phx_submit="send_invite">
         <input type="email" class="form-control mb-2 mr-sm-2" required name="email_to_invite" placeholder="Email">
 				<%= submit " Enviar invitación", class: "btn btn-danger bgcolor border-color mb-2" %>
       </form>
 		</div>
-		<div class="col-md-1"></div>
-		<div class="col-md-3 text-center">
+		<div class="col-md-5 text-center">
 			<div class="btn-group" role="group" aria-label="Basic example">
+        <button type="button" phx-click="redirect_url" phx-value="/analytics" class="btn btn-danger  bgcolor border-color">
+          <i class="fas fa-chart-bar"></i>&nbsp; Visitantes </button>
         <button type="button" phx-click="redirect_url" phx-value="/suscriptors" class="btn btn-danger  bgcolor border-color">
           <i class="fas fa-users"></i>&nbsp; Suscriptores</button>
         <button type="button" phx-click="redirect_url" phx-value="/post" class="btn btn-danger  bgcolor border-color">
