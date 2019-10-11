@@ -4,9 +4,10 @@ defmodule RemoteJobs.Profile do
   """
   use Ecto.Schema
   import Ecto.Changeset
+  alias RemoteJobs.Skill
 
   @primary_key {:id, :id, autogenerate: true}
-  schema "jobs" do
+  schema "profiles" do
     field :name, :string
     field :description, :string, default: "Sin descripción"
     field :experience, :string, default: "Sin experiencia"
