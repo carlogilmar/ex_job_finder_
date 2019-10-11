@@ -5,6 +5,7 @@ defmodule RemoteJobsWeb.ManagementLive do
   use Phoenix.LiveView
   alias RemoteJobs.EmailManager
   alias RemoteJobs.JobOperator
+  alias RemoteJobs.ProfileOperator
   alias RemoteJobsWeb.ApprovePreviewLive
   alias RemoteJobsWeb.ManagementView
   alias RemoteJobsWeb.JobPreviewLive
@@ -26,6 +27,10 @@ defmodule RemoteJobsWeb.ManagementLive do
       {%{"email_to_invite" => email}, socket} ->
         _ = EmailManager.send_invite_email(email)
         {:ok, live_redirect(socket, to: Routes.live_path(socket, RemoteJobsWeb.ManagementLive))}
+
+      {%{"name" => name}, socket} ->
+        {:ok, profile} = ProfileOperator.create_profile(name)
+        {:ok, redirect(socket, to: "/profile/#{profile.id}")}
 
       {%{}, socket} ->
         {:noreply, socket}
