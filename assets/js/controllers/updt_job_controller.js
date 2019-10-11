@@ -81,14 +81,14 @@ export const app = new Vue({
       this.update_job(value, attribute, this.job.id);
     },
     update_job: function(value, attribute,  job_id){
-      if(attribute !== 'description' && attribute !== 'apply_description'
-         && attribute !== 'requirements' && attribute !== 'responsabilities'){
       this.channel.push("updt_job:update", {job: job_id, attribute: attribute, value: value})
         .receive('ok', (res) => {
-          this.notify('info', 'Guardando el cambio...', '');
+          if(attribute !== 'description' && attribute !== 'apply_description'
+            && attribute !== 'requirements' && attribute !== 'responsabilities'){
+            this.notify('info', 'Guardando el cambio...', '');
+          }
         })
         .receive("error", resp => { this.notify('error', 'No se pudo actualizar', ''); });
-      }
     },
     get_tags: function(tags){
       if(tags.length === 0){
