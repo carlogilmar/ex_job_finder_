@@ -5,7 +5,7 @@ defmodule RemoteJobs.Repo.Migrations.AddProfiles do
     create table(:profiles, primary_key: false) do
       add :id, :serial, primary_key: true
       add :name, :string
-      add :description, :text,
+      add :description, :text
       add :experience, :text
       add :email, :string
       add :phone, :text
@@ -14,7 +14,7 @@ defmodule RemoteJobs.Repo.Migrations.AddProfiles do
 
     create table(:skills, primary_key: false) do
       add :id, :serial, primary_key: true
-      add :description, :text,
+      add :description, :text
       timestamps()
       add :profile_id, references(:profiles)
     end
