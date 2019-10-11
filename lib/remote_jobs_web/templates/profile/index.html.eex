@@ -1,0 +1,16 @@
+<div id="app">
+  <input type="hidden" id="profile" value="<%= @profile %>">
+  <h2> Profile </h2>
+  <h2> Profile </h2>
+  <h2> Profile </h2>
+  <h2> Profile </h2>
+  <h2> Profile </h2>
+  <h2> Profile </h2>
+  <h2> Profile </h2>
+  <h2> Profile </h2>
+  <h2> Profile </h2>
+  <h2> Profile </h2>
+  <h2> Profile </h2>
+</div>
+
+<script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/profile_controller.js") %>"></script>
