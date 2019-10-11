@@ -8,7 +8,7 @@ defmodule RemoteJobs.Skill do
 
   @primary_key {:id, :id, autogenerate: true}
   schema "skills" do
-    field :description, :text
+    field :description, :string
     timestamps()
     belongs_to :profile, Profile
   end

@@ -10,8 +10,8 @@ defmodule RemoteJobs.Profile do
     field :name, :string
     field :description, :string, default: "Sin descripción"
     field :experience, :string, default: "Sin experiencia"
-    field :email, :string, "Sin email"
-    field :phone, :string, "Sin teléfono"
+    field :email, :string, default: "Sin email"
+    field :phone, :string, default: "Sin teléfono"
     timestamps()
     has_many :skill, Skill, on_delete: :delete_all
   end
@@ -19,7 +19,7 @@ defmodule RemoteJobs.Profile do
   @doc false
   def changeset(job, attrs) do
     job
-    |> cast(attrs, [:name, :description, :experience, :email, :phone]
+    |> cast(attrs, [:name, :description, :experience, :email, :phone])
     |> validate_required([])
   end
 end
