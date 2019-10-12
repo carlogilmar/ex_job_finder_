@@ -18,5 +18,12 @@ defmodule RemoteJobs.Repo.Migrations.AddProfiles do
       timestamps()
       add :profile_id, references(:profiles)
     end
+
+    create table(:candidate_tracks, primary_key: false) do
+      add :id, :serial, primary_key: true
+      add :description, :text
+      timestamps()
+      add :profile_id, references(:profiles)
+    end
   end
 end
