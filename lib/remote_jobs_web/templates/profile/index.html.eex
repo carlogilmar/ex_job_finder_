@@ -48,7 +48,9 @@
 									<li class="list-group-item" v-for="skill in skills">
 										<span class="osc_font float-left "><i class="fas fa-check"></i> &nbsp; {{skill.description}} </span>
 										<span class="osc_font float-right">
-											<i class="fas fa-trash"></i>
+											<a href="#" @click.prevent="delete_skill(skill.id)">
+											  <i class="fas fa-trash"></i>
+											</a>
 										</span>
 									</li>
 								</ul>

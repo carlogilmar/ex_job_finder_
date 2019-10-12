@@ -23,6 +23,12 @@ defmodule RemoteJobsWeb.ProfileChannel do
     {:reply, {:ok, %{status: "200", profile: profile, skills: skills}}, socket}
   end
 
+  def handle_in("profile:delete_skill", %{"skill" => skill_id, "profile" => profile_id}, socket) do
+		_ = ProfileOperator.delete_skill(skill_id)
+    {profile, skills} = get_profile(profile_id)
+    {:reply, {:ok, %{status: "200", profile: profile, skills: skills}}, socket}
+  end
+
 	def get_profile(profile_id) do
 		profile_id
 		|> ProfileOperator.get_by_id()

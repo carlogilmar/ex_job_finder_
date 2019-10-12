@@ -81,5 +81,14 @@ export const app = new Vue({
 				})
 				.receive("error", resp => { this.notify('error', 'No se pudo actualizar', ''); });
 		},
+		delete_skill: function(skill_id){
+      this.channel.push("profile:delete_skill", {skill:skill_id, profile: this.profile.id})
+        .receive('ok', (res) => {
+					this.skills = res.skills;
+					this.notify('warn', 'Skill eliminado', '');
+				})
+				.receive("error", resp => { this.notify('error', 'No se pudo actualizar', ''); });
+
+    }
 	}
 });
