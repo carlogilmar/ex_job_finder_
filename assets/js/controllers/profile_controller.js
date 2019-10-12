@@ -26,7 +26,8 @@ export const app = new Vue({
       phone: "cargando...",
       inserted_at: "cargando..."
     },
-		skills: []
+		skills: [],
+    skill: ""
   },
 	components: {
 		LocalQuillEditor: VueQuillEditor.quillEditor
@@ -44,7 +45,6 @@ export const app = new Vue({
 				console.log("Joined successfully", resp);
         this.profile = resp.profile;
 				this.skills = resp.skills;
-				console.log(resp);
         this.loader = false;
 			})
 			.receive("error", resp => {
@@ -72,5 +72,14 @@ export const app = new Vue({
         })
         .receive("error", resp => { this.notify('error', 'No se pudo actualizar', ''); });
     },
-  }
+    add_skill: function(description, profile_id){
+      this.channel.push("profile:add_skill", {skill:description, profile: profile_id})
+        .receive('ok', (res) => {
+					this.skills = res.skills;
+					this.skill = "";
+					this.notify('success', 'Skill añadido', '');
+				})
+				.receive("error", resp => { this.notify('error', 'No se pudo actualizar', ''); });
+		},
+	}
 });

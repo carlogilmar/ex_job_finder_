@@ -39,8 +39,8 @@
               <strong>Skills</strong>
 							<!-- skills -->
 							<div class="input-group mb-2">
-								<input type="text" placeholder="Anota y agrega un skill" class="form-control">
-								<button class="btn btn-secondary" type="submit"> <small class="osc_font"><i class="fas fa-check"></i> &nbsp; AGREGAR</small> </button>
+								<input type="text" v-model="skill" placeholder="Anota y agrega un skill" class="form-control">
+								<button class="btn btn-secondary" v-on:click="add_skill(skill, profile.id)" type="submit"> <small class="osc_font"><i class="fas fa-check"></i> &nbsp; AGREGAR</small> </button>
 							</div>
 
 							<div class="card">

@@ -7,11 +7,7 @@ defmodule RemoteJobsWeb.ProfileChannel do
   alias RemoteJobs.ProfileOperator
 
   def join("profile:join", %{"profile" => profile_id}, socket) do
-    {profile, skills} =
-      profile_id
-      |> String.to_integer()
-      |> ProfileOperator.get_by_id()
-      |> normalize_for_show_in_view()
+    {profile, skills} = get_profile(profile_id)
     {:ok, %{profile: profile, skills: skills}, socket}
   end
 
@@ -20,6 +16,18 @@ defmodule RemoteJobsWeb.ProfileChannel do
     _ = ProfileOperator.update(profile_id, attrs)
     {:reply, {:ok, %{status: "200"}}, socket}
   end
+
+  def handle_in("profile:add_skill", %{"skill" => description, "profile" => profile_id}, socket) do
+		_ = ProfileOperator.add_skill(profile_id, description)
+    {profile, skills} = get_profile(profile_id)
+    {:reply, {:ok, %{status: "200", profile: profile, skills: skills}}, socket}
+  end
+
+	def get_profile(profile_id) do
+		profile_id
+		|> ProfileOperator.get_by_id()
+		|> normalize_for_show_in_view()
+	end
 
   def normalize_for_show_in_view(profile) do
     date_parsed = NaiveDateTime.to_string(profile.inserted_at)
