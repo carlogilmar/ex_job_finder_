@@ -30,7 +30,7 @@ defmodule RemoteJobsWeb.ManagementLive do
 
       {%{"name" => name}, socket} ->
         {:ok, profile} = ProfileOperator.create_profile(name)
-        {:ok, redirect(socket, to: "/profile/#{profile.id}")}
+        {:ok, live_redirect(socket, to: Routes.live_path(socket, RemoteJobsWeb.ManagementLive))}
 
       {%{}, socket} ->
         {:noreply, socket}
