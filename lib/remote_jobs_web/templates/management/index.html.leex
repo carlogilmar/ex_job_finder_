@@ -39,7 +39,7 @@
     <!-- menu-->
     <div class="col-md-9">
 
-    <h3 class="float-right osc_font">Vacantes</h3>
+    <h3 class="float-right osc_font"> <i class="fas fa-rocket"></i>&nbsp; Vacantes</h3>
     <table class="table table-sm table-striped table-hover">
       <thead>
         <tr>
@@ -96,6 +96,26 @@
         <% end %>
       </tbody>
     </table>
+
+    <hr>
+    <br>
+
+    <div class="row">
+      <div class="col-md-4"></div>
+      <div class="col-md-4"></div>
+      <div class="col-md-4 text-center">
+        <h3 class="osc_font"><i class="fas fa-user"></i>&nbsp; Candidatos</h3>
+        <table class="table table-sm">
+          <tbody>
+            <%= for profile <- @profiles do %>
+            <tr>
+              <td> <a href="#" phx-click="redirect_url" phx-value="/profile/<%= profile.id %>"><%= profile.name %></a></td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
 
     </div>
   </div>

@@ -76,6 +76,7 @@ defmodule RemoteJobsWeb.ManagementLive do
 
 	def set_jobs(socket) do
     jobs = JobOperator.find_all()
-    socket |> assign(:jobs, jobs)
+    profiles = ProfileOperator.get_all()
+    socket |> assign(:jobs, jobs) |> assign(:profiles, profiles)
 	end
 end
