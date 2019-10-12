@@ -25,7 +25,8 @@ export const app = new Vue({
       email: "cargando...",
       phone: "cargando...",
       inserted_at: "cargando..."
-    }
+    },
+		skills: []
   },
 	components: {
 		LocalQuillEditor: VueQuillEditor.quillEditor
@@ -42,6 +43,8 @@ export const app = new Vue({
 			.receive("ok", resp => {
 				console.log("Joined successfully", resp);
         this.profile = resp.profile;
+				this.skills = resp.skills;
+				console.log(resp);
         this.loader = false;
 			})
 			.receive("error", resp => {
