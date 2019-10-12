@@ -28,7 +28,8 @@ export const app = new Vue({
     },
 		skills: [],
     skill: "",
-    tracks: []
+    tracks: [],
+    track: ""
   },
 	components: {
 		LocalQuillEditor: VueQuillEditor.quillEditor
@@ -91,7 +92,15 @@ export const app = new Vue({
 					this.notify('warn', 'Skill eliminado', '');
 				})
 				.receive("error", resp => { this.notify('error', 'No se pudo actualizar', ''); });
-
-    }
+    },
+    add_track: function(track, profile_id){
+      this.channel.push("profile:add_track", {track:track, profile: profile_id})
+        .receive('ok', (res) => {
+					this.tracks = res.tracks;
+					this.track = "";
+					this.notify('success', 'Track añadido', '');
+				})
+				.receive("error", resp => { this.notify('error', 'No se pudo actualizar', ''); });
+		},
 	}
 });

@@ -117,6 +117,13 @@
 				</div>
 				<div class="col-md-7">
 
+					<div class="input-group mb-2">
+						<input type="text" v-model="track" placeholder="Tracking de eventos" class="form-control">
+						<button class="btn btn-secondary" v-on:click="add_track(track, profile.id)" type="submit">
+							<small class="osc_font"><i class="fas fa-tag"></i> &nbsp; AÑADIR </small> </button>
+					</div>
+					<hr>
+
 
 					<div class="border-card" v-for="track in tracks">
 						<div class="card-type-icon with-border"><i class="fas fa-tag"></i></div>
