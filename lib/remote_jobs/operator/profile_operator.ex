@@ -12,6 +12,10 @@ defmodule RemoteJobs.ProfileOperator do
     |> Repo.insert()
   end
 
+  def get_all() do
+    Repo.all(Profile) |> Repo.preload([:skill])
+  end
+
   def get_by_id(profile_id) do
     Repo.get(Profile, profile_id) |> Repo.preload([:skill])
   end
@@ -33,4 +37,8 @@ defmodule RemoteJobs.ProfileOperator do
     skill |> Repo.delete!()
   end
 
+  def delete_profile(profile_id) do
+		profile = Repo.get(Profile, profile_id)
+    profile |> Repo.delete!()
+  end
 end
