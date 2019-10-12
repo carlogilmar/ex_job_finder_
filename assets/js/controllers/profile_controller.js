@@ -27,7 +27,8 @@ export const app = new Vue({
       inserted_at: "cargando..."
     },
 		skills: [],
-    skill: ""
+    skill: "",
+    tracks: []
   },
 	components: {
 		LocalQuillEditor: VueQuillEditor.quillEditor
@@ -45,6 +46,8 @@ export const app = new Vue({
 				console.log("Joined successfully", resp);
         this.profile = resp.profile;
 				this.skills = resp.skills;
+        this.tracks = resp.tracks;
+        console.log(resp)
         this.loader = false;
 			})
 			.receive("error", resp => {
