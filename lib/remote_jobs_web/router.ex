@@ -31,6 +31,7 @@ defmodule RemoteJobsWeb.Router do
     get "/post", JobController, :index
     get "/update/:id", UpdtJobController, :index
     get "/profile/:id", ProfileController, :index
+    get "/delete_profile/:id", ProfileController, :delete
     live "/preview/:id", JobPreviewLive
     live "/to_approve/:id", ApprovePreviewLive
 		live "/suscriptors", SuscriptorsLive

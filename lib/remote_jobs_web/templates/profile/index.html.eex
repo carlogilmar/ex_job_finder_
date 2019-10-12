@@ -91,6 +91,27 @@
 
               <small>Registrado el: <strong> {{profile.inserted_at}} </strong></small>
 
+              <br><br>
+
+              <a class="btn btn-block btn-warning btn-sm" data-toggle="collapse"
+                href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                <i class="fas fa-trash"></i> &nbsp; Eliminar Perfil
+              </a>
+
+              <div class="collapse" id="collapseExample">
+                <div class="card card-body">
+                  ¿Estás seguro que quieres eliminar permanentemente este perfil?
+                  <br>
+
+                  <a class="btn btn-block btn-secondary btn-sm" data-toggle="collapse" href="#collapseExample"
+                    role="button" aria-expanded="false" aria-controls="collapseExample">
+                    Cancelar
+                  </a>
+
+                  <a href="<%= Routes.static_path(@conn, "/delete_profile")%>/<%= @profile %>" class="btn btn-block btn-danger btn-sm"> <i class="fas fa-trash"></i> &nbsp; Eliminar </a>
+                </div>
+              </div>
+
             </div>
           </div>
         </div>
