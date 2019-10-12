@@ -102,5 +102,13 @@ export const app = new Vue({
 				})
 				.receive("error", resp => { this.notify('error', 'No se pudo actualizar', ''); });
 		},
+		delete_track: function(track_id){
+      this.channel.push("profile:delete_track", {track: track_id, profile: this.profile.id})
+        .receive('ok', (res) => {
+					this.tracks = res.tracks;
+					this.notify('warn', 'Track eliminado', '');
+				})
+				.receive("error", resp => { this.notify('error', 'No se pudo actualizar', ''); });
+    },
 	}
 });

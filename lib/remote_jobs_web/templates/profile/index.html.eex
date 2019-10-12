@@ -134,7 +134,10 @@
 							</div>
 							</a>
 						</div>
-						<i class="material-icons end-icon">more_vert</i>
+
+						<a href="#" @click.prevent="delete_track(track.id)">
+							<i class="fas fa-eraser" ></i>
+						</a>
 					</div>
 
 				</div>
