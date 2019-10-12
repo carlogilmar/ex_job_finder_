@@ -16,7 +16,7 @@ defmodule RemoteJobs.Skill do
   @doc false
   def changeset(job, attrs) do
     job
-    |> cast(attrs, [:description])
+    |> cast(attrs, [:description, :profile])
     |> validate_required([])
   end
 end
