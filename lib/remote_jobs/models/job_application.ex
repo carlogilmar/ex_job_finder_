@@ -1,4 +1,4 @@
-defmodule RemoteJobs.Application do
+defmodule RemoteJobs.JobApplication do
   @moduledoc """
     Candidate track model definition
   """
