@@ -46,7 +46,8 @@ export const app = new Vue({
 		skills: [],
     skill: "",
     tracks: [],
-    track: ""
+    track: "",
+    jobs: [{company_name: "job", position: "job"}]
   },
 	components: {
 		LocalQuillEditor: VueQuillEditor.quillEditor
@@ -65,6 +66,7 @@ export const app = new Vue({
         this.profile = resp.profile;
 				this.skills = resp.skills;
         this.tracks = resp.tracks;
+				this.jobs = resp.jobs;
         console.log(resp)
         this.loader = false;
 			})

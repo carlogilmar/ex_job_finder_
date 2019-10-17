@@ -4,13 +4,13 @@ defmodule RemoteJobs.ApplicationTrack do
   """
   use Ecto.Schema
   import Ecto.Changeset
-  alias RemoteJobs.Application
+  alias RemoteJobs.JobApplication
 
   @primary_key {:id, :id, autogenerate: true}
   schema "application_tracks" do
     field :description, :string
     timestamps()
-    belongs_to :application, Application
+    belongs_to :job_application, JobApplication
   end
 
   @doc false

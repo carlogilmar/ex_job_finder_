@@ -7,8 +7,6 @@
 		<div class="heading-block center bottommargin-lg">
 			<h2>Perfiles</h2>
 		</div>
-    <h2> Calendar </h2>
-    <v-calendar :attributes="attributes" :columns="$screens({ default: 1, lg: 2 })" />
 
 		<div v-if="loader">
 			<%= render RemoteJobsWeb.LoaderView, "index.html", conn: @conn %>
@@ -118,6 +116,14 @@
 					</div>
 				</div>
 				<div class="col-md-7">
+
+					<div class="input-group mb-2">
+						<select class="form-control" id="exampleFormControlSelect1">
+              <option v-for="job in jobs">{{job.position}} - {{job.company_name}} </option>
+						</select>
+						<button class="btn btn-secondary" v-on:click="add_track(track, profile.id)" type="submit">
+							<small class="osc_font"><i class="fas fa-tag"></i> &nbsp; Aplicar a Vacante</small> </button>
+					</div>
 
 					<div class="input-group mb-2">
 						<input type="text" v-model="track" placeholder="Tracking de eventos" class="form-control">
