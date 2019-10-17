@@ -4,11 +4,13 @@ defmodule RemoteJobsWeb.ProfileChannel do
   """
   use Phoenix.Channel
   alias RemoteJobs.DateUtil
+  alias RemoteJobs.JobManager
   alias RemoteJobs.ProfileOperator
 
   def join("profile:join", %{"profile" => profile_id}, socket) do
     {profile, skills, tracks} = get_profile(profile_id)
-    {:ok, %{profile: profile, skills: skills, tracks: tracks}, socket}
+    jobs = JobManager.get() |> jobs_to_view()
+    {:ok, %{profile: profile, skills: skills, tracks: tracks, jobs: jobs}, socket}
   end
 
   def handle_in("profile:update", %{"attribute" => attribute, "profile" => profile_id, "value" => value}, socket) do
@@ -79,5 +81,15 @@ defmodule RemoteJobsWeb.ProfileChannel do
 		  end
 		Enum.reverse(normalized_skills)
 	end
+
+  defp jobs_to_view(jobs) do
+    for job <- jobs do
+      %{
+        position: job.position,
+        id: job.id,
+        company_name: job.company_name
+      }
+    end
+  end
 
 end
