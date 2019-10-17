@@ -7,6 +7,8 @@
 		<div class="heading-block center bottommargin-lg">
 			<h2>Perfiles</h2>
 		</div>
+    <h2> Calendar </h2>
+    <v-calendar :attributes="attributes" :columns="$screens({ default: 1, lg: 2 })" />
 
 		<div v-if="loader">
 			<%= render RemoteJobsWeb.LoaderView, "index.html", conn: @conn %>
