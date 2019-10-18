@@ -37,4 +37,8 @@ defmodule RemoteJobs.JobApplicationOperator do
     } |> Repo.insert()
   end
 
+  def delete_tracking(track_id) do
+    ApplicationTrack |> Repo.get(track_id) |> Repo.delete()
+  end
+
 end
