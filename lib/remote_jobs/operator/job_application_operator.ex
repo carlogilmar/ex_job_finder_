@@ -1,6 +1,7 @@
 defmodule RemoteJobs.JobApplicationOperator do
   @moduledoc false
   import Ecto.Query, only: [from: 2]
+  alias RemoteJobs.ApplicationTrack
   alias RemoteJobs.JobApplication
   alias RemoteJobs.JobOperator
   alias RemoteJobs.ProfileOperator
@@ -26,6 +27,14 @@ defmodule RemoteJobs.JobApplicationOperator do
   def get_applications_by_job(job_id) do
     query = from(j in JobApplication,  where: j.job_id == ^job_id)
     Repo.all(query) |> Repo.preload([:application_track])
+  end
+
+  def add_tracking(application_id, description) do
+    job_application = get(application_id)
+    %ApplicationTrack{
+      job_application: job_application,
+      description: description
+    } |> Repo.insert()
   end
 
 end
