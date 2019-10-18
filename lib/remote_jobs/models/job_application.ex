@@ -12,8 +12,8 @@ defmodule RemoteJobs.JobApplication do
   schema "applications" do
     timestamps()
     has_many :application_track, ApplicationTrack, on_delete: :delete_all
-    has_one :job, Job, on_delete: :delete_all
-    has_one :profile, Profile, on_delete: :delete_all
+    belongs_to :job, Job
+    belongs_to :profile, Profile
   end
 
   @doc false
