@@ -9,7 +9,7 @@ defmodule RemoteJobs.JobApplication do
   alias RemoteJobs.Profile
 
   @primary_key {:id, :id, autogenerate: true}
-  schema "applications" do
+  schema "job_applications" do
     timestamps()
     has_many :application_track, ApplicationTrack, on_delete: :delete_all
     belongs_to :job, Job
