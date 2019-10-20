@@ -65,7 +65,8 @@ defmodule RemoteJobs.MixProject do
       {:rop, "~> 0.5"},
       {:comeonin, "~> 5.1"},
       {:argon2_elixir, "~> 2.0"},
-			{:guardian, "~> 1.2"}
+      {:guardian, "~> 1.2"},
+      {:scaffolding, git: "git://github.com/carlogilmar/scaffolding.git", only: [:dev]}
     ]
   end
 
