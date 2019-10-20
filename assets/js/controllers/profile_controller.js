@@ -47,6 +47,8 @@ export const app = new Vue({
     skill: "",
     tracks: [],
     track: "",
+    applications: [],
+    job_for_apply: "Vacante",
     jobs: [{company_name: "job", position: "job"}]
   },
 	components: {
@@ -67,6 +69,7 @@ export const app = new Vue({
 				this.skills = resp.skills;
         this.tracks = resp.tracks;
 				this.jobs = resp.jobs;
+        this.applications = resp.applications;
         console.log(resp)
         this.loader = false;
 			})
@@ -129,5 +132,9 @@ export const app = new Vue({
 				})
 				.receive("error", resp => { this.notify('error', 'No se pudo actualizar', ''); });
     },
+    add_application: function(){
+      console.log("Aplicando ando!!");
+      console.log(this.job_for_apply);
+    }
 	}
 });

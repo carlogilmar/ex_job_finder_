@@ -118,11 +118,11 @@
 				<div class="col-md-7">
 
 					<div class="input-group mb-2">
-						<select class="form-control" id="exampleFormControlSelect1">
-              <option v-for="job in jobs">{{job.position}} - {{job.company_name}} </option>
+						<select class="form-control" id="exampleFormControlSelect1" v-model="job_for_apply">
+              <option v-for="job in jobs" v-bind:value="job.id">{{job.position}} - {{job.company_name}} </option>
 						</select>
-						<button class="btn btn-secondary" v-on:click="add_track(track, profile.id)" type="submit">
-							<small class="osc_font"><i class="fas fa-tag"></i> &nbsp; Aplicar a Vacante</small> </button>
+						<button class="btn btn-secondary" v-on:click="add_application()" type="submit">
+							<small class="osc_font"><i class="fas fa-check"></i> &nbsp; APLICAR </small> </button>
 					</div>
 
 					<div class="input-group mb-2">
@@ -145,6 +145,23 @@
 
 						<a href="#" @click.prevent="delete_track(track.id)">
 							<i class="fas fa-eraser" ></i>
+						</a>
+					</div>
+
+          <strong> &nbsp; <i class="fas fa-vial"></i> &nbsp; E N &nbsp; P R O C E S O </strong>
+          <br><br>
+					<div class="border-card" v-for="application in applications">
+						<div class="card-type-icon with-border"><i class="fas fa-star"></i></div>
+						<div class="content-wrapper">
+							<div class="label-group fixed">
+                <strong>{{application.job}}</strong>
+                <p> {{application.company_name}} </p>
+								<p class="caption">2 de octubre del 2019 02:10 hrs</p>
+							</div>
+							</a>
+						</div>
+						<a href="#">
+							<i class="fas fa-pen" ></i>
 						</a>
 					</div>
 
