@@ -14,6 +14,22 @@ defmodule RemoteJobsWeb.ApplicationChannel do
     {:ok, %{application: application}, socket}
   end
 
+  def handle_in("application:add_track", %{"track" => track, "application" => application_id}, socket) do
+    _ = JobApplicationOperator.add_tracking(application_id, track)
+    tracks = JobApplicationOperator.get(application_id) |> parse_tracking()
+    {:reply, {:ok, %{status: "200", tracks: tracks}}, socket}
+  end
+
+  def parse_tracking(application) do
+    tracks = application.application_track
+		for track <- tracks do
+			%{
+				description: track.description,
+				id: track.id
+			}
+		end
+  end
+
   def parse_to_show(application) do
     %{
       id: application.id,

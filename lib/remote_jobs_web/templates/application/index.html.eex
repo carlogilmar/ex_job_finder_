@@ -22,13 +22,12 @@
 					<h5 class="border-bottom border-gray pb-2 mb-0"> <i class="fas fa-tag"></i> &nbsp; T R A C K I N G</h5>
 
 					<div class="input-group mb-2">
-						<input type="text" placeholder="Anota una descripción" class="form-control">
-						<button class="btn btn-secondary" type="submit">
+						<input type="text" v-model="track" placeholder="Anota una descripción" class="form-control">
+						<button class="btn btn-secondary" type="submit" v-on:click="add_track()">
 							<small class="osc_font"><i class="fas fa-tag"></i> &nbsp; AÑADIR </small> </button>
 					</div>
 
-					<div class="media text-muted pt-3">
-						<img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
+					<div class="media text-muted pt-3" v-for="track in tracks">
 						<div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
 							<div class="d-flex justify-content-between align-items-center w-100">
 								<strong class="text-gray-dark">

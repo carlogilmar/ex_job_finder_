@@ -24,6 +24,8 @@ export const app = new Vue({
       }
     ],
 		loader: true,
+		track: "",
+		tracks: [],
 		application: []
   },
 	created: function() {
@@ -40,5 +42,30 @@ export const app = new Vue({
 			.receive("error", resp => {
 				console.log("Unable to join", resp);
 			});
+	},
+	methods:{
+  /*
+   * Notifications
+   * */
+    notify: function(type, title, context){
+      this.$notify({
+        group: 'foo',
+        type: type,
+        title: title,
+        text: context,
+        duration: 1000,
+        speed: 1000
+      })
+    },
+    add_track: function(){
+      this.channel.push("application:add_track", {track: this.track, application: this.application.id})
+        .receive('ok', (res) => {
+					this.tracks = res.tracks;
+					console.log(res);
+					this.track = "";
+					this.notify('success', 'Track añadido', '');
+				})
+				.receive("error", resp => { this.notify('error', 'No se pudo actualizar', ''); });
+		},
 	}
 });
