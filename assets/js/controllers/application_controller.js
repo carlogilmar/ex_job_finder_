@@ -5,6 +5,7 @@ export const app = new Vue({
 	el:"#app",
   data: {
 		loader: true,
+		application: []
   },
 	created: function() {
     console.log("Vue connected!!");
@@ -14,6 +15,7 @@ export const app = new Vue({
 			.receive("ok", resp => {
 				console.log("Joined successfully", resp);
         console.log(resp)
+				this.application = resp.application;
         this.loader = false;
 			})
 			.receive("error", resp => {
