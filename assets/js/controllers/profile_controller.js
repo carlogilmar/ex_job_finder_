@@ -45,8 +45,6 @@ export const app = new Vue({
     },
 		skills: [],
     skill: "",
-    tracks: [],
-    track: "",
     applications: [],
     job_for_apply: "Vacante",
     jobs: [{company_name: "job", position: "job"}]
@@ -112,23 +110,6 @@ export const app = new Vue({
         .receive('ok', (res) => {
 					this.skills = res.skills;
 					this.notify('warn', 'Skill eliminado', '');
-				})
-				.receive("error", resp => { this.notify('error', 'No se pudo actualizar', ''); });
-    },
-    add_track: function(track, profile_id){
-      this.channel.push("profile:add_track", {track:track, profile: profile_id})
-        .receive('ok', (res) => {
-					this.tracks = res.tracks;
-					this.track = "";
-					this.notify('success', 'Track añadido', '');
-				})
-				.receive("error", resp => { this.notify('error', 'No se pudo actualizar', ''); });
-		},
-		delete_track: function(track_id){
-      this.channel.push("profile:delete_track", {track: track_id, profile: this.profile.id})
-        .receive('ok', (res) => {
-					this.tracks = res.tracks;
-					this.notify('warn', 'Track eliminado', '');
 				})
 				.receive("error", resp => { this.notify('error', 'No se pudo actualizar', ''); });
     },

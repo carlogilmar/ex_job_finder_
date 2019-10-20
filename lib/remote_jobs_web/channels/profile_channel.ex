@@ -37,18 +37,6 @@ defmodule RemoteJobsWeb.ProfileChannel do
     {:reply, {:ok, %{status: "200", profile: profile, skills: skills, tracks: tracks}}, socket}
   end
 
-  def handle_in("profile:add_track", %{"track" => track, "profile" => profile_id}, socket) do
-		_ = ProfileOperator.add_tracking(profile_id, track)
-    {profile, skills, tracks} = get_profile(profile_id)
-    {:reply, {:ok, %{status: "200", profile: profile, skills: skills, tracks: tracks}}, socket}
-  end
-
-  def handle_in("profile:delete_track", %{"track" => track_id, "profile" => profile_id}, socket) do
-		_ = ProfileOperator.delete_tracking(track_id)
-    {profile, skills, tracks} = get_profile(profile_id)
-    {:reply, {:ok, %{status: "200", profile: profile, skills: skills, tracks: tracks}}, socket}
-  end
-
 	def get_profile(profile_id) do
 		profile_id
 		|> ProfileOperator.get_by_id()
