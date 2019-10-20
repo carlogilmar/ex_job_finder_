@@ -19,7 +19,8 @@ module.exports = (env, options) => ({
      suscriptor_controller: ['./js/controllers/suscriptor_controller.js'],
      updt_job_controller: ['./js/controllers/updt_job_controller.js'],
      analytics_controller: ['./js/controllers/analytics_controller.js'],
-     profile_controller: ['./js/controllers/profile_controller.js']
+     profile_controller: ['./js/controllers/profile_controller.js'],
+     application_controller: ['./js/controllers/application_controller.js']
   },
   output: {
     filename: '[name].js',
