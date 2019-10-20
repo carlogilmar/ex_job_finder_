@@ -37,6 +37,15 @@ defmodule RemoteJobsWeb.ProfileChannel do
     {:reply, {:ok, %{status: "200", profile: profile, skills: skills, tracks: tracks}}, socket}
   end
 
+  def handle_in("profile:create_application", %{"job" => job_id, "profile" => profile_id}, socket) do
+    _ = JobApplicationOperator.create_job_application(job_id, profile_id)
+    applications =
+      profile_id
+      |> JobApplicationOperator.get_applications_by_profile()
+      |> parse_to_show()
+    {:reply, {:ok, %{status: "200", applications: applications}}, socket}
+  end
+
 	def get_profile(profile_id) do
 		profile_id
 		|> ProfileOperator.get_by_id()

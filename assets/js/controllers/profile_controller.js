@@ -114,8 +114,12 @@ export const app = new Vue({
 				.receive("error", resp => { this.notify('error', 'No se pudo actualizar', ''); });
     },
     add_application: function(){
-      console.log("Aplicando ando!!");
-      console.log(this.job_for_apply);
+      this.channel.push("profile:create_application", {job: this.job_for_apply, profile: this.profile.id})
+        .receive('ok', (res) => {
+					this.applications = res.applications;
+					this.notify('success', 'Aplicación en proceso...', '');
+				})
+				.receive("error", resp => { this.notify('error', 'Erro al crear', ''); });
     }
 	}
 });
