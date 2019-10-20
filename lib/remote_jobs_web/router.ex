@@ -42,6 +42,7 @@ defmodule RemoteJobsWeb.Router do
 
     # Simple Post Job
     get "/analytics", AnalyticsController, :index
+    get "/application/:id", ApplicationController, :index
 
   end
 
