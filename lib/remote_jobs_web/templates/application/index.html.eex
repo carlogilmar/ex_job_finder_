@@ -2,7 +2,7 @@
 	<div v-cloak>
 
     <h1> Aplication Job </h1>
-		<input type="hidden" id="profile" value="<%= @application %>">
+		<input type="hidden" id="application" value="<%= @application %>">
   </div>
 </div>
 
