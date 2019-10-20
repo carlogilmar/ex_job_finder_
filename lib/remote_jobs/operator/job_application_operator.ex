@@ -17,7 +17,10 @@ defmodule RemoteJobs.JobApplicationOperator do
     |> Repo.insert()
   end
 
-  def get(application_id), do: Repo.get(JobApplication, application_id)
+  def get(application_id) do
+    Repo.get(JobApplication, application_id)
+    |> Repo.preload([:job, :application_track])
+  end
 
   def get_applications_by_profile(profile_id) do
     query = from(j in JobApplication,  where: j.profile_id == ^profile_id)
