@@ -5,12 +5,18 @@ defmodule RemoteJobsWeb.ProfileChannel do
   use Phoenix.Channel
   alias RemoteJobs.DateUtil
   alias RemoteJobs.JobManager
+  alias RemoteJobs.JobApplicationOperator
   alias RemoteJobs.ProfileOperator
 
   def join("profile:join", %{"profile" => profile_id}, socket) do
     {profile, skills, tracks} = get_profile(profile_id)
     jobs = JobManager.get() |> jobs_to_view()
-    {:ok, %{profile: profile, skills: skills, tracks: tracks, jobs: jobs}, socket}
+    applications =
+      profile_id
+      |> JobApplicationOperator.get_applications_by_profile()
+      |> parse_to_show()
+
+    {:ok, %{profile: profile, skills: skills, tracks: tracks, jobs: jobs, applications: applications}, socket}
   end
 
   def handle_in("profile:update", %{"attribute" => attribute, "profile" => profile_id, "value" => value}, socket) do
@@ -92,4 +98,13 @@ defmodule RemoteJobsWeb.ProfileChannel do
     end
   end
 
+  def parse_to_show(applications) do
+    for application <- applications do
+      %{
+        id: application.id,
+        job: application.job.position,
+        company: application.job.company_name,
+      }
+    end
+  end
 end
