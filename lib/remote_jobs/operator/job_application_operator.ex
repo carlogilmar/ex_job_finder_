@@ -19,7 +19,7 @@ defmodule RemoteJobs.JobApplicationOperator do
 
   def get(application_id) do
     Repo.get(JobApplication, application_id)
-    |> Repo.preload([:job, :application_track])
+    |> Repo.preload([:job, :application_track, :profile])
   end
 
   def get_applications_by_profile(profile_id) do
@@ -42,6 +42,11 @@ defmodule RemoteJobs.JobApplicationOperator do
 
   def delete_tracking(track_id) do
     ApplicationTrack |> Repo.get(track_id) |> Repo.delete()
+  end
+
+  def get_tracking(application_id) do
+    query = from(j in ApplicationTrack,  where: j.job_application_id == ^application_id, order_by: [desc: j.inserted_at])
+    Repo.all(query)
   end
 
 end
