@@ -10,21 +10,6 @@ Vue.use(VCalendar)
 export const app = new Vue({
 	el:"#app",
   data: {
-    attributes: [
-      {
-        key: 'today',
-        dates: new Date(),
-          highlight: {
-            backgroundColor: '#000000',
-          },
-          contentStyle: {
-            color: '#00000',
-          },
-          popover: {
-            label: 'You just hovered over today\'s date!',
-          }
-      }
-    ],
     editorOption: {
       theme: 'snow',
       modules: {
