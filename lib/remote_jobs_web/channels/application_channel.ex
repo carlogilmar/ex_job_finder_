@@ -6,22 +6,19 @@ defmodule RemoteJobsWeb.ApplicationChannel do
   alias RemoteJobs.JobApplicationOperator
 
   def join("application:join", %{"application" => application_id}, socket) do
-    application =
-      application_id
-      |> JobApplicationOperator.get()
-      |> parse_to_show()
-
-    {:ok, %{application: application}, socket}
+    application = application_id |> JobApplicationOperator.get()
+    application_to_show = application |> parse_to_show()
+    tracks = application_id |> JobApplicationOperator.get_tracking() |> parse_tracking()
+    {:ok, %{application: application_to_show, tracks: tracks}, socket}
   end
 
   def handle_in("application:add_track", %{"track" => track, "application" => application_id}, socket) do
     _ = JobApplicationOperator.add_tracking(application_id, track)
-    tracks = JobApplicationOperator.get(application_id) |> parse_tracking()
+    tracks = application_id |> JobApplicationOperator.get_tracking() |> parse_tracking()
     {:reply, {:ok, %{status: "200", tracks: tracks}}, socket}
   end
 
-  def parse_tracking(application) do
-    tracks = application.application_track
+  def parse_tracking(tracks) do
 		for track <- tracks do
 			%{
 				description: track.description,
@@ -35,8 +32,8 @@ defmodule RemoteJobsWeb.ApplicationChannel do
       id: application.id,
       position: application.job.position,
       company_name: application.job.company_name,
+      profile_name: application.profile.name
     }
   end
-
 
 end
