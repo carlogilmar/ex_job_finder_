@@ -139,7 +139,7 @@
 							</div>
 							</a>
 						</div>
-						<a href="#">
+						<a v-bind:href="'application/'+application.id">
 							<i class="fas fa-pen" ></i>
 						</a>
 					</div>
