@@ -117,6 +117,8 @@
 				</div>
 				<div class="col-md-7">
 
+          <strong> &nbsp; <i class="fas fa-star"></i> &nbsp; V A C A N T E S </strong>
+          <br><br>
 					<div class="input-group mb-2">
 						<select class="form-control" id="exampleFormControlSelect1" v-model="job_for_apply">
               <option v-for="job in jobs" v-bind:value="job.id">{{job.position}} - {{job.company_name}} </option>
@@ -129,6 +131,16 @@
 
           <strong> &nbsp; <i class="fas fa-vial"></i> &nbsp; E N &nbsp; P R O C E S O </strong>
           <br><br>
+
+          <div v-if="applications.length === 0">
+            <div class="jumbotron blue_jumbotron text-center">
+              <span class="osc_font" style="font-size: 30px;">
+                <i class="fas fa-star"></i><br><br>
+                  No hay aplicaciones en proceso.
+              </span>
+            </div>
+          </div>
+
 					<div class="border-card" v-for="application in applications">
 						<div class="card-type-icon with-border"><i class="fas fa-star"></i></div>
 						<div class="content-wrapper">
