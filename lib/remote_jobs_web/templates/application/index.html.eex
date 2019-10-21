@@ -12,12 +12,16 @@
         <span class="osc_font" style="font-size: 30px;">{{application.position}}</span> &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;
         <div class="lh-100">
           <h6 class="mb-0 lh-100"> {{application.company_name}} </h6>
-          <small>Since 2011</small>
+          <small>{{application.inserted_at}}</small>
         </div>
       </div>
 
       <div class="row">
+
         <div class="col-md-6">
+          <div class="text-center">
+            <span class="osc_font" style="font-size: 20px;"> <i class="fas fa-user"></i> &nbsp; {{application.profile_name}}</span> &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;
+          </div>
           <div class="my-3 p-3 bg-white rounded box-shadow">
             <h5 class="border-bottom border-gray pb-2 mb-0"> <i class="fas fa-tag"></i> &nbsp; T R A C K I N G</h5>
 
@@ -33,9 +37,9 @@
                   <strong class="text-gray-dark">
                     {{track.description}}
                   </strong>
-                  <a href="#">Follow</a>
+                  <a href="#"> <i class="fas fa-trash"></i>  </a>
                 </div>
-                <span class="d-block"> 12 de Junio del 84</span>
+                <span class="d-block"> {{track.inserted_at}} </span>
               </div>
             </div>
 

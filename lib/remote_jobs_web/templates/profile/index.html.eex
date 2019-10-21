@@ -135,7 +135,7 @@
 							<div class="label-group fixed">
                 <strong>{{application.job}}</strong>
                 <p> {{application.company}} </p>
-								<p class="caption">2 de octubre del 2019 02:10 hrs</p>
+                <p class="caption">{{application.inserted_at}}</p>
 							</div>
 							</a>
 						</div>

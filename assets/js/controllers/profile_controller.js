@@ -53,7 +53,6 @@ export const app = new Vue({
         this.tracks = resp.tracks;
 				this.jobs = resp.jobs;
         this.applications = resp.applications;
-        console.log(resp)
         this.loader = false;
 			})
 			.receive("error", resp => {

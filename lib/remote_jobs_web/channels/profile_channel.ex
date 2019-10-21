@@ -97,10 +97,13 @@ defmodule RemoteJobsWeb.ProfileChannel do
 
   def parse_to_show(applications) do
     for application <- applications do
+      date_parsed = NaiveDateTime.to_string(application.inserted_at)
+      inserted_at = DateUtil.convert_to_spanish_date_and_hour(date_parsed)
       %{
         id: application.id,
         job: application.job.position,
         company: application.job.company_name,
+        inserted_at: inserted_at
       }
     end
   end

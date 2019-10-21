@@ -3,6 +3,7 @@ defmodule RemoteJobsWeb.ApplicationChannel do
     A module in charge of the application channel.
   """
   use Phoenix.Channel
+  alias RemoteJobs.DateUtil
   alias RemoteJobs.JobApplicationOperator
 
   def join("application:join", %{"application" => application_id}, socket) do
@@ -20,19 +21,25 @@ defmodule RemoteJobsWeb.ApplicationChannel do
 
   def parse_tracking(tracks) do
 		for track <- tracks do
+      date_parsed = NaiveDateTime.to_string(track.inserted_at)
+      inserted_at = DateUtil.convert_to_spanish_date_and_hour(date_parsed)
 			%{
 				description: track.description,
-				id: track.id
+        id: track.id,
+        inserted_at: inserted_at
 			}
 		end
   end
 
   def parse_to_show(application) do
+    date_parsed = NaiveDateTime.to_string(application.inserted_at)
+    inserted_at = DateUtil.convert_to_spanish_date_and_hour(date_parsed)
     %{
       id: application.id,
       position: application.job.position,
       company_name: application.job.company_name,
-      profile_name: application.profile.name
+      profile_name: application.profile.name,
+      inserted_at: inserted_at
     }
   end
 
