@@ -19,6 +19,12 @@ defmodule RemoteJobsWeb.ApplicationChannel do
     {:reply, {:ok, %{status: "200", tracks: tracks}}, socket}
   end
 
+  def handle_in("application:delete_track", %{"track" => track_id, "application" => application_id}, socket) do
+    _ = JobApplicationOperator.delete_tracking(track_id)
+    tracks = application_id |> JobApplicationOperator.get_tracking() |> parse_tracking()
+    {:reply, {:ok, %{status: "200", tracks: tracks}}, socket}
+  end
+
   def parse_tracking(tracks) do
 		for track <- tracks do
       date_parsed = NaiveDateTime.to_string(track.inserted_at)

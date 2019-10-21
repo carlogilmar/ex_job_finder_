@@ -37,7 +37,7 @@
                   <strong class="text-gray-dark">
                     {{track.description}}
                   </strong>
-                  <a href="#"> <i class="fas fa-trash"></i>  </a>
+                  <a href="#" @click.prevent="delete_track(track.id)"> <i class="fas fa-trash"></i>  </a>
                 </div>
                 <span class="d-block"> {{track.inserted_at}} </span>
               </div>
