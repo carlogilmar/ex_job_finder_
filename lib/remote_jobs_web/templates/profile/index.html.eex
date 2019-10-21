@@ -134,13 +134,14 @@
 						<div class="content-wrapper">
 							<div class="label-group fixed">
                 <strong>{{application.job}}</strong>
-                <p> {{application.company}} </p>
-                <p class="caption">{{application.inserted_at}}</p>
+                <p class="caption">
+                <strong> <i class="fas fa-building"></i> &nbsp; {{application.company}} </strong>
+                &nbsp;&nbsp; <i class="fas fa-calendar-alt"></i> &nbsp; {{application.inserted_at}}</p>
 							</div>
 							</a>
 						</div>
 						<a v-bind:href="'application/'+application.id">
-							<i class="fas fa-pen" ></i>
+							<i class="fas fa-arrow-right" ></i>
 						</a>
 					</div>
 
