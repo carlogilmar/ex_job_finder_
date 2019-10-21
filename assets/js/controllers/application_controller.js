@@ -6,48 +6,49 @@ Vue.use(Notifications)
 Vue.use(VCalendar)
 
 export const app = new Vue({
-	el:"#app",
+  el:"#app",
   data: {
-    attributes: [
-      {
-        key: 'today',
-        dates: new Date(),
-          highlight: {
-            backgroundColor: '#000000',
-          },
-          contentStyle: {
-            color: '#00000',
-          },
-          popover: {
-            label: 'You just hovered over today\'s date!',
-          }
-      }
-    ],
-		loader: true,
-		track: "",
-		tracks: [],
-		application: []
+    attributes: [],
+    loader: true,
+    track: "",
+    tracks: [],
+    application: []
   },
-	created: function() {
+  created: function() {
     console.log("Vue connected!!");
     let application = document.getElementById("application").value
-		this.channel = socket.channel("application:join", {application: application});
-		this.channel.join()
-			.receive("ok", resp => {
-				console.log("Joined successfully", resp);
-        console.log(resp)
-				this.application = resp.application;
+    this.channel = socket.channel("application:join", {application: application});
+    this.channel.join()
+      .receive("ok", resp => {
+        console.log("Joined successfully", resp);
+        this.application = resp.application;
         this.tracks = resp.tracks;
         this.loader = false;
-			})
-			.receive("error", resp => {
-				console.log("Unable to join", resp);
-			});
-	},
-	methods:{
-  /*
-   * Notifications
-   * */
+        this.generate_calendar();
+      })
+      .receive("error", resp => {
+        console.log("Unable to join", resp);
+      });
+  },
+  methods:{
+    generate_calendar: function(){
+      let dates = [];
+      for(let index=0; index < (this.tracks.length); index++){
+        let date = this.tracks[index];
+        let date_for_show = {
+          highlight: {backgroundColor: '#000000'},
+          contentStyle: {color: '#00000'},
+          popover: { label: date.description },
+          dates: [new Date(date.year, date.month, date.day)],
+        }
+        dates.push(date_for_show)
+
+      }
+      this.attributes = dates;
+    },
+    /*
+     * Notifications
+     * */
     notify: function(type, title, context){
       this.$notify({
         group: 'foo',
@@ -61,20 +62,22 @@ export const app = new Vue({
     add_track: function(){
       this.channel.push("application:add_track", {track: this.track, application: this.application.id})
         .receive('ok', (res) => {
-					this.tracks = res.tracks;
-					console.log(res);
-					this.track = "";
-					this.notify('success', 'Track añadido', '');
-				})
-				.receive("error", resp => { this.notify('error', 'No se pudo actualizar', ''); });
-		},
+          this.tracks = res.tracks;
+          console.log(res);
+          this.track = "";
+          this.generate_calendar();
+          this.notify('success', 'Track añadido', '');
+        })
+        .receive("error", resp => { this.notify('error', 'No se pudo actualizar', ''); });
+    },
     delete_track: function(track_id){
       this.channel.push("application:delete_track", {track: track_id, application: this.application.id})
         .receive('ok', (res) => {
-					this.tracks = res.tracks;
-					this.notify('info', 'Track elimiando', '');
-				})
-				.receive("error", resp => { this.notify('error', 'No se pudo actualizar', ''); });
-		},
-	}
+          this.tracks = res.tracks;
+          this.generate_calendar();
+          this.notify('info', 'Track elimiando', '');
+        })
+        .receive("error", resp => { this.notify('error', 'No se pudo actualizar', ''); });
+    },
+  }
 });

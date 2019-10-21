@@ -32,7 +32,10 @@ defmodule RemoteJobsWeb.ApplicationChannel do
 			%{
 				description: track.description,
         id: track.id,
-        inserted_at: inserted_at
+        inserted_at: inserted_at,
+        year: track.inserted_at.year,
+        month: track.inserted_at.month,
+        day: track.inserted_at.day
 			}
 		end
   end
