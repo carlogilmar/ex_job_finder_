@@ -37,6 +37,7 @@ export const app = new Vue({
 				console.log("Joined successfully", resp);
         console.log(resp)
 				this.application = resp.application;
+        this.tracks = resp.tracks;
         this.loader = false;
 			})
 			.receive("error", resp => {
