@@ -23,12 +23,12 @@ defmodule RemoteJobs.JobApplicationOperator do
   end
 
   def get_applications_by_profile(profile_id) do
-    query = from(j in JobApplication,  where: j.profile_id == ^profile_id)
+    query = from(j in JobApplication,  where: j.profile_id == ^profile_id, order_by: [desc: j.inserted_at])
     Repo.all(query) |> Repo.preload([:job, :application_track])
   end
 
   def get_applications_by_job(job_id) do
-    query = from(j in JobApplication,  where: j.job_id == ^job_id)
+    query = from(j in JobApplication,  where: j.job_id == ^job_id, order_by: [desc: j.inserted_at])
     Repo.all(query) |> Repo.preload([:job, :application_track])
   end
 
