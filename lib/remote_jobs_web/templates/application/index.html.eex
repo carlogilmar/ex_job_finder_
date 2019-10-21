@@ -58,7 +58,7 @@
                   Cancelar
                 </a>
 
-                <a href="<%= Routes.static_path(@conn, "/delete_profile")%>/<%= @application %>" class="btn btn-block btn-danger btn-sm"> <i class="fas fa-trash"></i> &nbsp; Eliminar </a>
+                <a href="<%= Routes.static_path(@conn, "/delete_application")%>/<%= @application %>" class="btn btn-block btn-danger btn-sm"> <i class="fas fa-trash"></i> &nbsp; Eliminar </a>
               </div>
             </div>
 

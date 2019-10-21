@@ -22,6 +22,12 @@ defmodule RemoteJobs.JobApplicationOperator do
     |> Repo.preload([:job, :application_track, :profile])
   end
 
+  def delete(application_id) do
+    Repo.get(JobApplication, application_id)
+    |> Repo.preload([:job, :application_track, :profile])
+    |> Repo.delete()
+  end
+
   def get_applications_by_profile(profile_id) do
     query = from(j in JobApplication,  where: j.profile_id == ^profile_id, order_by: [desc: j.inserted_at])
     Repo.all(query) |> Repo.preload([:job, :application_track])
