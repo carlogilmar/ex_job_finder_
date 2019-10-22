@@ -36,12 +36,14 @@
 								<input type="text" class="form-control" v-model="profile.name" @blur="update($event.target.value, 'name', profile.id)">
 							</div>
 
-							<strong>Skills</strong>
-							<!-- skills -->
-							<div class="input-group mb-2">
-								<input type="text" v-model="skill" placeholder="Anota y agrega un skill" class="form-control">
-								<button class="btn btn-secondary" v-on:click="add_skill(skill, profile.id)" type="submit"> <small class="osc_font"><i class="fas fa-check"></i> &nbsp; AGREGAR</small> </button>
-							</div>
+              <strong>Skills</strong>
+              <!-- skills -->
+              <form v-on:submit.prevent="add_skill(skill, profile.id)">
+                <div class="input-group mb-2">
+                  <input type="text" required v-model="skill" placeholder="Anota y agrega un skill" class="form-control">
+                  <button class="btn btn-secondary" type="submit"> <small class="osc_font"><i class="fas fa-check"></i> &nbsp; AGREGAR</small> </button>
+                </div>
+              </form>
 
 							<div class="card">
 								<ul class="list-group list-group-flush">
@@ -121,6 +123,7 @@
           <br><br>
 					<div class="input-group mb-2">
 						<select class="form-control" id="exampleFormControlSelect1" v-model="job_for_apply">
+
               <option v-for="job in jobs" v-bind:value="job.id">{{job.position}} - {{job.company_name}} </option>
 						</select>
 						<button class="btn btn-secondary" v-on:click="add_application()" type="submit">
