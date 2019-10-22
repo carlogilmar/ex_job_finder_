@@ -60,15 +60,17 @@ export const app = new Vue({
       })
     },
     add_track: function(){
-      this.channel.push("application:add_track", {track: this.track, application: this.application.id})
-        .receive('ok', (res) => {
-          this.tracks = res.tracks;
-          console.log(res);
-          this.track = "";
-          this.generate_calendar();
-          this.notify('success', 'Track añadido', '');
-        })
-        .receive("error", resp => { this.notify('error', 'No se pudo actualizar', ''); });
+      if(this.track !== ""){
+        this.channel.push("application:add_track", {track: this.track, application: this.application.id})
+          .receive('ok', (res) => {
+            this.tracks = res.tracks;
+            console.log(res);
+            this.track = "";
+            this.generate_calendar();
+            this.notify('success', 'Track añadido', '');
+          })
+          .receive("error", resp => { this.notify('error', 'No se pudo actualizar', ''); });
+      }
     },
     delete_track: function(track_id){
       this.channel.push("application:delete_track", {track: track_id, application: this.application.id})
