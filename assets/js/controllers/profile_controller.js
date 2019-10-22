@@ -81,6 +81,7 @@ export const app = new Vue({
         .receive("error", resp => { this.notify('error', 'No se pudo actualizar', ''); });
     },
     add_skill: function(description, profile_id){
+      if(this.skill !== ""){
       this.channel.push("profile:add_skill", {skill:description, profile: profile_id})
         .receive('ok', (res) => {
 					this.skills = res.skills;
@@ -88,6 +89,7 @@ export const app = new Vue({
 					this.notify('success', 'Skill añadido', '');
 				})
 				.receive("error", resp => { this.notify('error', 'No se pudo actualizar', ''); });
+      }
 		},
 		delete_skill: function(skill_id){
       this.channel.push("profile:delete_skill", {skill:skill_id, profile: this.profile.id})
