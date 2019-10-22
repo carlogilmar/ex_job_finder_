@@ -9,6 +9,9 @@
     <div v-else class="container">
 
       <div class="d-flex align-items-center p-3 my-3 bg-purple rounded box-shadow">
+<a class="btn btn-danger btn-sm bgcolor border-color" href="<%= Routes.static_path(@conn, "/profile")%>/<%= @profile.id %>" >
+          <small class="osc_font"><i class="fas fa-arrow-left"></i> </small> </a>
+        &nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
         <span class="osc_font" style="font-size: 30px;"><i class="fas fa-fire"></i> &nbsp; {{application.position}}</span> &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
         <div class="lh-100">
           <h6 class="mb-0 lh-100"> {{application.company_name}} </h6>

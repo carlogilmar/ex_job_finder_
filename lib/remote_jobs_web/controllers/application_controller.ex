@@ -3,7 +3,8 @@ defmodule RemoteJobsWeb.ApplicationController do
   alias RemoteJobs.JobApplicationOperator
 
   def index(conn, %{"id" => application}) do
-    render(conn, "index.html", application: application)
+    app = JobApplicationOperator.get(application)
+    render(conn, "index.html", application: application, profile: app.profile)
   end
 
   def delete(conn, %{"id" => application_id}) do

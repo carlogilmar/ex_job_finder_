@@ -13,6 +13,7 @@
 		</div>
 
 		<div v-else class="container">
+
 			<div class="row">
 				<div class="col-md-1">
 				</div>
@@ -21,7 +22,11 @@
 						<div class="card-body">
 
 							<div class="text-center">
-								<h5 class="osc_font">Take The Risk</h5>
+
+                <a class="btn btn-danger btn-sm bgcolor border-color" href="<%= Routes.static_path(@conn, "/management") %>">
+                  <small class="osc_font"><i class="fas fa-arrow-left"></i> &nbsp; Regresar </small> </a>
+                <br><br>
+
 								<span class="osc_font" style="font-size: 30px;"> {{profile.name}} </span>
 							</div>
 
