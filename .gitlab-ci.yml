@@ -1,30 +1,23 @@
-stages:
-  - test
-  
 image: elixir:1.9
 
-test:
-   stage: test   
-  #  services:
-  #    - postgres:11
+services:
+  - postgres:11
 
-   variables:
-     POSTGRES_HOST: postgres
-     POSTGRES_USER: postgres
-     POSTGRES_PASSWORD: postgres
-     MIX_ENV: "test"
+variables:
+  POSTGRES_DB: remote_jobs_dev
+  POSTGRES_USER: postgres
+  POSTGRES_PASSWORD: postgres
+  POSTGRES_HOST: "postgres"
+  MIX_ENV: "test"
 
-   before_script:
-     - apt-get update -y && apt-get install wkhtmltopdf xvfb -y
-     - mix local.rebar --force
-     - mix local.hex --force
 
-   script:
-     - mix deps.get --only test
-     - mix ecto.reset
-     - mix test
+before_script:
+  - apt-get update -y && apt-get install wkhtmltopdf xvfb -y && apt-get install postgresql-client
+  - mix local.hex --force
+  - mix local.rebar --force
+  - mix deps.get --only test
+  - mix ecto.setup
 
-   only:
-     - master
-     - merge_requests
-     - branches
+mix_tests:
+  script:
+    - mix test
