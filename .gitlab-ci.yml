@@ -4,10 +4,9 @@ stages:
 image: elixir:1.9
 
 test:
-   stage: test
-   
-   services:
-     - postgres:11
+   stage: test   
+  #  services:
+  #    - postgres:11
 
    variables:
      POSTGRES_HOST: postgres
