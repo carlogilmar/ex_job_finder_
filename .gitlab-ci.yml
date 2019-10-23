@@ -7,7 +7,7 @@ stages:
   - test
   - deploy
 
-testing:
+test:
   stage: 
     - test
 
