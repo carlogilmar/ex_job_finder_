@@ -11,8 +11,8 @@ config :logger, level: :warn
 
 # Configure your database
 config :remote_jobs, RemoteJobs.Repo,
-  username: "postgres",
-  password: "postgres",
-  database: "remote_jobs_test",
-  hostname: "localhost",
+  username: System.get_env("POSTGRES_USER") || "postgres",
+  password: System.get_env("POSTGRES_PASSWORD") || "postgres",
+  database: System.get_env("POSTGRES_DB") || "remote_jobs_test",
+  hostname: System.get_env("POSTGRES_HOST") || "localhost",
   pool: Ecto.Adapters.SQL.Sandbox

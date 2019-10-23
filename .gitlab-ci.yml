@@ -6,9 +6,9 @@ image: elixir:1.9
 test:
   stage: test
   services:
-    - postgres:latest
+    - postgres:11
   variables:
-    POSTGRES_DB: remote_jobs_dev
+    POSTGRES_DB: remote_jobs_test
     POSTGRES_HOST: postgres
     POSTGRES_USER: postgres # must match config/test.exs
     POSTGRES_PASSWORD: "postgres" # must match config/test.exs
@@ -16,14 +16,16 @@ test:
 
   before_script:
     - apt-get update -y && apt-get install wkhtmltopdf xvfb -y
+    - apt-get -y install postgresql-client
     - mix local.rebar --force
     - mix local.hex --force
-
-  script:
     - mix deps.get --only test
     - mix ecto.create
     - mix ecto.migrate
+
+  script:
     - mix test
+
   only:
     - master
     - merge_requests
