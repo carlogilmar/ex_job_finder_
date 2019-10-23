@@ -1,42 +1,40 @@
 stages:
-  # - test
-  - deploy
+  - test
+ #- deploy
 
 image: elixir:1.9
 
-# test:
-#   stage: test
+ test:
+   stage: test
 
-#   services:
-#     - postgres:11
-    
-#   variables:
-#     POSTGRES_HOST: postgres
-#     POSTGRES_USER: postgres
-#     POSTGRES_PASSWORD: postgres
-#     MIX_ENV: "test"
+   services:
+     - postgres:11
 
-#   before_script:
-#     - apt-get update -y && apt-get install wkhtmltopdf xvfb -y
-#     - mix local.rebar --force
-#     - mix local.hex --force
+   variables:
+     POSTGRES_HOST: postgres
+     POSTGRES_USER: postgres
+     POSTGRES_PASSWORD: postgres
+     MIX_ENV: "test"
 
-#   script:
-#     - mix deps.get --only test
-#     - mix ecto.reset
-#     - mix test
+   before_script:
+     - apt-get update -y && apt-get install wkhtmltopdf xvfb -y
+     - mix local.rebar --force
+     - mix local.hex --force
 
-#   only:
-#     - master
-#     - merge_requests
-#     - branches
+   script:
+     - mix deps.get --only test
+     - mix ecto.reset
+     - mix test
 
-deploy:
-  stage: deploy
-  script:
-    - git remote add take_the_risk https://ivan:xpOWsn0Q!@gitlab.taketherisk.mx/take_the_risk/take_the_risk.git
-    - git push -f take_the_risk HEAD:refs/heads/master
-  when: manual
-  only:
-    - branches    
-
+   only:
+     #- master
+     #- merge_requests
+     - branches
+       #  deploy:
+       # stage: deploy
+       #script:
+       #- git remote add take_the_risk https://ivan:xpOWsn0Q!@gitlab.taketherisk.mx/take_the_risk/take_the_risk.git
+       #- git push -f take_the_risk HEAD:refs/heads/master
+       #when: manual
+       #only:
+       #- branches
