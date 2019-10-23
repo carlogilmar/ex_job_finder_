@@ -6,7 +6,7 @@ image: elixir:1.9
 test:
   stage: test
   services:
-    - postgres:11
+    - postgres:latest
   variables:
     POSTGRES_DB: remote_jobs_dev
     POSTGRES_HOST: postgres
