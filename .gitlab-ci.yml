@@ -11,7 +11,9 @@ variables:
   MIX_ENV: "test"
 
 before_script:
-  - apt-get update -y && apt-get install wkhtmltopdf xvfb -y && apt-get install postgresql-client
+  - apt-get update -y 
+  - apt-get install wkhtmltopdf xvfb -y 
+  - apt-get install postgresql-client -y
   - mix local.hex --force
   - mix local.rebar --force
   - mix deps.get --only test
