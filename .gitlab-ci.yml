@@ -1,5 +1,5 @@
 stages:
-  # - test
+  - test
   - deploy
 
 image: elixir:1.9
@@ -12,8 +12,8 @@ test:
     
   variables:
     POSTGRES_HOST: postgres
-    POSTGRES_USER: postgres # must match config/test.exs
-    POSTGRES_PASSWORD: postgres # must match config/test.exs
+    POSTGRES_USER: postgres
+    POSTGRES_PASSWORD: postgres
     MIX_ENV: "test"
 
   before_script:
