@@ -3,10 +3,13 @@ stages:
 
 image: elixir:1.9
 
+stages:
+  - test
+  - deploy
+
 test:
   stage: 
     - test
-    - deploy
 
   services:
     - postgres:11
@@ -31,12 +34,12 @@ test:
     - merge_requests
     - branches
 
-  deploy:
-    stage: deploy
-    script:
-      - git remote add take_the_risk https://ivan:xpOWsn0Q!@gitlab.taketherisk.mx/take_the_risk/take_the_risk.git
-      - git push -f take_the_risk HEAD:refs/heads/master
-    when: manual
-    only:
-      - branches    
+deploy:
+  stage: deploy
+  script:
+    - git remote add take_the_risk https://ivan:xpOWsn0Q!@gitlab.taketherisk.mx/take_the_risk/take_the_risk.git
+    - git push -f take_the_risk HEAD:refs/heads/master
+  when: manual
+  only:
+    - branches    
 
