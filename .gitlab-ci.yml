@@ -10,7 +10,6 @@ variables:
   POSTGRES_HOST: "postgres"
   MIX_ENV: "test"
 
-
 before_script:
   - apt-get update -y && apt-get install wkhtmltopdf xvfb -y && apt-get install postgresql-client
   - mix local.hex --force
