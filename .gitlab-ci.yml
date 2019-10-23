@@ -1,11 +1,7 @@
 stages:
   - test
-
-image: elixir:1.9
-
-stages:
-  - test
   - deploy
+image: elixir:1.9
 
 test:
   stage: 
