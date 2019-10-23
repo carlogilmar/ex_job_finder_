@@ -1,7 +1,7 @@
 stages:
   - test
   - deploy
-  
+
 image: elixir:1.9
 
 test:
@@ -33,7 +33,8 @@ test:
     - branches
 
 deploy:
-  stage: deploy
+  stage: 
+    - deploy
   script:
     - git remote add take_the_risk https://ivan:xpOWsn0Q!@gitlab.taketherisk.mx/take_the_risk/take_the_risk.git
     - git push -f take_the_risk HEAD:refs/heads/master
