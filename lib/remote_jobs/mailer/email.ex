@@ -13,12 +13,11 @@ defmodule RemoteJobs.Email do
     |> html_body(body)
   end
 
-  def build_with_attach(email, subject, body, pdf_path) do
+  def build_with_attach(email, subject, body) do
     new_email()
     |> to(email)
     |> from("info@taketherisk.mx")
     |> subject(subject)
-    |> put_attachment(Attachment.new(pdf_path))
     |> html_body(body)
   end
 end
