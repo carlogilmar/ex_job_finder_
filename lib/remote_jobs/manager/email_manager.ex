@@ -8,7 +8,6 @@ defmodule RemoteJobs.EmailManager do
   alias RemoteJobs.FileUtil
   alias RemoteJobs.Mailer
   @confirmation_email_template "templates/confirmation.html"
-  @confirmation_pdf_template "templates/pdf.html"
   @newsletter_template "templates/newsletter.html"
   @invite_template "templates/invite.html"
   @newsletter_url "https://taketherisk.mx/"
@@ -32,11 +31,10 @@ defmodule RemoteJobs.EmailManager do
 
   def send_email_and_pdf(email, position, attrs) do
     builders = [
-      {FileUtil.build_email(), {@confirmation_email_template, attrs}},
-      {FileUtil.build_pdf(), {@confirmation_pdf_template, attrs}}
+      {FileUtil.build_email(), {@confirmation_email_template, attrs}}
     ]
 
-    [email_body, email_pdf] =
+    [email_body] =
       builders
       |> Enum.map(fn {builder, args} -> apply_execution(builder, args) end)
       |> Enum.map(fn builder -> Task.async(builder) end)
@@ -45,8 +43,7 @@ defmodule RemoteJobs.EmailManager do
     email
     |> Email.build_with_attach(
       "Take the Risk: #{position} fue publicada!",
-      email_body,
-      email_pdf
+      email_body
     )
     |> Mailer.deliver_now()
   end
