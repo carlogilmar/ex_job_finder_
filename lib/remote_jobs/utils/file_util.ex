@@ -28,20 +28,4 @@ defmodule RemoteJobs.FileUtil do
     end
   end
 
-  def build_pdf do
-    fn {src, attrs} ->
-      template_filled =
-      src
-      |> get_template_from_static_file()
-      |> match_file_content(attrs)
-
-      {:ok, pdf} =
-        PdfGenerator.generate(template_filled,
-          page_size: "Letter",
-          shell_params: ["-T", "0", "-B", "0", "-L", "0", "-R", "0"]
-        )
-
-      pdf
-    end
-  end
 end
