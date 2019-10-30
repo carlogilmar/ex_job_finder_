@@ -54,7 +54,6 @@ defmodule RemoteJobs.MixProject do
       {:credo, "~> 1.1.3", only: [:dev, :test], runtime: false},
       {:bamboo, "~> 1.3"},
       {:poison, "~> 3.1"},
-      {:pdf_generator, ">=0.4.0"},
       {:httpoison, "~> 1.2.0"},
       {:conekta, github: "r-icarus/conekta-elixir"},
       {:quantum, "~> 2.3"},
